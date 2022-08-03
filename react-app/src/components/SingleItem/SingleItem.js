@@ -11,7 +11,7 @@ const SingleItem = () => {
 
     useEffect(() => {
         if (item) {
-            dispatch(thunkGetOneItem(item))
+            dispatch(thunkGetOneItem(item.id))
         }
     }, [dispatch])
 
@@ -20,11 +20,15 @@ const SingleItem = () => {
             {item && (
                 <div>
                     <h1>{item.title}</h1>
-                    <p>{item.price}</p>
+                    <h2>{item.price} bells</h2>
+                    <h3>About this item</h3>
                     <p>{item.description}</p>
                     <img src={item.image}></img>
                 </div>
             )}
+            <div>
+                <h2>Reviews</h2>
+            </div>
         </>
     )
 }

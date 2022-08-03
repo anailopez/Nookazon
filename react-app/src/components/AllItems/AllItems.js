@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllItems } from '../../store/items';
+import './allitems.css'
 
 const AllItems = () => {
     const items = useSelector(state => Object.values(state.allItems));
@@ -15,13 +16,12 @@ const AllItems = () => {
     return (
         <>
             {items && items.map(item => (
-                <div key={item.id}>
-                    <h2>{item.title}</h2>
-                    <p>Price: {item.price} bells</p>
-                    <p>{item.description}</p>
+                <div className='item-card' key={item.id}>
                     <Link to={`/items/${item.id}`}>
                         <img src={item.image} alt='Nookazon item' />
                     </Link>
+                    <p>{item.title}</p>
+                    <p>{item.price} bells</p>
                 </div>
             ))}
         </>
