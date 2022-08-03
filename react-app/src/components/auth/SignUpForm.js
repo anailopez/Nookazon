@@ -6,7 +6,9 @@ import { signUp } from '../../store/session';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
+  const [icon, setIcon] = useState('');
   const [email, setEmail] = useState('');
+  const [address, setAddress] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
@@ -15,7 +17,7 @@ const SignUpForm = () => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
+      const data = await dispatch(signUp(username, icon, email, address, password));
       if (data) {
         setErrors(data)
       }
@@ -26,8 +28,16 @@ const SignUpForm = () => {
     setUsername(e.target.value);
   };
 
+  const updateIcon = (e) => {
+    setIcon(e.target.value);
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
+  };
+
+  const updateAddress = (e) => {
+    setAddress(e.target.value);
   };
 
   const updatePassword = (e) => {
@@ -50,21 +60,43 @@ const SignUpForm = () => {
         ))}
       </div>
       <div>
-        <label>User Name</label>
+        <label>Username</label>
         <input
           type='text'
           name='username'
           onChange={updateUsername}
           value={username}
+          required
+        ></input>
+      </div>
+      <div>
+        <label>Icon</label>
+        <input
+          type='text'
+          name='icon'
+          onChange={updateIcon}
+          value={icon}
+          required
         ></input>
       </div>
       <div>
         <label>Email</label>
         <input
-          type='text'
+          type='email'
           name='email'
           onChange={updateEmail}
           value={email}
+          required
+        ></input>
+      </div>
+      <div>
+        <label>Address</label>
+        <input
+          type='text'
+          name='address'
+          onChange={updateAddress}
+          value={address}
+          required
         ></input>
       </div>
       <div>
@@ -74,6 +106,7 @@ const SignUpForm = () => {
           name='password'
           onChange={updatePassword}
           value={password}
+          required
         ></input>
       </div>
       <div>
