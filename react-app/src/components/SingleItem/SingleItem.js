@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetOneItem } from '../../store/items';
+import Reviews from '../Reviews/Reviews';
 
 const SingleItem = () => {
     const { itemId } = useParams();
@@ -10,8 +11,8 @@ const SingleItem = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (item) {
-            dispatch(thunkGetOneItem(item.id))
+        if (itemId) {
+            dispatch(thunkGetOneItem(itemId))
         }
     }, [dispatch])
 
@@ -28,6 +29,7 @@ const SingleItem = () => {
             )}
             <div>
                 <h2>Reviews</h2>
+                <Reviews />
             </div>
         </>
     )
