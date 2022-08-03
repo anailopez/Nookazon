@@ -15,10 +15,12 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # relationships :)
-    reviews = db.relationship("Review", back_populates="user")
-    orders = db.relationship("Order", back_populates="user")
+    reviews = db.relationship(
+        "Review", back_populates="user", cascade="all, delete-orphan")
+    orders = db.relationship(
+        "Order", back_populates="user", cascade="all, delete-orphan")
     items = db.relationship(
-        "Item", secondary=cart_items, back_populates="users")
+        "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
 
     @property
     def password(self):

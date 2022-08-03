@@ -13,11 +13,14 @@ class Item(db.Model):
     image = db.Column(db.Text, nullable=False)
 
     # relationships
-    reviews = db.relationship("Item", back_populates="item")
+    reviews = db.relationship(
+        "Review", back_populates="item", cascade="all, delete-orphan")
+    # cart_items
     users = db.relationship(
-        "User", secondary=cart_items, back_populates="items")
+        "User", secondary=cart_items, back_populates="items", passive_deletes=True)
+    # order_items
     orders = db.relationship(
-        "Order", secondary=order_items, back_populates='items')
+        "Order", secondary=order_items, back_populates='items', passive_deletes=True)
 
     def get_users(self):
         data = [user.to_dict() for user in self.users]

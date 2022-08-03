@@ -10,7 +10,7 @@ class Review(db.Model):
     body = db.Column(db.Text, nullable=False)
     rating = db.Column(db.Integer, nullable=False)
 
-    #relationships
+    # relationships
     user = db.relationship("User", back_populates='reviews')
     item = db.relationship("Item", back_populates='reviews')
 

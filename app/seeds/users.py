@@ -3,16 +3,16 @@ from app.models import db, User
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
-    demo = User(
-        username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+    Maple = User(
+        username='Maple', icon='https://static.wikia.nocookie.net/animalcrossing/images/a/a2/Maple_NH.png/revision/latest?cb=20200720220654', email='maple@nookmail.com', address='123 Island Way', hashed_password='password')
+    Puddles = User(
+        username='Puddles', icon='https://static.wikia.nocookie.net/animalcrossing/images/f/f9/Puddles_NH.png/revision/latest?cb=20200802145129', email='puddles@nookmail.com', address='222 Island Ave', hashed_password='password')
+    Teddy = User(
+        username='Teddy', icon='https://static.wikia.nocookie.net/animalcrossing/images/b/b9/Teddy_NH.png/revision/latest?cb=20200802072530', email='teddy@nookmail.com', address='456 Island Rd', hashed_password='password')
 
-    db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(Maple)
+    db.session.add(Puddles)
+    db.session.add(Teddy)
 
     db.session.commit()
 
