@@ -19,7 +19,7 @@ export const actionGetOneItem = (item) => {
 
 //thunk action creators
 export const thunkGetAllItems = () => async (dispatch) => {
-    const response = await fetch('/api/items');
+    const response = await fetch('/api/items/');
 
     if (response.ok) {
         const data = await response.json();
