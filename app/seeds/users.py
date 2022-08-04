@@ -4,11 +4,11 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     Maple = User(
-        username='Maple', icon='https://static.wikia.nocookie.net/animalcrossing/images/a/a2/Maple_NH.png/revision/latest?cb=20200720220654', email='maple@nookmail.com', address='123 Island Way', password='password')
+        username='Maple', icon='https://64.media.tumblr.com/34d598e1356bb69efc407c8eebc13ac4/facdf29a973759c9-02/s400x600/e7a4b09955f49b04b35651a798df8fbd08e2687e.png', email='maple@nookmail.com', address='123 Island Way', password='password')
     Puddles = User(
-        username='Puddles', icon='https://static.wikia.nocookie.net/animalcrossing/images/f/f9/Puddles_NH.png/revision/latest?cb=20200802145129', email='puddles@nookmail.com', address='222 Island Ave', password='password')
+        username='Puddles', icon='https://i-ac.db0.company/u/villager/295Puddles-JK2lq4.png', email='puddles@nookmail.com', address='222 Island Ave', password='password')
     Teddy = User(
-        username='Teddy', icon='https://static.wikia.nocookie.net/animalcrossing/images/b/b9/Teddy_NH.png/revision/latest?cb=20200802072530', email='teddy@nookmail.com', address='456 Island Rd', password='password')
+        username='Teddy', icon='https://oyster.ignimgs.com/mediawiki/apis.ign.com/animal-crossing-new-horizons/7/73/Teddy_NewLeaf.png', email='teddy@nookmail.com', address='456 Island Rd', password='password')
 
     db.session.add(Maple)
     db.session.add(Puddles)

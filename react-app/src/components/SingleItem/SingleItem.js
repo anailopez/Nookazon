@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetOneItem } from '../../store/items';
 import Reviews from '../Reviews/Reviews';
+import './singleitem.css'
 
 const SingleItem = () => {
     const { itemId } = useParams();
@@ -19,7 +20,7 @@ const SingleItem = () => {
     return (
         <>
             {item && (
-                <div>
+                <div className='single-item-display'>
                     <h1>{item.title}</h1>
                     <h2>{item.price} bells</h2>
                     <h3>About this item</h3>
