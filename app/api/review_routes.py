@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Review, Item
-from app.forms import CreateReviewForm
+from app.forms import ReviewForm
 
 review_routes = Blueprint('reviews', __name__)
 
@@ -26,7 +26,7 @@ def get_reviews(id):
 
 @review_routes.route('/<int:id>/create', methods=['POST'])
 def create_review(id):
-    form = CreateReviewForm()
+    form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate_on_submit():
@@ -51,3 +51,23 @@ def delete_review(id):
     db.session.delete(review)
     db.session.commit()
     return review.to_dict()
+
+
+@review_routes.route('/<int:id>/update', methods=['PUT'])
+def update_review(id):
+    form = ReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    review = Review.query.get(id)
+
+    if form.validate_on_submit():
+        review.item_id = form.data['item_id']
+        review.user_id = form.data['user_id']
+        review.title = form.data['title']
+        review.body = form.data['body']
+        review.rating = form.data['rating']
+
+        db.session.commit()
+        return review.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
