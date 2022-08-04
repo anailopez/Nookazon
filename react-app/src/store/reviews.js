@@ -1,6 +1,7 @@
 const GET_REVIEWS = 'review/getReviews'
 const CREATE_REVIEW = 'review/createReview'
 const DELETE_REVIEW = 'review/deleteReview'
+const UPDATE_REVIEW = 'review/updateReview'
 
 //regular action creators
 export const actionGetReviews = (reviews) => {
@@ -24,7 +25,15 @@ export const actionDeleteReview = (reviewId) => {
     }
 }
 
-//thunk action creator
+export const actionUpdateReview = (review) => {
+    return {
+        type: UPDATE_REVIEW,
+        review
+    }
+}
+
+
+//thunk action creators
 export const thunkGetReviews = (id) => async (dispatch) => {
     const response = await fetch(`/api/reviews/${id}`)
 
@@ -67,6 +76,23 @@ export const thunkDeleteReview = (id) => async (dispatch) => {
     }
 }
 
+export const thunkUpdateReview = (review) => async (dispatch) => {
+    const response = await fetch(`/api/reviews/${review.id}/update`, {
+        method: "PUT",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(review)
+    })
+
+    if (response.ok) {
+        const updatedReview = await response.json();
+        dispatch(actionUpdateReview(updatedReview));
+        return updatedReview
+    } else {
+        return await response.json()
+    }
+}
+
+
 const initialState = {}
 
 const reviewsReducer = (state = initialState, action) => {
@@ -87,6 +113,11 @@ const reviewsReducer = (state = initialState, action) => {
             let deleteState = { ...state }
             delete deleteState[action.reviewId]
             return deleteState;
+
+        case UPDATE_REVIEW:
+            let updateState = { ...state }
+            updateState[action.review.id] = action.review
+            return updateState;
 
         default:
             return state;
