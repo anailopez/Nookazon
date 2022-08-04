@@ -43,6 +43,7 @@ def upgrade():
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('item_id', sa.Integer(), nullable=False),
                     sa.Column('user_id', sa.Integer(), nullable=False),
+                    sa.Column('title', sa.String(length=300), nullable=False),
                     sa.Column('body', sa.Text(), nullable=False),
                     sa.Column('rating', sa.Integer(), nullable=False),
                     sa.PrimaryKeyConstraint('id'),

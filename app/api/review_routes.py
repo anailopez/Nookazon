@@ -1,7 +1,19 @@
-from flask import Blueprint
-from app.models import Review, Item
+from flask import Blueprint, request
+from app.models import db, Review, Item
+from app.forms import CreateReviewForm
 
 review_routes = Blueprint('reviews', __name__)
+
+
+def validation_errors_to_error_messages(validation_errors):
+    """
+    Simple function that turns the WTForms validation errors into a simple list
+    """
+    errorMessages = []
+    for field in validation_errors:
+        for error in validation_errors[field]:
+            errorMessages.append(f'{field} : {error}')
+    return errorMessages
 
 
 @review_routes.route('/<int:id>')
@@ -10,3 +22,24 @@ def get_reviews(id):
     reviews = item.reviews
     data = [review.to_dict() for review in reviews]
     return {'reviews': data}
+
+
+@review_routes.route('/<int:id>', methods=['POST'])
+def create_review(id):
+    form = CreateReviewForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+
+    if form.validate_on_submit():
+        new_review = Review(
+            item_id=form.data['item_id'],
+            user_id=form.data['user_id'],
+            title=form.data['title'],
+            body=form.data['body'],
+            rating=form.data['rating']
+        )
+
+        db.session.add(new_review)
+        db.session.commit()
+        return new_review.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400

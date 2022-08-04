@@ -1,3 +1,7 @@
 .review-card {
     border: 1px solid gray
 }
+
+.write-review {
+    border: 1px solid green
+}
