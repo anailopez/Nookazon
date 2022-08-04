@@ -5,9 +5,10 @@ import { thunkGetAllItems } from '../../store/items';
 import './allitems.css'
 
 const AllItems = () => {
-    const items = useSelector(state => Object.values(state.allItems));
 
     const dispatch = useDispatch();
+
+    const items = useSelector(state => Object.values(state.allItems));
 
     useEffect(() => {
         dispatch(thunkGetAllItems())

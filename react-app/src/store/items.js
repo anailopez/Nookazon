@@ -23,6 +23,7 @@ export const thunkGetAllItems = () => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
+        console.log('***FROM THUNK', data.items);
         dispatch(actionGetAllItems(data.items));
         return data.items
     } else {
@@ -49,6 +50,7 @@ const itemsReducer = (state = initialState, action) => {
     switch (action.type) {
         case GET_ALL_ITEMS:
             let getAllState = { ...state }
+            console.log('***FROM REDUCER', action.items)
             action.items.forEach(item => {
                 getAllState[item.id] = item
             });
