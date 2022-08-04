@@ -10,6 +10,7 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import AllItems from './components/AllItems/AllItems';
 import SingleItem from './components/SingleItem/SingleItem';
+import CreateReviewForm from './components/CreateReviewForm/CreateReviewForm';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -48,6 +49,9 @@ function App() {
         <Route path='/items/:itemId'>
           <SingleItem />
         </Route>
+        <ProtectedRoute path='/create-review/:itemId'>
+          <CreateReviewForm />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

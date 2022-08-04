@@ -1,0 +1,13 @@
+.review-card {
+    border: 1px solid gray
+}
+
+.review-card img {
+    border-radius: 50%;
+    max-width: 10%;
+    max-height: 100px;
+}
+
+.write-review {
+    border: 1px solid green
+}
