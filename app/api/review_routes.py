@@ -24,7 +24,7 @@ def get_reviews(id):
     return {'reviews': data}
 
 
-@review_routes.route('/<int:id>', methods=['POST'])
+@review_routes.route('/<int:id>/create', methods=['POST'])
 def create_review(id):
     form = CreateReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
@@ -43,3 +43,11 @@ def create_review(id):
         return new_review.to_dict()
 
     return {'errors': validation_errors_to_error_messages(form.errors)}, 400
+
+
+@review_routes.route('/<int:id>/delete', methods=['DELETE'])
+def delete_review(id):
+    review = Review.query.get(id)
+    db.session.delete(review)
+    db.session.commit()
+    return review.to_dict()

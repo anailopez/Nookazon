@@ -14,7 +14,7 @@ const SingleItem = () => {
         if (itemId) {
             dispatch(thunkGetOneItem(itemId))
         }
-    }, [dispatch])
+    }, [dispatch, itemId])
 
     return (
         <>
@@ -24,7 +24,7 @@ const SingleItem = () => {
                     <h2>{item.price} bells</h2>
                     <h3>About this item</h3>
                     <p>{item.description}</p>
-                    <img src={item.image}></img>
+                    <img src={item.image} alt='item img'></img>
                 </div>
             )}
             <div>

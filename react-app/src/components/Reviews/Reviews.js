@@ -2,17 +2,23 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import { thunkGetReviews } from '../../store/reviews';
+import { thunkDeleteReview } from '../../store/reviews';
 import './reviews.css'
 
 const Reviews = () => {
     const { itemId } = useParams();
     const reviews = useSelector(state => Object.values(state.reviews));
+    const sessionUser = useSelector(state => state.session.user)
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetReviews(itemId))
-    }, [dispatch, itemId])
+    }, [dispatch, itemId]);
+
+    // const handleDelete = () => {
+
+    // }
 
     return (
         <div className='all-reviews'>
@@ -27,11 +33,14 @@ const Reviews = () => {
                 <div className='review-card' key={review.id}>
                     {review.item_id === parseInt(itemId) && (
                         <div>
-                            <img src={review.user.icon}></img>
+                            <img src={review.user.icon} alt='review img'></img>
                             <p>{review.user.username}</p>
                             <p>{review.rating}</p>
                             <h4>{review.title}</h4>
                             <p>{review.body}</p>
+                            {sessionUser && sessionUser.id === review.user_id && (
+                                <button onClick={() => dispatch(thunkDeleteReview(review.id))}>Delete Review</button>
+                            )}
                         </div>
                     )}
                 </div>

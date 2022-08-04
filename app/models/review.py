@@ -12,8 +12,8 @@ class Review(db.Model):
     rating = db.Column(db.Integer, nullable=False)
 
     # relationships
-    user = db.relationship("User", back_populates='reviews')
-    item = db.relationship("Item", back_populates='reviews')
+    user = db.relationship("User", back_populates='reviews', lazy='subquery')
+    item = db.relationship("Item", back_populates='reviews', lazy='subquery')
 
     def to_dict(self):
         return{
