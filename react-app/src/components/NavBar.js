@@ -1,9 +1,12 @@
 
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
+  const userId = useSelector((state) => state.session?.user.id);
+
   return (
     <nav>
       <ul>
@@ -27,6 +30,11 @@ const NavBar = () => {
             Users
           </NavLink>
         </li> */}
+        <li>
+          <NavLink to={`/cart/${userId}`}>
+            Cart
+          </NavLink>
+        </li>
         <li>
           <LogoutButton />
         </li>
