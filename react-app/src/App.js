@@ -8,7 +8,7 @@ import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
 import { authenticate } from './store/session';
-import { thunkGetAllItems } from './store/items';
+// import { thunkGetAllItems } from './store/items';
 import AllItems from './components/AllItems/AllItems';
 import SingleItem from './components/SingleItem/SingleItem';
 import CreateReviewForm from './components/CreateReviewForm/CreateReviewForm';
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
-      await dispatch(thunkGetAllItems());
+      // await dispatch(thunkGetAllItems());
       setLoaded(true);
     })();
   }, [dispatch]);

@@ -8,11 +8,11 @@ const AllItems = () => {
 
     const dispatch = useDispatch();
 
-    const items = useSelector(state => Object.values(state.allItems));
-
     useEffect(() => {
         dispatch(thunkGetAllItems())
     }, [dispatch])
+
+    const items = useSelector(state => Object.values(state.allItems));
 
     return (
         <>
