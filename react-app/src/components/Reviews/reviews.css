@@ -6,6 +6,7 @@
     border-radius: 50%;
     max-width: 10%;
     max-height: 100px;
+    /* for migration */
 }
 
 .write-review {
