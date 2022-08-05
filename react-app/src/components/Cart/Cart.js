@@ -60,11 +60,13 @@ const Cart = () => {
                 </div>
             ))}
             {cart && !cart.length > 0 && (
-                <p>Your cart is empty!</p>
+                <p>Your Nookazon Cart is empty.</p>
             )}
             <div>
                 <h2>Subtotal</h2>
-                <button>Proceed to checkout</button>
+                <Link to={`/checkout`}>
+                    <button>Proceed to checkout</button>
+                </Link>
             </div>
         </div>
     )
