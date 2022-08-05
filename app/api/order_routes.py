@@ -14,11 +14,12 @@ def get_all_orders(id):
 @order_routes.route('/<int:id>/delete', methods=['DELETE'])
 def delete_order(id):
     order = Order.query.get(id)
-    order_item = db.session.query(OrderItem).filter(
-        OrderItem.order_id == id).one()
+    order_items = db.session.query(OrderItem).filter(
+        OrderItem.order_id == id).all()
 
-    db.session.delete(order_item)
-    db.session.commit()
+    for item in order_items:
+        db.session.delete(item)
+        db.session.commit()
 
     db.session.delete(order)
     db.session.commit()
