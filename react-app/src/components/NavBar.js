@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 
 const NavBar = () => {
-  const userId = useSelector((state) => state.session?.user.id);
+  const userId = useSelector((state) => state.session?.user?.id);
 
   return (
     <nav>
@@ -31,7 +31,7 @@ const NavBar = () => {
           </NavLink>
         </li> */}
         <li>
-          <NavLink to={`/cart/${userId}`}>
+          <NavLink to='/cart'>
             Cart
           </NavLink>
         </li>
