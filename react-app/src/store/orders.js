@@ -1,4 +1,5 @@
 const GET_ALL_ORDERS = 'order/getAllOrders'
+const DELETE_ORDER = 'order/deleteOrder'
 
 //regular action creators
 export const actionGetAllOrders = (orders) => {
@@ -8,6 +9,12 @@ export const actionGetAllOrders = (orders) => {
     }
 }
 
+export const actionDeleteOrder = (order) => {
+    return {
+        type: DELETE_ORDER,
+        order
+    }
+}
 
 //thunk action creators
 export const thunkGetAllOrders = (userId) => async (dispatch) => {
@@ -22,6 +29,19 @@ export const thunkGetAllOrders = (userId) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteOrder = (orderId) => async (dispatch) => {
+    const response = await fetch(`/api/orders/${orderId}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionDeleteOrder(orderId));
+        return data
+    } else {
+        return await response.json()
+    }
+}
 
 
 const initialState = {}
@@ -34,6 +54,11 @@ const ordersReducer = (state = initialState, action) => {
                 getAllState[order.id] = order
             })
             return getAllState;
+
+        case DELETE_ORDER:
+            let deleteState = { ...state }
+            delete deleteState[action.orderId]
+            return deleteState;
 
         default:
             return state;

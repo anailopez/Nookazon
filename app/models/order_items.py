@@ -13,8 +13,10 @@ class OrderItem(db.Model):
     item_id = db.Column(ForeignKey('items.id'), primary_key=True)
     quantity = db.Column(db.Integer, nullable=False)
 
-    order = db.relationship('Order', back_populates='items')
-    item = db.relationship('Item', back_populates='orders')
+    order = db.relationship(
+        'Order', back_populates='items', passive_deletes=True, cascade='all,delete', lazy='subquery')
+    item = db.relationship(
+        'Item', back_populates='orders', passive_deletes=True, cascade='all,delete', lazy='subquery')
 
     def to_dict(self):
         return{

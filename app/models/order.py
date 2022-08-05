@@ -12,8 +12,9 @@ class Order(db.Model):
     delivery_info = db.Column(db.Text, nullable=True)
 
     # relationships
-    user = db.relationship("User", back_populates="orders")
-    items = db.relationship(OrderItem, back_populates='order')
+    user = db.relationship("User", back_populates="orders", lazy='subquery')
+    items = db.relationship(
+        OrderItem, back_populates='order', cascade='all,delete')
 
     def get_items(self):
         data = [item.to_dict() for item in self.items]
