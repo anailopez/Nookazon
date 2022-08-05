@@ -60,7 +60,7 @@ const Checkout = () => {
                     {cart && cart.map(cartItem => (
                         <div className="checkout-item">
                             <div style={{ 'display': 'none' }}>
-                                {total += cartItem.item.price}
+                                {total += (cartItem.item.price * cartItem.quantity)}
                             </div>
                             <img src={cartItem.item.image} />
                             <h3>{cartItem.item.title}</h3>
