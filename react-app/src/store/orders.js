@@ -57,7 +57,7 @@ const ordersReducer = (state = initialState, action) => {
 
         case DELETE_ORDER:
             let deleteState = { ...state }
-            delete deleteState[action.orderId]
+            delete deleteState[action.order]
             return deleteState;
 
         default:

@@ -14,7 +14,7 @@ class Order(db.Model):
     # relationships
     user = db.relationship("User", back_populates="orders", lazy='subquery')
     items = db.relationship(
-        OrderItem, back_populates='order', cascade='all,delete')
+        OrderItem, back_populates='order', lazy='subquery')
 
     def get_items(self):
         data = [item.to_dict() for item in self.items]

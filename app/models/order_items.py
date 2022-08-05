@@ -14,9 +14,9 @@ class OrderItem(db.Model):
     quantity = db.Column(db.Integer, nullable=False)
 
     order = db.relationship(
-        'Order', back_populates='items', passive_deletes=True, cascade='all,delete', lazy='subquery')
+        'Order', back_populates='items', lazy='subquery')
     item = db.relationship(
-        'Item', back_populates='orders', passive_deletes=True, cascade='all,delete', lazy='subquery')
+        'Item', back_populates='orders', lazy='subquery')
 
     def to_dict(self):
         return{

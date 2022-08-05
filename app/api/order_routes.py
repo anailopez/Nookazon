@@ -1,5 +1,5 @@
 from flask import Blueprint
-from app.models import db, Order, order_items
+from app.models import db, Order, OrderItem
 
 order_routes = Blueprint('orders', __name__)
 
@@ -14,7 +14,13 @@ def get_all_orders(id):
 @order_routes.route('/<int:id>/delete', methods=['DELETE'])
 def delete_order(id):
     order = Order.query.get(id)
-    
+    order_item = db.session.query(OrderItem).filter(
+        OrderItem.order_id == id).one()
+    # print("****OrderItem", order_item)
+
+    db.session.delete(order_item)
+    db.session.commit()
+
     db.session.delete(order)
     db.session.commit()
     return order.to_dict()

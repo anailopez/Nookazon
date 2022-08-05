@@ -14,10 +14,12 @@ const AllOrders = () => {
         dispatch(thunkGetAllOrders(user.id))
     }, [dispatch])
 
+
     const handleDelete = async (orderId) => {
         await dispatch(thunkDeleteOrder(orderId));
         await dispatch(thunkGetAllOrders(user.id))
     }
+
 
     return (
         <>
