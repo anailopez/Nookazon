@@ -10,6 +10,7 @@ const Cart = () => {
     let [cart, setCart] = useState([]);
     const [itemId, setItemId] = useState(null);
     let savedCart = null;
+    let total = 0;
 
     if (userId) {
         savedCart = localStorage.getItem(userId);
@@ -48,6 +49,9 @@ const Cart = () => {
             <h1>Shopping Cart</h1>
             {cart && cart.map(cartItem => (
                 <div className='cart-item' key={cartItem.item.id}>
+                    <div style={{ 'display': 'none' }}>
+                        {total += cartItem.item.price}
+                    </div>
                     <Link to={`/items/${cartItem.item.id}`}>
                         <img src={cartItem.item.image} />
                     </Link>
@@ -63,7 +67,7 @@ const Cart = () => {
                 <p>Your Nookazon Cart is empty.</p>
             )}
             <div>
-                <h2>Subtotal</h2>
+                <h2>Subtotal ({cart.length} item(s)): {total} bells</h2>
                 <Link to={`/checkout`}>
                     <button>Proceed to checkout</button>
                 </Link>
