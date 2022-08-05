@@ -1,5 +1,6 @@
 from .db import db
-from .order_items import order_items
+# from .order_items import order_items
+from .order_items import OrderItem
 
 
 class Order(db.Model):
@@ -12,8 +13,7 @@ class Order(db.Model):
 
     # relationships
     user = db.relationship("User", back_populates="orders")
-    items = db.relationship(
-        "Item", secondary=order_items, back_populates="orders", cascade="all, delete")
+    items = db.relationship(OrderItem, back_populates='order')
 
     def get_items(self):
         data = [item.to_dict() for item in self.items]

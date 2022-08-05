@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .cart_items import cart_items
+# from .cart_items import cart_items
 
 
 class User(db.Model, UserMixin):
@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
         "Review", back_populates="user", cascade="all, delete-orphan")
     orders = db.relationship(
         "Order", back_populates="user", cascade="all, delete-orphan")
-    items = db.relationship(
-        "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
+    # items = db.relationship(
+    #     "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
 
     @property
     def password(self):

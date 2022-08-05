@@ -33,7 +33,7 @@ const Checkout = () => {
 
                 <div id='payment'>
                     <h2>Payment method</h2>
-                    <input type='radio' id='cards' name='payment' value='cards' />
+                    <input type='radio' id='cards' name='payment' value='cards' defaultChecked />
                     <label htmlFor='cards'>
                         <i className="fa-brands fa-cc-visa" />
                         <i className="fa-brands fa-cc-mastercard" />
@@ -68,14 +68,15 @@ const Checkout = () => {
                             <p>Qty: {cartItem.quantity}</p>
                             <div>
                                 <h3>Choose your Prime delivery option: </h3>
-                                <div>
+                                <span>
                                     <input type='radio' name='Prime' value='Prime Delivery' />
                                     <label htmlFor="Prime">FREE Prime Delivery</label>
-                                </div>
-                                <div>
+                                </span>
+                                <span>
                                     <input type='radio' name='Nookazon' value='Nookazon Day' />
                                     <label htmlFor="Nookazon">FREE Nookazon Day Delivery</label>
-                                </div>
+                                </span>
+
                             </div>
                         </div>
                     ))}
@@ -91,7 +92,7 @@ const Checkout = () => {
                 <div className="right-order">
                     <button>Place your order</button>
                     <h2>Order Summary</h2>
-                    <p>Items: {total} bells</p>
+                    <p>Item(s) ({cart.length}): {total} bells</p>
                     <p>Shipping and handling: 0 bells</p>
                     <p>Total before tax: {total} bells</p>
                     <p>Estimated tax to be collected: 200 bells</p>
