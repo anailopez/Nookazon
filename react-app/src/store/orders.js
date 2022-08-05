@@ -1,5 +1,6 @@
 const GET_ALL_ORDERS = 'order/getAllOrders'
 const DELETE_ORDER = 'order/deleteOrder'
+const CREATE_ORDER = 'order/createOrder'
 
 //regular action creators
 export const actionGetAllOrders = (orders) => {
@@ -9,12 +10,20 @@ export const actionGetAllOrders = (orders) => {
     }
 }
 
-export const actionDeleteOrder = (order) => {
+export const actionDeleteOrder = (orderId) => {
     return {
         type: DELETE_ORDER,
+        orderId
+    }
+}
+
+export const actionCreateOrder = (order) => {
+    return {
+        type: CREATE_ORDER,
         order
     }
 }
+
 
 //thunk action creators
 export const thunkGetAllOrders = (userId) => async (dispatch) => {
@@ -43,6 +52,22 @@ export const thunkDeleteOrder = (orderId) => async (dispatch) => {
     }
 }
 
+export const thunkCreateOrder = (userId, total, delivery, order) => async (dispatch) => {
+    const response = await fetch(`/api/orders/create`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify([userId, total, delivery, order])
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(actionCreateOrder(data))
+        return data
+    } else {
+        return await response.json()
+    }
+}
+
 
 const initialState = {}
 
@@ -57,8 +82,13 @@ const ordersReducer = (state = initialState, action) => {
 
         case DELETE_ORDER:
             let deleteState = { ...state }
-            delete deleteState[action.order]
+            delete deleteState[action.orderId]
             return deleteState;
+
+        case CREATE_ORDER:
+            let createState = { ...state }
+            createState[action.order.id] = action.order
+            return createState;
 
         default:
             return state;

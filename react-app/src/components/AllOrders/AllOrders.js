@@ -26,7 +26,7 @@ const AllOrders = () => {
             <h1>Your Orders</h1>
             {orders && orders.length > 0 && orders.map(order => (
                 <div className="order-item-card" key={order.id}>
-                    {console.log('***order', order)}
+                    {/* {console.log('***order', order)} */}
                     <p>Total: {order.total} bells</p>
                     <p>Delivery instructions: {order.delivery_info}</p>
                     {order.items.map(orderItem => (

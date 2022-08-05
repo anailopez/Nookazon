@@ -23,7 +23,7 @@ const Cart = () => {
         }
     }, [savedCart]);
 
-    console.log("***CART", cart)
+    // console.log("***CART", cart)
 
     // const updateCartItem = (itemId, quantity) => {
     //     //todo

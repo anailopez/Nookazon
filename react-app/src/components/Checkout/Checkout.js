@@ -1,9 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from "react-router-dom";
+import { thunkCreateOrder } from "../../store/orders";
+import { thunkGetAllOrders } from "../../store/orders";
 import './checkout.css';
 
 const Checkout = () => {
-    const user = useSelector(state => state.session.user)
+    const user = useSelector(state => state.session.user);
+    const history = useHistory();
+
+    const dispatch = useDispatch();
+
+    const [delivery, setDelivery] = useState('');
 
     let [cart, setCart] = useState([]);
     let savedCart = null;
@@ -20,6 +28,23 @@ const Checkout = () => {
         }
     }, [savedCart]);
 
+    console.log("*checkout cart", cart);
+
+
+    const handleOrder = async () => {
+        //dispatch thunk for each cart item
+        cart.forEach(item => {
+            dispatch(thunkCreateOrder(user.id, total, delivery, item))
+        })
+        //clear cart
+        localStorage.removeItem(user.id);
+        //redirect to '/orders'
+        history.push('/orders');
+        return alert('Order placed!');
+    }
+
+
+
     return (
         <div className="all-checkout">
             <div id='left'>
@@ -28,7 +53,13 @@ const Checkout = () => {
                     <h2>Shipping address</h2>
                     <p>{user.username}</p>
                     <p>{user.address}</p>
-                    <button>Add delivery instructions</button>
+                    <label htmlFor="delivery">Add delivery instructions</label>
+                    <textarea
+                        placeholder="Where should we leave your packages?"
+                        onChange={(e) => setDelivery(e.target.value)}
+                        value={delivery}
+                    />
+                    {/* <button>Add delivery instructions</button> */}
                 </div>
 
                 <div id='payment'>
@@ -83,20 +114,24 @@ const Checkout = () => {
                 </div>
 
                 <div id='bottom-order'>
-                    <button>Place your order</button>
-                    <h2>Order Total: {total} bells </h2>
+                    <form onSubmit={handleOrder}>
+                        <button>Place your order</button>
+                        <h2>Order Total: {total} bells </h2>
+                    </form>
                 </div>
             </div>
 
             <div id='right'>
                 <div className="right-order">
-                    <button>Place your order</button>
-                    <h2>Order Summary</h2>
-                    <p>Item(s) ({cart.length}): {total} bells</p>
-                    <p>Shipping and handling: 0 bells</p>
-                    <p>Total before tax: {total} bells</p>
-                    <p>Estimated tax to be collected: 200 bells</p>
-                    <h2>Order total: {total += 200} bells</h2>
+                    <form onSubmit={handleOrder}>
+                        <button>Place your order</button>
+                        <h2>Order Summary</h2>
+                        <p>Item(s) ({cart.length}): {total} bells</p>
+                        <p>Shipping and handling: 0 bells</p>
+                        <p>Total before tax: {total} bells</p>
+                        <p>Estimated tax to be collected: 200 bells</p>
+                        <h2>Order total: {total += 200} bells</h2>
+                    </form>
                 </div>
             </div>
         </div>
