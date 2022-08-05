@@ -52,11 +52,11 @@ export const thunkDeleteOrder = (orderId) => async (dispatch) => {
     }
 }
 
-export const thunkCreateOrder = (userId, total, delivery, order) => async (dispatch) => {
+export const thunkCreateOrder = (userId, total, delivery, cart) => async (dispatch) => {
     const response = await fetch(`/api/orders/create`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify([userId, total, delivery, order])
+        body: JSON.stringify([userId, total, delivery, cart])
     });
 
     if (response.ok) {

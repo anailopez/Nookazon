@@ -30,17 +30,18 @@ const Checkout = () => {
 
     console.log("*checkout cart", cart);
 
-
+    //right now, backend route is creating a new order for each item
+    //instead, create just one order per cart?
+    //and instead create a row in order_items per each item?
+    //all items in one cart should have the same order_id
     const handleOrder = async () => {
-        //dispatch thunk for each cart item
-        cart.forEach(item => {
-            dispatch(thunkCreateOrder(user.id, total, delivery, item))
-        })
+        dispatch(thunkCreateOrder(user.id, total, delivery, cart));
         //clear cart
         localStorage.removeItem(user.id);
         //redirect to '/orders'
         history.push('/orders');
         return alert('Order placed!');
+        //clear cart
     }
 
 

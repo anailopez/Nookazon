@@ -40,10 +40,9 @@ const AllOrders = () => {
                 </div>
             ))
             }
-            {
-                orders && !orders.length > 0 && (
-                    <p>You currently have no orders</p>
-                )
+            {orders && !orders.length > 0 && (
+                <p>You currently have no orders</p>
+            )
             }
         </>
     )

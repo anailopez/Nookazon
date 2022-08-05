@@ -37,13 +37,16 @@ def create_order():
     )
     db.session.add(new_order)
     db.session.commit()
+    items = data[3]
+    print("**ITEMS", items[0])
 
-    new_item = OrderItem(
-        order_id=new_order.id,
-        item_id=data[3]['item']['id'],
-        quantity=int(data[3]['quantity'])
-    )
-    db.session.add(new_item)
-    db.session.commit()
+    for item in items:
+        item = OrderItem(
+            order_id=new_order.id,
+            item_id=item['item']['id'],
+            quantity=int(item['quantity'])
+        )
+        db.session.add(item)
+        db.session.commit()
 
     return new_order.to_dict()
