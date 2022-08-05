@@ -38,5 +38,5 @@ class Item(db.Model):
             'description': self.description,
             'image': self.image,
             # 'users': self.get_users(),
-            'orders': self.get_orders()
+            # 'orders': self.get_orders()
         }

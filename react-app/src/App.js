@@ -14,6 +14,7 @@ import SingleItem from './components/SingleItem/SingleItem';
 import CreateReviewForm from './components/CreateReviewForm/CreateReviewForm';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
+import AllOrders from './components/AllOrders/AllOrders';
 
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/create-review/:itemId'>
           <CreateReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/orders'>
+          <AllOrders />
         </ProtectedRoute>
         <ProtectedRoute path='/cart'>
           <Cart />

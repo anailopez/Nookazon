@@ -1,8 +1,9 @@
 from sqlalchemy import ForeignKey
 from .db import db
 
+
 class OrderItem(db.Model):
-    __tablename__='order_items'
+    __tablename__ = 'order_items'
     # db.Column('order_id', db.Integer, db.ForeignKey(
     #     'orders.id', ondelete='CASCADE'), primary_key=True)
     # db.Column('item_id', db.Integer, db.ForeignKey(
@@ -14,3 +15,11 @@ class OrderItem(db.Model):
 
     order = db.relationship('Order', back_populates='items')
     item = db.relationship('Item', back_populates='orders')
+
+    def to_dict(self):
+        return{
+            'order_id': self.order_id,
+            'item_id': self.item_id,
+            'quantity': self.quantity,
+            'item': self.item.to_dict()
+        }

@@ -41,9 +41,9 @@ class User(db.Model, UserMixin):
         data = [order.to_dict() for order in self.orders]
         return data
 
-    def get_items(self):
-        data = [item.to_dict() for item in self.items]
-        return data
+    # def get_items(self):
+    #     data = [item.to_dict() for item in self.items]
+    #     return data
 
     def to_dict(self):
         return {
@@ -52,7 +52,7 @@ class User(db.Model, UserMixin):
             'icon': self.icon,
             'email': self.email,
             'address': self.address,
-            'reviews': self.get_items(),
-            'orders': self.get_orders(),
-            'items': self.get_items()
+            # 'reviews': self.get_reviews(),
+            # 'orders': self.get_orders(),
+            # 'items': self.get_items()
         }
