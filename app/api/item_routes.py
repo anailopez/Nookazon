@@ -7,7 +7,7 @@ item_routes = Blueprint('items', __name__)
 @item_routes.route('/', methods=['GET'])
 def get_all_items():
     items = Item.query.all()
-    print('****FROM GET ROUTE', items)
+    # print('****FROM GET ROUTE', items)
     data = [item.to_dict() for item in items]
     return {'items': data}
 

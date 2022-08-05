@@ -12,6 +12,8 @@ import { authenticate } from './store/session';
 import AllItems from './components/AllItems/AllItems';
 import SingleItem from './components/SingleItem/SingleItem';
 import CreateReviewForm from './components/CreateReviewForm/CreateReviewForm';
+import Cart from './components/Cart/Cart';
+
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -39,12 +41,12 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
+        {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute>
+        </ProtectedRoute> */}
         <Route path='/' exact={true} >
           <AllItems />
         </Route>
@@ -53,6 +55,9 @@ function App() {
         </Route>
         <ProtectedRoute path='/create-review/:itemId'>
           <CreateReviewForm />
+        </ProtectedRoute>
+        <ProtectedRoute path='/cart/:userId'>
+          <Cart />
         </ProtectedRoute>
       </Switch>
     </BrowserRouter>
