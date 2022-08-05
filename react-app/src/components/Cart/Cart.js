@@ -50,7 +50,7 @@ const Cart = () => {
             {cart && cart.map(cartItem => (
                 <div className='cart-item' key={cartItem.item.id}>
                     <div style={{ 'display': 'none' }}>
-                        {total += cartItem.item.price}
+                        {total += (cartItem.item.price * cartItem.quantity)}
                     </div>
                     <Link to={`/items/${cartItem.item.id}`}>
                         <img src={cartItem.item.image} />
