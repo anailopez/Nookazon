@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { thunkGetAllOrders } from "../../store/orders";
 import { thunkDeleteOrder } from "../../store/orders";
 import './allorders.css'
@@ -27,8 +28,13 @@ const AllOrders = () => {
             {orders && orders.length > 0 && orders.map(order => (
                 <div className="order-item-card" key={order.id}>
                     {/* {console.log('***order', order)} */}
+                    <p>Order Placed: *DATE HERE*</p>
                     <p>Total: {order.total} bells</p>
-                    <p>Delivery instructions: {order.delivery_info}</p>
+                    <p>Ship To: {user.username}</p>
+                    <p>Order # {order.id}</p>
+                    <Link to={`/order-details/${order.id}`}>
+                        <button>View Order Details</button>
+                    </Link>
                     {order.items.map(orderItem => (
                         <div className="order-item" key={orderItem.id}>
                             <img src={orderItem.item.image} />

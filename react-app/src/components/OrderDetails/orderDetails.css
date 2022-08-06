@@ -1,0 +1,51 @@
+.basic-info {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border: 1px solid gray;
+    border-radius: 10px;
+}
+
+.shipments {
+    border: 1px solid gray;
+    border-radius: 10px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.shipments img {
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.shipments-header {
+    border-bottom: 1px solid gray;
+    background-color: #F0F2F2;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+
+.orderDetails-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-top: 1px solid gray;
+    padding: 10px;
+}
+
+.image-buyagain {
+    display: flex;
+    flex-direction: row;
+}
+
+#buy-again {
+    padding-left: 20px;
+}

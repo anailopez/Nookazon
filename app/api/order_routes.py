@@ -11,6 +11,12 @@ def get_all_orders(id):
     return {'orders': data}
 
 
+@order_routes.route('/<int:id>/details')
+def get_single_order(id):
+    order = Order.query.get(id)
+    return order.to_dict()
+
+
 @order_routes.route('/<int:id>/delete', methods=['DELETE'])
 def delete_order(id):
     order = Order.query.get(id)
@@ -51,3 +57,13 @@ def create_order():
         db.session.commit()
 
     return new_order.to_dict()
+
+
+@order_routes.route('/<int:id>/edit', methods=["PUT"])
+def edit_order(id):
+    data = request.json
+    order = Order.query.get(id)
+    order.delivery_info = data
+
+    db.session.commit()
+    return order.to_dict()
