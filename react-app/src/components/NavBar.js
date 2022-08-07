@@ -31,6 +31,11 @@ const NavBar = () => {
           </NavLink>
         </li> */}
         <li>
+          <NavLink to='/orders'>
+            Orders
+          </NavLink>
+        </li>
+        <li>
           <NavLink to='/cart'>
             Cart
           </NavLink>

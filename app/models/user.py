@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .cart_items import cart_items
+# from .cart_items import cart_items
 
 
 class User(db.Model, UserMixin):
@@ -19,8 +19,8 @@ class User(db.Model, UserMixin):
         "Review", back_populates="user", cascade="all, delete-orphan")
     orders = db.relationship(
         "Order", back_populates="user", cascade="all, delete-orphan")
-    items = db.relationship(
-        "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
+    # items = db.relationship(
+    #     "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
 
     @property
     def password(self):
@@ -41,9 +41,9 @@ class User(db.Model, UserMixin):
         data = [order.to_dict() for order in self.orders]
         return data
 
-    def get_items(self):
-        data = [item.to_dict() for item in self.items]
-        return data
+    # def get_items(self):
+    #     data = [item.to_dict() for item in self.items]
+    #     return data
 
     def to_dict(self):
         return {
@@ -52,7 +52,7 @@ class User(db.Model, UserMixin):
             'icon': self.icon,
             'email': self.email,
             'address': self.address,
-            'reviews': self.get_items(),
-            'orders': self.get_orders(),
-            'items': self.get_items()
+            # 'reviews': self.get_reviews(),
+            # 'orders': self.get_orders(),
+            # 'items': self.get_items()
         }

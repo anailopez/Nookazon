@@ -1,6 +1,7 @@
 from .db import db
-from .cart_items import cart_items
-from .order_items import order_items
+# from .cart_items import cart_items
+# from .order_items import order_items
+from .order_items import OrderItem
 
 
 class Item(db.Model):
@@ -16,11 +17,10 @@ class Item(db.Model):
     reviews = db.relationship(
         "Review", back_populates="item", cascade="all, delete-orphan")
     # cart_items
-    users = db.relationship(
-        "User", secondary=cart_items, back_populates="items", passive_deletes=True)
+    # users = db.relationship(
+    #     "User", secondary=cart_items, back_populates="items", passive_deletes=True)
     # order_items
-    orders = db.relationship(
-        "Order", secondary=order_items, back_populates='items', passive_deletes=True)
+    orders = db.relationship(OrderItem, back_populates='item')
 
     def get_users(self):
         data = [user.to_dict() for user in self.users]
@@ -37,6 +37,6 @@ class Item(db.Model):
             'price': self.price,
             'description': self.description,
             'image': self.image,
-            'users': self.get_users(),
-            'orders': self.get_orders()
+            # 'users': self.get_users(),
+            # 'orders': self.get_orders()
         }

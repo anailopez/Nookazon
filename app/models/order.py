@@ -1,5 +1,6 @@
 from .db import db
-from .order_items import order_items
+# from .order_items import order_items
+from .order_items import OrderItem
 
 
 class Order(db.Model):
@@ -11,9 +12,9 @@ class Order(db.Model):
     delivery_info = db.Column(db.Text, nullable=True)
 
     # relationships
-    user = db.relationship("User", back_populates="orders")
+    user = db.relationship("User", back_populates="orders", lazy='subquery')
     items = db.relationship(
-        "Item", secondary=order_items, back_populates="orders", cascade="all, delete")
+        OrderItem, back_populates='order', lazy='subquery')
 
     def get_items(self):
         data = [item.to_dict() for item in self.items]

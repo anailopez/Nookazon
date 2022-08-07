@@ -1,0 +1,10 @@
+.order-item-card {
+    border: 1px solid gray;
+    border-radius: 10px;
+    padding-bottom: 15px;
+}
+
+.order-item img {
+    max-width: 200px;
+    max-height: 200px;
+}

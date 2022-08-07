@@ -13,7 +13,6 @@ const SingleItem = () => {
 
     //shopping cart
     let [cart, setCart] = useState([]);
-    //update quantity in component and then attach it to item, before passing in to functions?
     const [quantity, setQuantity] = useState(1);
     let savedCart = null;
 
@@ -48,8 +47,10 @@ const SingleItem = () => {
 
         if (!existingItem) {
             cartCopy.push({ 'item': item, 'quantity': quantity })
+            alert('Item added to cart!')
         } else {
             existingItem.quantity = quantity
+            alert('Item quantity in cart updated!')
         }
 
         setCart(cartCopy);
@@ -59,7 +60,6 @@ const SingleItem = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         addItemToCart(item, quantity);
-        return alert('Item added to cart!')
     }
 
     // console.log("***CART", cart)
