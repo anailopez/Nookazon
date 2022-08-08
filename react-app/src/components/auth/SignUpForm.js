@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -8,21 +8,24 @@ const SignUpForm = () => {
   const [username, setUsername] = useState('');
   const [icon, setIcon] = useState('');
   const [email, setEmail] = useState('');
-  const [address, setAddress] = useState('');
+  const [street_address, setStreetAddress] = useState('');
+  const [town_name, setTownName] = useState('');
+  const [payment_method, setPayment] = useState('');
   const [password, setPassword] = useState('');
-  const [repeatPassword, setRepeatPassword] = useState('');
+  // const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, icon, email, address, password));
+    if (password) {
+      const data = await dispatch(signUp(username, icon, email, street_address, town_name, payment_method, password));
       if (data) {
         setErrors(data)
       }
     }
   };
+
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -37,16 +40,16 @@ const SignUpForm = () => {
   };
 
   const updateAddress = (e) => {
-    setAddress(e.target.value);
+    setStreetAddress(e.target.value);
   };
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
+  // const updateRepeatPassword = (e) => {
+  //   setRepeatPassword(e.target.value);
+  // };
 
   if (user) {
     return <Redirect to='/' />;
@@ -70,13 +73,12 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Icon</label>
+        <label>Icon URL (optional)</label>
         <input
           type='text'
           name='icon'
           onChange={updateIcon}
           value={icon}
-          required
         ></input>
       </div>
       <div>
@@ -90,13 +92,34 @@ const SignUpForm = () => {
         ></input>
       </div>
       <div>
-        <label>Address</label>
+        <label>Street Address</label>
         <input
           type='text'
-          name='address'
+          name='street_address'
+          placeholder='123 Example Rd'
           onChange={updateAddress}
-          value={address}
+          value={street_address}
           required
+        ></input>
+      </div>
+      <div>
+        <label>Town/Island Name</label>
+        <input
+          type='text'
+          name='town_name'
+          placeholder='Nook Island'
+          onChange={(e) => setTownName(e.target.value)}
+          value={town_name}
+        ></input>
+      </div>
+      <div>
+        <label>Last 4 Digits of Payment Method</label>
+        <input
+          type='text'
+          name='payment_method'
+          placeholder='1234'
+          onChange={(e) => setPayment(e.target.value)}
+          value={payment_method}
         ></input>
       </div>
       <div>
@@ -109,8 +132,8 @@ const SignUpForm = () => {
           required
         ></input>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      {/* <div>
+        <label>Confirm Password</label>
         <input
           type='password'
           name='repeat_password'
@@ -118,7 +141,7 @@ const SignUpForm = () => {
           value={repeatPassword}
           required={true}
         ></input>
-      </div>
+      </div> */}
       <button type='submit'>Sign Up</button>
     </form>
   );

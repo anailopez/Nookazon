@@ -1,17 +1,18 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-# from .cart_items import cart_items
 
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(100), nullable=False)
+    username = db.Column(db.String(50), nullable=False, unique=True)
     icon = db.Column(db.Text(), nullable=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    address = db.Column(db.String(300), nullable=False)
+    street_address = db.Column(db.String(50), nullable=False)
+    town_name = db.Column(db.String(50), nullable=False)
+    payment_method = db.Column(db.String(4), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
     # relationships :)
@@ -51,7 +52,9 @@ class User(db.Model, UserMixin):
             'username': self.username,
             'icon': self.icon,
             'email': self.email,
-            'address': self.address,
+            'street_address': self.street_address,
+            'town_name': self.town_name,
+            'payment_method': self.payment_method
             # 'reviews': self.get_reviews(),
             # 'orders': self.get_orders(),
             # 'items': self.get_items()

@@ -1,1 +1,6 @@
 /* TODO Add site wide styles */
+html,
+button,
+input {
+    font-family: "Amazon Ember", Arial, sans-serif;
+}

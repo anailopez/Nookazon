@@ -7,8 +7,8 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     item_id = db.Column(db.Integer, db.ForeignKey('items.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    title = db.Column(db.String(300), nullable=False)
-    body = db.Column(db.Text, nullable=False)
+    title = db.Column(db.String(200), nullable=False)
+    body = db.Column(db.String(500), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
 
     # relationships
