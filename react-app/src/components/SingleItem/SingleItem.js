@@ -65,7 +65,7 @@ const SingleItem = () => {
     // console.log("***CART", cart)
 
     return (
-        <>
+        <div className='single-item'>
             {item && (
                 <>
                     <div className='single-item-display'>
@@ -99,7 +99,7 @@ const SingleItem = () => {
                 <h2>Reviews</h2>
                 <Reviews />
             </div>
-        </>
+        </div>
     )
 }
 

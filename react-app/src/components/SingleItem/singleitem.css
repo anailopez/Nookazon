@@ -1,3 +1,7 @@
+.single-item {
+    background-color: white;
+}
+
 .single-item-display img {
     max-height: 600px;
     max-width: 600px;

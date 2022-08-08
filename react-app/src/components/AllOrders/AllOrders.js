@@ -23,7 +23,7 @@ const AllOrders = () => {
 
 
     return (
-        <>
+        <div className="all-orders">
             <h1>Your Orders</h1>
             {orders && orders.length > 0 && orders.map(order => (
                 <div className="order-item-card" key={order.id}>
@@ -50,7 +50,7 @@ const AllOrders = () => {
                 <p>You currently have no orders</p>
             )
             }
-        </>
+        </div>
     )
 }
 

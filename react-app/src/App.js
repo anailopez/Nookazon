@@ -35,44 +35,46 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <NavBar />
-      <Switch>
-        <Route path='/login' exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path='/sign-up' exact={true}>
-          <SignUpForm />
-        </Route>
-        {/* <ProtectedRoute path='/users' exact={true} >
+    <div className='app'>
+      <BrowserRouter>
+        <NavBar />
+        <Switch>
+          <Route path='/login' exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path='/sign-up' exact={true}>
+            <SignUpForm />
+          </Route>
+          {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute> */}
-        <Route path='/' exact={true} >
-          <AllItems />
-        </Route>
-        <Route path='/items/:itemId'>
-          <SingleItem />
-        </Route>
-        <ProtectedRoute path='/create-review/:itemId'>
-          <CreateReviewForm />
-        </ProtectedRoute>
-        <ProtectedRoute path='/orders'>
-          <AllOrders />
-        </ProtectedRoute>
-        <ProtectedRoute path='/order-details/:orderId'>
-          <OrderDetails />
-        </ProtectedRoute>
-        <ProtectedRoute path='/cart'>
-          <Cart />
-        </ProtectedRoute>
-        <ProtectedRoute>
-          <Checkout />
-        </ProtectedRoute>
-      </Switch>
-    </BrowserRouter>
+          <Route path='/' exact={true} >
+            <AllItems />
+          </Route>
+          <Route path='/items/:itemId'>
+            <SingleItem />
+          </Route>
+          <ProtectedRoute path='/create-review/:itemId'>
+            <CreateReviewForm />
+          </ProtectedRoute>
+          <ProtectedRoute path='/orders'>
+            <AllOrders />
+          </ProtectedRoute>
+          <ProtectedRoute path='/order-details/:orderId'>
+            <OrderDetails />
+          </ProtectedRoute>
+          <ProtectedRoute path='/cart'>
+            <Cart />
+          </ProtectedRoute>
+          <ProtectedRoute>
+            <Checkout />
+          </ProtectedRoute>
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 }
 

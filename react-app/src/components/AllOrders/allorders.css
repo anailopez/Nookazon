@@ -1,3 +1,11 @@
+.all-orders {
+    background-color: white;
+}
+
+.all-orders>h1 {
+    color: black;
+}
+
 .order-item-card {
     border: 1px solid gray;
     border-radius: 10px;
