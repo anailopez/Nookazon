@@ -1,3 +1,4 @@
+from datetime import datetime
 from .db import db
 # from .order_items import order_items
 from .order_items import OrderItem
@@ -9,7 +10,10 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Integer, nullable=False)
-    delivery_info = db.Column(db.Text, nullable=True)
+    delivery_info = db.Column(db.String(300), nullable=True)
+    order_date = db.Column(
+        db.DateTime, default=datetime.utcnow(), nullable=False)
+    delivery_date = db.Column(db.DateTime, nullable=False)
 
     # relationships
     user = db.relationship("User", back_populates="orders", lazy='subquery')

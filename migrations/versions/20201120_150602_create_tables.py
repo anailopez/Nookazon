@@ -21,15 +21,18 @@ def upgrade():
     op.create_table('users',
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('username', sa.String(
-                        length=100), nullable=False),
+                        length=50), nullable=False),
                     sa.Column('icon', sa.Text(), nullable=True),
                     sa.Column('email', sa.String(length=255), nullable=False),
-                    sa.Column('address', sa.String(
-                        length=300), nullable=False),
+                    sa.Column('street_address', sa.String(
+                        length=50), nullable=False),
+                    sa.Column('town_name', sa.String(
+                        length=50), nullable=False),
+                    sa.Column('payment_method', sa.String(4), nullable=False),
                     sa.Column('hashed_password', sa.String(
                         length=255), nullable=False),
                     sa.PrimaryKeyConstraint('id'),
-                    sa.UniqueConstraint('email')
+                    sa.UniqueConstraint('email', 'username')
                     )
     op.create_table('items',
                     sa.Column('id', sa.Integer(), nullable=False),
@@ -54,7 +57,10 @@ def upgrade():
                     sa.Column('id', sa.Integer(), nullable=False),
                     sa.Column('user_id', sa.Integer(), nullable=False),
                     sa.Column('total', sa.Integer(), nullable=False),
-                    sa.Column('delivery_info', sa.Text(), nullable=True),
+                    sa.Column('delivery_info', sa.String(
+                        length=300), nullable=True),
+                    sa.Column('order_date', sa.DateTime(), nullable=False),
+                    sa.Column('delivery_date', sa.DateTime(), nullable=False),
                     sa.PrimaryKeyConstraint('id'),
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'])
                     )

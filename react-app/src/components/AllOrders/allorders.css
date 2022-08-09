@@ -1,10 +1,36 @@
+.all-orders {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+}
+
+.all-orders>h1 {
+    color: black;
+}
+
 .order-item-card {
-    border: 1px solid gray;
+    border: 1px solid #D5D9D9;
     border-radius: 10px;
     padding-bottom: 15px;
+    margin-bottom: 15px;
+    width: 70%;
+}
+
+.order-item {
+    display: flex;
+    flex-direction: row;
 }
 
 .order-item img {
     max-width: 200px;
     max-height: 200px;
+}
+
+#order-placed {
+    border-bottom: 1px solid #D5D9D9;
+    background-color: #F0F2F2;
+    display: flex;
+    flex-direction: row;
 }

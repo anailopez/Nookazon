@@ -7,7 +7,10 @@ import './allorders.css'
 
 const AllOrders = () => {
     const user = useSelector(state => state.session.user);
-    const orders = useSelector(state => Object.values(state.orders))
+    const orders = useSelector(state => Object.values(state.orders));
+    let date = '';
+    let month = '';
+    let day = '';
 
     const dispatch = useDispatch();
 
@@ -23,18 +26,22 @@ const AllOrders = () => {
 
 
     return (
-        <>
+        <div className="all-orders">
             <h1>Your Orders</h1>
             {orders && orders.length > 0 && orders.map(order => (
                 <div className="order-item-card" key={order.id}>
-                    {/* {console.log('***order', order)} */}
-                    <p>Order Placed: *DATE HERE*</p>
-                    <p>Total: {order.total} bells</p>
-                    <p>Ship To: {user.username}</p>
-                    <p>Order # {order.id}</p>
-                    <Link to={`/order-details/${order.id}`}>
-                        <button>View Order Details</button>
-                    </Link>
+                    {/* {console.log('***order', Date(order.order_date))} */}
+                    <div id='order-placed'>
+                        <p>Order Placed: {order.order_date}</p>
+                        <p>Total: {order.total} bells</p>
+                        <p>Ship To: {user.username}</p>
+                        <div>
+                            <p>Order # {order.id}</p>
+                            <Link to={`/order-details/${order.id}`}>
+                                <button>View Order Details</button>
+                            </Link>
+                        </div>
+                    </div>
                     {order.items.map(orderItem => (
                         <div className="order-item" key={orderItem.id}>
                             <img src={orderItem.item.image} />
@@ -50,7 +57,7 @@ const AllOrders = () => {
                 <p>You currently have no orders</p>
             )
             }
-        </>
+        </div>
     )
 }
 

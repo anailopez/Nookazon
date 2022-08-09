@@ -1,3 +1,7 @@
+.order-details {
+    background-color: white;
+}
+
 .basic-info {
     display: flex;
     flex-direction: row;

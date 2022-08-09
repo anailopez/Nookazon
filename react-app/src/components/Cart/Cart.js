@@ -45,7 +45,7 @@ const Cart = () => {
     }
 
     return (
-        <div>
+        <div className='cart'>
             <h1>Shopping Cart</h1>
             {cart && cart.map(cartItem => (
                 <div className='cart-item' key={cartItem.item.id}>

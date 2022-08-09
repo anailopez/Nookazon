@@ -46,7 +46,7 @@ const OrderDetails = () => {
     console.log(deliveryInfo)
 
     return (
-        <>
+        <div className="order-details">
             {order && (
                 <>
                     <h1>Order Details</h1>
@@ -64,7 +64,7 @@ const OrderDetails = () => {
                                         value={deliveryInfo}
                                     >{deliveryInfo}</textarea>
                                 </form>
-                                <button onClick={() => {dispatch(thunkEditOrder(order.id, deliveryInfo)); closeEditModal()}}>Update instructions</button>
+                                <button onClick={() => { dispatch(thunkEditOrder(order.id, deliveryInfo)); closeEditModal() }}>Update instructions</button>
                                 <button onClick={closeEditModal}>Cancel</button>
                             </Modal>
                             <button onClick={openEditModal}>Edit delivery instructions</button>
@@ -112,7 +112,7 @@ const OrderDetails = () => {
                     </div>
                 </>
             )}
-        </>
+        </div>
 
     )
 }

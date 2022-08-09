@@ -1,0 +1,25 @@
+.footer {
+    /* margin-top: 150px; */
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    z-index: 2;
+    color: white;
+}
+
+#top {
+    background-color: #485769;
+}
+
+#middle {
+    background-color: #232F3E;
+}
+
+#bottom {
+    background-color: #131A22;
+}
