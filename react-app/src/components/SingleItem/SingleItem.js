@@ -9,7 +9,8 @@ import './singleitem.css'
 const SingleItem = () => {
     const { itemId } = useParams();
     const item = useSelector(state => state.allItems[itemId]);
-    const userId = useSelector(state => state.session.user.id)
+    const userId = useSelector(state => state.session.user.id);
+    const user = useSelector(state => state.session?.user)
 
     //shopping cart
     let [cart, setCart] = useState([]);
@@ -65,19 +66,28 @@ const SingleItem = () => {
     // console.log("***CART", cart)
 
     return (
-        <div className='single-item'>
+        <div className='single-item-page'>
             {item && (
-                <>
-                    <div className='single-item-display'>
+                <div id='single-top'>
+                    <div id='single-item-pic'>
+                        <img src={item.image} alt='item img'></img>
+                    </div>
+                    <div className='single-item-info'>
                         <h1>{item.title}</h1>
                         <h2>{item.price} bells</h2>
                         <h3>About this item</h3>
                         <p>{item.description}</p>
-                        <img src={item.image} alt='item img'></img>
                     </div>
-                    <div>
+                    <div className='single-form'>
                         <form onSubmit={handleSubmit}>
-                            <label htmlFor='quantity'>Quantity: </label>
+                            <h2>{item.price} bells</h2>
+                            <p>FREE 2 day delivery</p>
+                            <p>
+                                <i class="fa-solid fa-location-dot" /> 
+                                Deliver to {user.username} - {user.town_name}
+                            </p>
+                            <p>In Stock</p>
+                            <label htmlFor='quantity'>Qty: </label>
                             <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
                                 <option value={1}>1</option>
                                 <option value={2}>2</option>
@@ -90,13 +100,13 @@ const SingleItem = () => {
                                 <option value={9}>9</option>
                                 <option value={10}>10</option>
                             </select>
-                            <button>Add To Cart</button>
+                            <button id='add-to-cart-btn'>Add To Cart</button>
                         </form>
                     </div>
-                </>
+                </div>
             )}
-            <div>
-                <h2>Reviews</h2>
+            <div className='single-item-reviews'>
+                <h2>Customer reviews</h2>
                 <Reviews />
             </div>
         </div>

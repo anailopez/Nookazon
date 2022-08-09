@@ -45,7 +45,7 @@ const Reviews = () => {
                 <h4>Review this product</h4>
                 <p>Share your thoughts with other customers</p>
                 <Link to={`/create-review/${itemId}`}>
-                    <button>Write a customer review</button>
+                    <button id='write-review-btn'>Write a customer review</button>
                 </Link>
             </div>
             {reviews && itemId && reviews.map(review => (
@@ -59,8 +59,8 @@ const Reviews = () => {
                             <p>{review.body}</p>
                             {sessionUser && sessionUser.id === review.user_id && (
                                 <>
-                                    <button onClick={() => dispatch(thunkDeleteReview(review.id))}>Delete Review</button>
-                                    <button onClick={openEditModal}>Edit Review</button>
+                                    <button id='delete-review-btn' onClick={() => dispatch(thunkDeleteReview(review.id))}>Delete Review</button>
+                                    <button id='edit-review-btn' onClick={openEditModal}>Edit Review</button>
                                     <Modal isOpen={showEditForm} style={styling}>
                                         <UpdateReviewForm review={review} closeEditModal={closeEditModal} />
                                         <button onClick={closeEditModal}>Cancel</button>

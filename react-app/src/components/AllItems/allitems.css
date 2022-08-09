@@ -1,22 +1,57 @@
-html {
+/* body {
     background-color: #EAEDED;
+    background: rgb(35, 47, 63);
+    background: linear-gradient(180deg, rgba(35, 47, 63, 1) 30%, rgba(155, 162, 168, 1) 60%, rgba(234, 237, 237, 1) 100%);
+} */
+
+.app {
+    background-image: linear-gradient(to bottom, #232f3f, #34404e, #46515e, #58636e, #6b757f, #7b858d, #8c959c, #9da5ab, #afb7bb, #c2c9cb, #d6dbdc, #eaeded);
 }
 
 .all-items {
     margin-top: 100px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    /* grid-auto-rows: minmax(100px, auto); */
+    display: flex;
+    flex-direction: row;
+    flex-flow: row wrap;
+    justify-content: center;
     /* background-color: #EAEDED; */
 }
 
 .item-card {
-    /* border: 1px solid gray */
+    /* border: 1px solid gray; */
     background-color: white;
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    height: 300px;
+    margin: 15px;
+    /* margin: 5px; */
+    justify-content: space-between;
+}
+
+#item-img {
+    display: inline-flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 .item-card img {
-    max-height: 300px;
-    max-width: 300px;
+    height: 150px;
+    max-width: 200px;
+}
+
+.all-items h4 {
+    color: #007185;
+    font-weight: normal;
+}
+
+.all-items h4:hover {
+    color: #C96A59;
+    cursor: pointer;
+}
+
+#item-info {
+    padding-left: 20px;
 }

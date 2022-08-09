@@ -1,8 +1,9 @@
 
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
+import Badge from '@material-ui/core/Badge';
 import './navbar.css';
 import nookazonIcon from '../images/nookazon-logo.png';
 import cartIcon from '../images/cart.png';
@@ -10,6 +11,36 @@ import cartIcon from '../images/cart.png';
 const NavBar = () => {
   const userId = useSelector((state) => state.session?.user?.id);
   const user = useSelector((state) => state.session?.user);
+  const dispatch = useDispatch();
+
+  let [cart, setCart] = useState([]);
+  const [quantity, setQuantity] = useState(0);
+  let savedCart = null;
+
+  if (userId) {
+    savedCart = localStorage.getItem(userId);
+  }
+
+  useEffect(() => {
+    savedCart = JSON.parse(savedCart);
+    if (savedCart !== null) {
+      setCart(savedCart)
+    }
+  }, [savedCart]);
+
+  // useEffect(() => {
+  //   setQuantity(cart.length)
+  // }, [dispatch, cart, savedCart])
+
+
+  const inlineStyles = {
+    spacer: {
+      flex: 1
+    },
+    badgeFix: {
+      display: 'inline-flex'
+    }
+  };
 
   return (
     <nav>
@@ -41,11 +72,11 @@ const NavBar = () => {
         {userId && (
           <>
             <li>
-              <p>Deliver to {user.username}</p>
+              <p> <i class="fa-solid fa-location-dot" /> Deliver to {user.username}</p>
               <p>{user.town_name}</p>
             </li>
             <li>
-              <p>Hello, {user.username}</p>
+              <p>Hello, {user.username} <i class="fa-solid fa-caret-down" /></p>
               <LogoutButton />
             </li>
             <li>
@@ -56,8 +87,10 @@ const NavBar = () => {
             <li>
               <NavLink to='/cart'>
                 <span id='cart'>
+                  {/* <Badge style={inlineStyles.badgeFix} badgeContent={cart.length}> */}
                   <img className='cart-icon' src={`${cartIcon}`} />
-                  <p>1</p>
+                  {/* </Badge> */}
+                  <p>{cart.length}</p>
                 </span>
               </NavLink>
             </li>
