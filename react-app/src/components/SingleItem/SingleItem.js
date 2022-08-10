@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { thunkGetOneItem } from '../../store/items';
 import { thunkGetReviews } from '../../store/reviews';
+import { thunkGetCartProducts } from '../../store/cart'
 import Reviews from '../Reviews/Reviews';
 import './singleitem.css'
 
@@ -27,6 +28,7 @@ const SingleItem = () => {
         if (itemId) {
             dispatch(thunkGetOneItem(itemId))
             dispatch(thunkGetReviews(itemId))
+            dispatch(thunkGetCartProducts(savedCart))
         }
     }, [dispatch, itemId])
 
@@ -56,6 +58,7 @@ const SingleItem = () => {
 
         setCart(cartCopy);
         localStorage.setItem(userId, JSON.stringify(cartCopy));
+        dispatch(thunkGetCartProducts(cartCopy))
     }
 
     const handleSubmit = (e) => {
@@ -64,6 +67,23 @@ const SingleItem = () => {
     }
 
     // console.log("***CART", cart)
+
+    // function useLocalStorage(key, initialState) {
+    //     const [localCart, setLocalCart] = useState(() => {
+    //         if (typeof window === 'undefined') {
+    //             return initialState
+    //         }
+    //         try {
+    //             const localCart = localStorage.getItem(key)
+    //             console.log('Local cart', localCart)
+    //             if (localCart) {
+    //                 return setLocalCart(JSON.parse(localCart))
+    //             }
+    //         } catch (error) {
+    //             return initialState;
+    //         }
+    //     })
+    // }
 
     return (
         <div className='single-item-page'>

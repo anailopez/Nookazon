@@ -5,6 +5,8 @@ import cart_icon from '../../images/cart.png';
 
 const CartIcon = () => {
     const userId = useSelector((state) => state.session?.user?.id);
+    const stateCart = useSelector((state) => state.cart)
+    console.log("from cart icon", stateCart)
     let [cart, setCart] = useState([]);
     // const [quantity, setQuantity] = useState(0);
     // let quantity = 0;
@@ -16,6 +18,7 @@ const CartIcon = () => {
 
     useEffect(() => {
         savedCart = JSON.parse(savedCart);
+        console.log("use effect triggered", savedCart);
         if (savedCart !== null) {
             setCart(savedCart)
             // console.log(savedCart)
