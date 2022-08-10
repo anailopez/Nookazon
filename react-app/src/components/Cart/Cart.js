@@ -67,52 +67,58 @@ const Cart = () => {
                 {cart && !cart.length > 0 && (
                     <p>Your Nookazon Cart is empty.</p>
                 )}
-                <h1>Shopping Cart</h1>
-                {cart && cart.map(cartItem => (
-                    <div className='cart-item' key={cartItem.item.id}>
-                        <div style={{ 'display': 'none' }}>
-                            {total += (cartItem.item.price * cartItem.quantity)}
-                        </div>
-                        <div id='cart-item-single'>
-                            <div id='inner-single'>
-                                <Link to={`/items/${cartItem.item.id}`}>
-                                    <img src={cartItem.item.image} />
-                                </Link>
-                                <h2>{cartItem.item.title}</h2>
-                                <h3>{cartItem.item.price} bells</h3>
-                                <div id='inner-col'>
-                                    {/* <p>Qty: {cartItem.quantity}</p> */}
-                                    <p>Qty: {cartItem.quantity}</p>
-                                    <div>
-                                        <select id='cart-quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
-                                            <option value={1}>1</option>
-                                            <option value={2}>2</option>
-                                            <option value={3}>3</option>
-                                            <option value={4}>4</option>
-                                            <option value={5}>5</option>
-                                            <option value={6}>6</option>
-                                            <option value={7}>7</option>
-                                            <option value={8}>8</option>
-                                            <option value={9}>9</option>
-                                            <option value={10}>10</option>
-                                        </select>
-                                        <button id='update-btn' onClick={() => updateQuantity(cartItem.item, quantity)}>Update quantity</button>
+                {cart && cart.length > 0 && (
+                    <>
+                        <h1>Shopping Cart</h1>
+                        {cart.map(cartItem => (
+                            <div className='cart-item' key={cartItem.item.id}>
+                                <div style={{ 'display': 'none' }}>
+                                    {total += (cartItem.item.price * cartItem.quantity)}
+                                </div>
+                                <div id='cart-item-single'>
+                                    <div id='inner-single'>
+                                        <Link to={`/items/${cartItem.item.id}`}>
+                                            <img src={cartItem.item.image} />
+                                        </Link>
+                                        <h2>{cartItem.item.title}</h2>
+                                        <h3>{cartItem.item.price} bells</h3>
+                                        <div id='inner-col'>
+                                            {/* <p>Qty: {cartItem.quantity}</p> */}
+                                            <p>Qty: {cartItem.quantity}</p>
+                                            <div>
+                                                <select id='cart-quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                                    <option value={1}>1</option>
+                                                    <option value={2}>2</option>
+                                                    <option value={3}>3</option>
+                                                    <option value={4}>4</option>
+                                                    <option value={5}>5</option>
+                                                    <option value={6}>6</option>
+                                                    <option value={7}>7</option>
+                                                    <option value={8}>8</option>
+                                                    <option value={9}>9</option>
+                                                    <option value={10}>10</option>
+                                                </select>
+                                                <button id='update-btn' onClick={() => updateQuantity(cartItem.item, quantity)}>Update quantity</button>
+                                            </div>
+                                            <form onSubmit={handleDelete}>
+                                                <button id='cart-item-delete-btn' onClick={() => setItemId(cartItem.item.id)}>Delete</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <form onSubmit={handleDelete}>
-                                        <button id='cart-item-delete-btn' onClick={() => setItemId(cartItem.item.id)}>Delete</button>
-                                    </form>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                ))}
-                <p>Subtotal ({cart.total}items): {total} bells</p>
+                        ))}
+                        <p>Subtotal ({cart.total}items): {total} bells</p>
+                    </>
+                )}
             </div>
             <div id='proceed-checkout'>
                 <h2>Subtotal ({cart.length} item(s)): {total} bells</h2>
-                <Link to={`/checkout`}>
-                    <button id='checkout-btn'>Proceed to checkout</button>
-                </Link>
+                {cart && cart.length > 0 && (
+                    <Link to={`/checkout`}>
+                        <button id='checkout-btn'>Proceed to checkout</button>
+                    </Link>
+                )}
             </div>
         </div>
     )
