@@ -82,11 +82,11 @@ const SingleItem = () => {
                         <form onSubmit={handleSubmit}>
                             <h2>{item.price} bells</h2>
                             <p>FREE 2 day delivery</p>
-                            <p>
-                                <i class="fa-solid fa-location-dot" /> 
+                            <p id='deliver-to'>
+                                <i class="fa-solid fa-location-dot" />
                                 Deliver to {user.username} - {user.town_name}
                             </p>
-                            <p>In Stock</p>
+                            <p id='in-stock'>In Stock</p>
                             <label htmlFor='quantity'>Qty: </label>
                             <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
                                 <option value={1}>1</option>
@@ -100,7 +100,9 @@ const SingleItem = () => {
                                 <option value={9}>9</option>
                                 <option value={10}>10</option>
                             </select>
-                            <button id='add-to-cart-btn'>Add To Cart</button>
+                            <div>
+                                <button id='add-to-cart-btn'>Add To Cart</button>
+                            </div>
                         </form>
                     </div>
                 </div>

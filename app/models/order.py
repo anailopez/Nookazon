@@ -11,9 +11,8 @@ class Order(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Integer, nullable=False)
     delivery_info = db.Column(db.String(300), nullable=True)
-    order_date = db.Column(
-        db.DateTime, default=datetime.utcnow(), nullable=False)
-    delivery_date = db.Column(db.DateTime, nullable=False)
+    order_date = db.Column(db.String(50), nullable=False)
+    delivery_date = db.Column(db.String(50), nullable=False)
 
     # relationships
     user = db.relationship("User", back_populates="orders", lazy='subquery')
@@ -30,6 +29,8 @@ class Order(db.Model):
             'user_id': self.user_id,
             'total': self.total,
             'delivery_info': self.delivery_info,
+            'order_date': self.order_date,
+            'delivery_date': self.delivery_date,
             'user': self.user.to_dict(),
             'items': self.get_items()
         }

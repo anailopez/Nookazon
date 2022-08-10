@@ -59,8 +59,10 @@ def upgrade():
                     sa.Column('total', sa.Integer(), nullable=False),
                     sa.Column('delivery_info', sa.String(
                         length=300), nullable=True),
-                    sa.Column('order_date', sa.DateTime(), nullable=False),
-                    sa.Column('delivery_date', sa.DateTime(), nullable=False),
+                    sa.Column('order_date', sa.String(
+                        length=50), nullable=False),
+                    sa.Column('delivery_date', sa.String(
+                        length=50), nullable=False),
                     sa.PrimaryKeyConstraint('id'),
                     sa.ForeignKeyConstraint(['user_id'], ['users.id'])
                     )

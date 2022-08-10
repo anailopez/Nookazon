@@ -8,9 +8,6 @@ import './allorders.css'
 const AllOrders = () => {
     const user = useSelector(state => state.session.user);
     const orders = useSelector(state => Object.values(state.orders));
-    let date = '';
-    let month = '';
-    let day = '';
 
     const dispatch = useDispatch();
 
@@ -42,14 +39,23 @@ const AllOrders = () => {
                             </Link>
                         </div>
                     </div>
-                    {order.items.map(orderItem => (
-                        <div className="order-item" key={orderItem.id}>
-                            <img src={orderItem.item.image} />
-                            <p>{orderItem.item.title}</p>
-                            <p>Qty: {orderItem.quantity}</p>
+                    <div id='item-delete'>
+                        <div>
+                            <p>Delivery date: {order.delivery_date}</p>
+                            <div id='item-sec'>
+                                {order.items.map(orderItem => (
+                                    <div className="order-item" key={orderItem.id}>
+                                        <img src={orderItem.item.image} />
+                                        <p>{orderItem.item.title}</p>
+                                        <p>Qty: {orderItem.quantity}</p>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    ))}
-                    <button onClick={() => { handleDelete(order.id) }}>Delete</button>
+                        <div>
+                            <button onClick={() => { handleDelete(order.id) }}>Delete</button>
+                        </div>
+                    </div>
                 </div>
             ))
             }

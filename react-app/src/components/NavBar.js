@@ -6,7 +6,7 @@ import LogoutButton from './auth/LogoutButton';
 import Badge from '@material-ui/core/Badge';
 import './navbar.css';
 import nookazonIcon from '../images/nookazon-logo.png';
-import cartIcon from '../images/cart.png';
+import CartIcon from './CartIcon/carticon';
 
 const NavBar = () => {
   const userId = useSelector((state) => state.session?.user?.id);
@@ -14,7 +14,8 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   let [cart, setCart] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  // const [quantity, setQuantity] = useState(0);
+  let quantity = 0;
   let savedCart = null;
 
   if (userId) {
@@ -27,10 +28,6 @@ const NavBar = () => {
       setCart(savedCart)
     }
   }, [savedCart]);
-
-  // useEffect(() => {
-  //   setQuantity(cart.length)
-  // }, [dispatch, cart, savedCart])
 
 
   const inlineStyles = {
@@ -86,12 +83,7 @@ const NavBar = () => {
             </li>
             <li>
               <NavLink to='/cart'>
-                <span id='cart'>
-                  {/* <Badge style={inlineStyles.badgeFix} badgeContent={cart.length}> */}
-                  <img className='cart-icon' src={`${cartIcon}`} />
-                  {/* </Badge> */}
-                  <p>{cart.length}</p>
-                </span>
+                <CartIcon />
               </NavLink>
             </li>
             {/* <li>
