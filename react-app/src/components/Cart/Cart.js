@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { thunkGetCartProducts } from '../../store/cart';
 import './cart.css'
 
 
@@ -14,6 +15,8 @@ const Cart = () => {
     let savedCart = null;
     let total = 0;
 
+    const dispatch = useDispatch();
+
     if (userId) {
         savedCart = localStorage.getItem(userId);
     }
@@ -25,11 +28,6 @@ const Cart = () => {
         }
     }, [savedCart]);
 
-    // console.log("***CART", cart)
-
-    // const updateCartItem = (itemId, quantity) => {
-    //     //todo
-    // }
 
     const removeItem = (itemId) => {
         //create a copy of cart so state isn't overwritten!
@@ -44,6 +42,7 @@ const Cart = () => {
     const handleDelete = (e) => {
         e.preventDefault();
         removeItem(itemId)
+        dispatch(thunkGetCartProducts(savedCart))
     }
 
     const updateQuantity = (item, quantity) => {

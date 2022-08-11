@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { thunkGetCartProducts } from '../../store/cart';
 import cart_icon from '../../images/cart.png';
 
 
@@ -11,6 +12,8 @@ const CartIcon = () => {
     // const [quantity, setQuantity] = useState(0);
     // let quantity = 0;
     let savedCart = null;
+
+    const dispatch = useDispatch();
 
     if (userId) {
         savedCart = localStorage.getItem(userId);
@@ -28,7 +31,9 @@ const CartIcon = () => {
         }
     }, [savedCart]);
 
-    // console.log("***", quantity)
+    useEffect(() => {
+        dispatch(thunkGetCartProducts(savedCart))
+    }, [dispatch])
 
     return (
         <>

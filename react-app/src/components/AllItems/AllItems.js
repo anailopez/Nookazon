@@ -7,11 +7,18 @@ import Footer from '../Footer/Footer';
 import './allitems.css'
 
 const AllItems = () => {
+    const userId = useSelector(state => state.session?.user?.id)
+    let savedCart = null;
+
+    if (userId) {
+        savedCart = localStorage.getItem(userId);
+    }
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllItems())
+        dispatch(thunkGetCartProducts(savedCart))
     }, [dispatch])
 
     const items = useSelector(state => Object.values(state.allItems));
