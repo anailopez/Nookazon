@@ -10,7 +10,7 @@ import './singleitem.css'
 const SingleItem = () => {
     const { itemId } = useParams();
     const item = useSelector(state => state.allItems[itemId]);
-    const userId = useSelector(state => state.session.user.id);
+    const userId = useSelector(state => state.session?.user?.id);
     const user = useSelector(state => state.session?.user)
 
     //shopping cart
@@ -68,24 +68,6 @@ const SingleItem = () => {
         addItemToCart(item, quantity);
     }
 
-    // console.log("***CART", cart)
-
-    // function useLocalStorage(key, initialState) {
-    //     const [localCart, setLocalCart] = useState(() => {
-    //         if (typeof window === 'undefined') {
-    //             return initialState
-    //         }
-    //         try {
-    //             const localCart = localStorage.getItem(key)
-    //             console.log('Local cart', localCart)
-    //             if (localCart) {
-    //                 return setLocalCart(JSON.parse(localCart))
-    //             }
-    //         } catch (error) {
-    //             return initialState;
-    //         }
-    //     })
-    // }
 
     return (
         <div className='single-item-page'>
@@ -101,36 +83,40 @@ const SingleItem = () => {
                         <p>{item.description}</p>
                     </div>
                     <div className='single-form'>
-                        <form onSubmit={handleSubmit}>
-                            <h2>{item.price} bells</h2>
-                            <p>FREE 2 day delivery</p>
-                            <p id='deliver-to'>
-                                <i class="fa-solid fa-location-dot" />
-                                Deliver to {user.username} - {user.town_name}
-                            </p>
-                            <p id='in-stock'>In Stock</p>
-                            <label htmlFor='quantity'>Qty: </label>
-                            <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
-                                <option value={1}>1</option>
-                                <option value={2}>2</option>
-                                <option value={3}>3</option>
-                                <option value={4}>4</option>
-                                <option value={5}>5</option>
-                                <option value={6}>6</option>
-                                <option value={7}>7</option>
-                                <option value={8}>8</option>
-                                <option value={9}>9</option>
-                                <option value={10}>10</option>
-                            </select>
-                            <div>
-                                <button id='add-to-cart-btn'>Add To Cart</button>
-                            </div>
-                        </form>
+                        {user && (
+                            <form onSubmit={handleSubmit}>
+                                <h2>{item.price} bells</h2>
+                                <p>FREE 2 day delivery</p>
+                                <p id='deliver-to'>
+                                    <i class="fa-solid fa-location-dot" />
+                                    Deliver to {user.username} - {user.town_name}
+                                </p>
+                                <p id='in-stock'>In Stock</p>
+                                <label htmlFor='quantity'>Qty: </label>
+                                <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                    <option value={5}>5</option>
+                                    <option value={6}>6</option>
+                                    <option value={7}>7</option>
+                                    <option value={8}>8</option>
+                                    <option value={9}>9</option>
+                                    <option value={10}>10</option>
+                                </select>
+                                <div>
+                                    <button id='add-to-cart-btn'>Add To Cart</button>
+                                </div>
+                            </form>
+                        )}
+                        {!user && (
+                            <p>Log in or sign up to add this to your cart</p>
+                        )}
                     </div>
                 </div>
             )}
             <div className='single-item-reviews'>
-
                 <Reviews />
             </div>
         </div>

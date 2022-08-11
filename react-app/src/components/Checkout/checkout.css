@@ -3,6 +3,7 @@
     flex-direction: row;
     justify-content: space-evenly; */
     background-color: white;
+    padding-bottom: 50px;
 }
 
 .all-checkout p {

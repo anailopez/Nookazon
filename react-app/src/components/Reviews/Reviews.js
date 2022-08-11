@@ -43,11 +43,15 @@ const Reviews = () => {
         <div className='all-reviews'>
             <div className='write-review'>
                 <h2>Customer reviews</h2>
-                <h4>Review this product</h4>
-                <p>Share your thoughts with other customers</p>
-                <Link to={`/create-review/${itemId}`}>
-                    <button id='write-review-btn'>Write a customer review</button>
-                </Link>
+                {sessionUser && (
+                    <>
+                        <h4>Review this product</h4>
+                        <p>Share your thoughts with other customers</p>
+                        <Link to={`/create-review/${itemId}`}>
+                            <button id='write-review-btn'>Write a customer review</button>
+                        </Link>
+                    </>
+                )}
             </div>
             <div>
                 {reviews && itemId && reviews.map(review => (
@@ -69,7 +73,7 @@ const Reviews = () => {
                                         <button id='edit-review-btn' onClick={openEditModal}>Edit Review</button>
                                         <Modal isOpen={showEditForm} style={styling}>
                                             <UpdateReviewForm review={review} closeEditModal={closeEditModal} />
-                                            <button onClick={closeEditModal}>Cancel</button>
+                                            <button id='modal-btn' onClick={closeEditModal}>Cancel</button>
                                         </Modal>
                                     </>
                                 )}

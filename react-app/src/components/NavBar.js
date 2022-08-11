@@ -54,7 +54,7 @@ const NavBar = () => {
                 Login
               </NavLink>
             </li>
-            <li>
+            <li id='nav-signup'>
               <NavLink to='/sign-up' exact={true} activeClassName='active'>
                 Sign Up
               </NavLink>
@@ -69,26 +69,27 @@ const NavBar = () => {
         {userId && (
           <>
             <li>
-              <p> <i className="fa-solid fa-location-dot" /> Deliver to {user.username}</p>
-              <p>{user.town_name}</p>
+              <p>Deliver to {user.username}</p>
+              <p><i className="fa-solid fa-location-dot" /> {user.town_name}</p>
             </li>
             <li>
-              <p>Hello, {user.username} <i className="fa-solid fa-caret-down" /></p>
-              <LogoutButton />
+              <div className='dropdown'>
+                <p>Hello, {user.username} <i className="fa-solid fa-caret-down" /></p>
+                <div className='dropdown-content'>
+                  <LogoutButton />
+                </div>
+              </div>
             </li>
             <li>
               <NavLink to='/orders'>
                 Orders
               </NavLink>
             </li>
-            <li>
+            <li id='cart-icon-link'>
               <NavLink to='/cart'>
                 <CartIcon />
               </NavLink>
             </li>
-            {/* <li>
-              <LogoutButton />
-            </li> */}
           </>
         )}
       </ul>

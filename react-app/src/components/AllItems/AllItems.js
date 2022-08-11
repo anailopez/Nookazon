@@ -24,7 +24,7 @@ const AllItems = () => {
     const items = useSelector(state => Object.values(state.allItems));
 
     return (
-        <div>
+        <div className='all-items-body'>
             <div className='all-items'>
                 {items && items.map(item => (
                     <div className='item-card' key={item.id}>

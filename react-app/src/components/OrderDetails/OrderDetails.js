@@ -57,15 +57,15 @@ const OrderDetails = () => {
                         </div>
                         <div>
                             <Modal isOpen={showEditForm} style={customStyles}>
-                                <form>
+                                <form id='form-styling'>
                                     <p>Where should we leave your packages at this address?</p>
                                     <textarea
                                         onChange={(e) => setDeliveryInfo(e.target.value)}
                                         value={deliveryInfo}
                                     >{deliveryInfo}</textarea>
                                 </form>
-                                <button onClick={() => { dispatch(thunkEditOrder(order.id, deliveryInfo)); closeEditModal() }}>Update instructions</button>
-                                <button onClick={closeEditModal}>Cancel</button>
+                                <button id='modal-btn' onClick={() => { dispatch(thunkEditOrder(order.id, deliveryInfo)); closeEditModal() }}>Update instructions</button>
+                                <button id='modal-btn' onClick={closeEditModal}>Cancel</button>
                             </Modal>
                             <button id='edit-delivery-btn' onClick={openEditModal}>Edit delivery instructions</button>
                         </div>

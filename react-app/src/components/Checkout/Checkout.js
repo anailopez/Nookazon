@@ -99,12 +99,17 @@ const Checkout = () => {
                         </div>
                         <button id='open-deliv' onClick={openDeliveryModal}>Add delivery instructions</button>
                         <Modal isOpen={showDelivery} style={styling}>
-                            <textarea
-                                placeholder="Where should we leave your packages?"
-                                onChange={(e) => setDelivery(e.target.value)}
-                                value={delivery}
-                            />
-                            <button onClick={closeDeliveryModal}>Cancel</button>
+                            <form id='form-styling'>
+                                <p>Delivery instructions</p>
+                                <textarea
+                                    placeholder="Where should we leave your packages?"
+                                    rows={'8'}
+                                    cols={'35'}
+                                    onChange={(e) => setDelivery(e.target.value)}
+                                    value={delivery}
+                                />
+                            </form>
+                            <button id='modal-btn' onClick={closeDeliveryModal}>Cancel</button>
                         </Modal>
                         {/* <button>Add delivery instructions</button> */}
                     </div>

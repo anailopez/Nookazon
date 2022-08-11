@@ -73,7 +73,7 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                     <li key={error}>{error}</li>
                 ))}
             </ul>
-            <form onSubmit={handleSubmit}>
+            <form id='form-styling' onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="rating">Overall rating (1-5)</label>
                     <input
@@ -108,7 +108,7 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                         value={body}
                     />
                 </div>
-                <button>Submit</button>
+                <button id='modal-btn'>Submit</button>
             </form>
         </div>
     )

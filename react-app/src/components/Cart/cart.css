@@ -8,10 +8,10 @@
 #shopping-cart {
     background-color: white;
     /* border: 1px solid gray; */
-    padding-left: 10px;
+    padding-left: 20px;
     padding-right: 10px;
     width: 75%;
-    margin-left: 10px;
+    margin-left: 30px;
     margin-right: 15px;
     margin-top: 40px;
 }
@@ -76,9 +76,11 @@
 #proceed-checkout {
     /* border: 1px solid gray; */
     background-color: white;
-    margin-right: 20px;
+    margin-right: 40px;
     margin-top: 40px;
     height: 150px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 #checkout-btn {
@@ -94,7 +96,7 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    font-family: "RM Neue", sans-serif;
+    /* font-family: "RM Neue", sans-serif; */
     font-size: 100%;
     line-height: 1.15;
     margin: 0;

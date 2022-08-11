@@ -1,17 +1,14 @@
 .all-reviews {
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 .review-card {
-    /* border: 1px solid gray */
-    /* margin-left: 100px; */
     padding-bottom: 20px;
     padding-top: 20px;
     position: relative;
-    left: 300px;
-    /* border-bottom: 1px solid #E7E7E7; */
+    right: 300px;
 }
 
 .review-card img {
@@ -22,7 +19,6 @@
 }
 
 .write-review {
-    /* border: 1px solid green */
     width: 100%;
     margin-left: 100px;
 }
@@ -40,7 +36,6 @@
     line-height: 29px;
     padding: 0 10px 0 11px;
     position: relative;
-    /* text-align: center; */
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
@@ -70,7 +65,6 @@
     line-height: 29px;
     padding: 0 10px 0 11px;
     position: relative;
-    /* text-align: center; */
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
@@ -89,6 +83,6 @@
     flex-direction: row;
 }
 
-#review-card-rating p{
+#review-card-rating p {
     padding-right: 15px;
 }

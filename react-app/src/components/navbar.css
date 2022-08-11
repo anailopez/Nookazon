@@ -11,14 +11,15 @@ nav {
     height: 50px;
     list-style: none;
     margin: auto;
-    padding: 10px 0;
+    padding: 10px 10px;
     align-items: center;
     background-color: #131921;
     margin-left: -10px;
     margin-right: -10px;
 }
 
-.navbar li, a {
+.navbar li,
+a {
     color: white;
     text-decoration: none;
 }
@@ -46,3 +47,34 @@ nav {
     left: 21px;
     bottom: 57px;
 }
+
+#cart-icon-link {
+    padding-right: 20px;
+}
+
+#nav-signup {
+    padding-right: 40px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* .logout-btn {
+    border: none;
+} */
