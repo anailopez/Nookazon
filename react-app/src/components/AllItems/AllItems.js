@@ -2,21 +2,29 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllItems } from '../../store/items';
+import { thunkGetCartProducts } from '../../store/cart';
 import Footer from '../Footer/Footer';
 import './allitems.css'
 
 const AllItems = () => {
+    const userId = useSelector(state => state.session?.user?.id)
+    let savedCart = null;
+
+    if (userId) {
+        savedCart = localStorage.getItem(userId);
+    }
 
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(thunkGetAllItems())
+        dispatch(thunkGetCartProducts(savedCart))
     }, [dispatch])
 
     const items = useSelector(state => Object.values(state.allItems));
 
     return (
-        <div>
+        <div className='all-items-body'>
             <div className='all-items'>
                 {items && items.map(item => (
                     <div className='item-card' key={item.id}>

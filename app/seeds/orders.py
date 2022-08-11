@@ -1,14 +1,16 @@
 from datetime import datetime, timedelta
 from app.models import db, Order
 
-date = datetime.utcnow()
-print("***DATE", date)
-future_date = date + timedelta(days=2)
+now = datetime.now()
+formatted_now = f"{now.strftime('%B')}, {now.day} {now.year}"
+future = timedelta(days=2)
+delivery = now + future
+formatted_delivery = f"{delivery.strftime('%B')}, {delivery.day} {delivery.year}"
 
 
 def seed_orders():
     order1 = Order(
-        user_id=1, total=1200, delivery_info='Please leave package on the front porch!', order_date=date, delivery_date=future_date
+        user_id=1, total=1200, delivery_info='Please leave package on the front porch!', order_date=formatted_now, delivery_date=formatted_delivery
     )
 
     db.session.add(order1)

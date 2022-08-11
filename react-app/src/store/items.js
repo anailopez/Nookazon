@@ -17,6 +17,8 @@ export const actionGetOneItem = (item) => {
     }
 }
 
+
+
 //thunk action creators
 export const thunkGetAllItems = () => async (dispatch) => {
     const response = await fetch('/api/items/');

@@ -48,10 +48,10 @@ function App() {
           </Route>
           {/* <ProtectedRoute path='/users' exact={true} >
           <UsersList />
-        </ProtectedRoute>
-        <ProtectedRoute path='/users/:userId' exact={true} >
+          </ProtectedRoute>
+          <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
-        </ProtectedRoute> */}
+          </ProtectedRoute> */}
           <Route path='/' exact={true} >
             <AllItems />
           </Route>
@@ -70,9 +70,12 @@ function App() {
           <ProtectedRoute path='/cart'>
             <Cart />
           </ProtectedRoute>
-          <ProtectedRoute>
+          <ProtectedRoute path='/checkout'>
             <Checkout />
           </ProtectedRoute>
+          <Route>
+            <AllItems />
+          </Route>
         </Switch>
       </BrowserRouter>
     </div>

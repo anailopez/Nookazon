@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
+import { login } from '../../store/session';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -51,88 +52,95 @@ const SignUpForm = () => {
   //   setRepeatPassword(e.target.value);
   // };
 
+  const demoLogin = (e) => {
+    e.preventDefault();
+    return dispatch(login('maple@nookmail.com', 'password'))
+  }
+
   if (user) {
     return <Redirect to='/' />;
   }
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
-          <div key={ind}>{error}</div>
-        ))}
-      </div>
-      <div>
-        <label>Username</label>
-        <input
-          type='text'
-          name='username'
-          onChange={updateUsername}
-          value={username}
-          required
-        ></input>
-      </div>
-      <div>
-        <label>Icon URL (optional)</label>
-        <input
-          type='text'
-          name='icon'
-          onChange={updateIcon}
-          value={icon}
-        ></input>
-      </div>
-      <div>
-        <label>Email</label>
-        <input
-          type='email'
-          name='email'
-          onChange={updateEmail}
-          value={email}
-          required
-        ></input>
-      </div>
-      <div>
-        <label>Street Address</label>
-        <input
-          type='text'
-          name='street_address'
-          placeholder='123 Example Rd'
-          onChange={updateAddress}
-          value={street_address}
-          required
-        ></input>
-      </div>
-      <div>
-        <label>Town/Island Name</label>
-        <input
-          type='text'
-          name='town_name'
-          placeholder='Nook Island'
-          onChange={(e) => setTownName(e.target.value)}
-          value={town_name}
-        ></input>
-      </div>
-      <div>
-        <label>Last 4 Digits of Payment Method</label>
-        <input
-          type='text'
-          name='payment_method'
-          placeholder='1234'
-          onChange={(e) => setPayment(e.target.value)}
-          value={payment_method}
-        ></input>
-      </div>
-      <div>
-        <label>Password</label>
-        <input
-          type='password'
-          name='password'
-          onChange={updatePassword}
-          value={password}
-          required
-        ></input>
-      </div>
-      {/* <div>
+    <div>
+      <form id='form-styling' onSubmit={onSignUp}>
+        <h1>Sign Up</h1>
+        <div>
+          {errors.map((error, ind) => (
+            <div key={ind}>{error}</div>
+          ))}
+        </div>
+        <div>
+          <label>Username</label>
+          <input
+            type='text'
+            name='username'
+            onChange={updateUsername}
+            value={username}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Icon URL (optional)</label>
+          <input
+            type='text'
+            name='icon'
+            onChange={updateIcon}
+            value={icon}
+          ></input>
+        </div>
+        <div>
+          <label>Email</label>
+          <input
+            type='email'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Street Address</label>
+          <input
+            type='text'
+            name='street_address'
+            placeholder='123 Example Rd'
+            onChange={updateAddress}
+            value={street_address}
+            required
+          ></input>
+        </div>
+        <div>
+          <label>Town/Island Name</label>
+          <input
+            type='text'
+            name='town_name'
+            placeholder='Nook Island'
+            onChange={(e) => setTownName(e.target.value)}
+            value={town_name}
+          ></input>
+        </div>
+        <div>
+          <label>Last 4 Digits of Payment Method</label>
+          <input
+            type='text'
+            name='payment_method'
+            placeholder='1234'
+            onChange={(e) => setPayment(e.target.value)}
+            value={payment_method}
+          ></input>
+        </div>
+        <div>
+          <label>Password</label>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            required
+          ></input>
+        </div>
+        {/* <div>
         <label>Confirm Password</label>
         <input
           type='password'
@@ -142,8 +150,12 @@ const SignUpForm = () => {
           required={true}
         ></input>
       </div> */}
-      <button type='submit'>Sign Up</button>
-    </form>
+        <div>
+          <button type='submit'>Sign Up</button>
+          <button onClick={demoLogin}>Demo User login</button>
+        </div>
+      </form>
+    </div>
   );
 };
 

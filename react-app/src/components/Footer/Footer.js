@@ -11,8 +11,8 @@ const Footer = () => {
                 <p>Anai Amy Lopez</p>
             </div>
             <div id='bottom'>
-                <p>*LINKS HERE*</p>
-                {/* <h1>nookazon</h1> */}
+                <a id='about-links' href="https://github.com/anailopez"><i class="fa-brands fa-github" /></a>
+                <a id='about-links' href='https://www.linkedin.com/in/anai-lopez-326289241/'><i class="fa-brands fa-linkedin" /></a>
             </div>
         </div>
     )

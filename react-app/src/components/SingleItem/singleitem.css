@@ -2,6 +2,9 @@
     background-color: white;
     display: inline-flex;
     flex-direction: column;
+    padding-bottom: 100%;
+    width: 100%;
+    /* padding-right: 40px; */
 }
 
 #single-item-pic img {
@@ -13,6 +16,7 @@
 #single-top {
     display: flex;
     flex-direction: row;
+    padding-bottom: 30px;
 }
 
 .single-item-info {
@@ -20,33 +24,32 @@
     margin-right: 20px;
 }
 
+
 .single-form {
     border: 1px solid #D5D9D9;
     margin-top: 40px;
     margin-right: 25px;
     width: 400px;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 15px;
 }
 
+.single-form h2 {
+    color: #C75159;
+}
+
 #add-to-cart-btn {
     background-color: #FFE54C;
-    /* width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 15px; */
     align-items: center;
     border: 0;
     border-radius: 100px;
     box-sizing: border-box;
     cursor: pointer;
     display: inline-flex;
-    /* font-family: -apple-system, system-ui, system-ui, "Segoe UI", Roboto, "Helvetica Neue", "Fira Sans", Ubuntu, Oxygen, "Oxygen Sans", Cantarell, "Droid Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Lucida Grande", Helvetica, Arial, sans-serif; */
     font-size: 16px;
-    /* font-weight: 600; */
     justify-content: center;
     line-height: 20px;
     max-width: 480px;
@@ -72,4 +75,15 @@
 
 .single-item-reviews {
     border-top: 1px solid #E7E7E7;
+    margin-left: 20px;
+    margin-right: 20px;
+    /* padding-top: 30px; */
+}
+
+#deliver-to {
+    color: #2191C1;
+}
+
+#in-stock {
+    color: #007600;
 }

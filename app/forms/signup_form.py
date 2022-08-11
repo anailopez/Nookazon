@@ -25,6 +25,7 @@ def icon_validate(form, field):
     icon = field.data
     if icon == '':
         icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
+    return icon
 
 
 def validate_password(form, field):
