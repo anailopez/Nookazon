@@ -23,6 +23,18 @@ def seed_items():
     bonsai_shelf = Item(
         title='Bonsai Shelf', price=8460, description='Give your home some greenery with our Bonsai Shelf! Complete with three beautiful bonsai trees, Bonsai Shelf if the perfect fit for any plant lover.', image='https://img.gamewith.net/article_tools/animal-crossing-new-horizons/gacha/Bonsai%20shelf.png'
     )
+    tweed_pants = Item(
+        title='Tweed Pants', price=1300, description='Have an interview coming up, or simply want to level up your everyday attire? With their classic and timeless style, these Tweed Pants will ensure you are ready for any occasion.', image='https://acnhcdn.com/latest/ClosetIcon/BottomsTexPantsWideTweed0.png'
+    )
+    checkered_jumper_dress = Item(
+        title='Checkered Jumper Dress', price=1840, description='Perfect as a school uniform or as an everyday look, this Checkered Jumper Dress is a stylish addition to any wardrobe.', image='https://dodo.ac/np/images/d/db/Checkered_Jumper_Dress_%28Red%29_NH_Icon.png'
+    )
+    fleece_pjs = Item(
+        title="Fleece PJ's", price=1800, description="Get ready for bedtime with our brand-new Fleece PJ's! Made from ultra-soft material, these pj's would be great for any slumber party!", image='https://dodo.ac/np/images/0/07/Fleece_Pj%27s_%28Pink%29_NH_Icon.png'
+    )
+    # flower_print_dress = Item(
+    #     title='Flower-print Dress', price=
+    # )
 
     db.session.add(froggy_chair)
     db.session.add(aloha_shirt)
@@ -30,6 +42,10 @@ def seed_items():
     db.session.add(acoustic_guitar)
     db.session.add(brick_oven)
     db.session.add(log_decorative_shelves)
+    db.session.add(bonsai_shelf)
+    db.session.add(tweed_pants)
+    db.session.add(checkered_jumper_dress)
+    db.session.add(fleece_pjs)
 
     db.session.commit()
 
