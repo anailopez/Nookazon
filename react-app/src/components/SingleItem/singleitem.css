@@ -75,9 +75,12 @@
 
 .single-item-reviews {
     border-top: 1px solid #E7E7E7;
-    margin-left: 20px;
-    margin-right: 20px;
+    /* margin-left: 20px;
+    margin-right: 20px; */
     /* padding-top: 30px; */
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-evenly; */
 }
 
 #deliver-to {
