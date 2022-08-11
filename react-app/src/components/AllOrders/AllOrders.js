@@ -8,8 +8,15 @@ import './allorders.css'
 const AllOrders = () => {
     const user = useSelector(state => state.session.user);
     const orders = useSelector(state => Object.values(state.orders));
+    let savedCart = []
 
     const dispatch = useDispatch();
+
+    if (user) {
+        savedCart = localStorage.getItem(user.id);
+    }
+
+    console.log(savedCart)
 
     useEffect(() => {
         dispatch(thunkGetAllOrders(user.id))

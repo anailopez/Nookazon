@@ -22,6 +22,8 @@ const SingleItem = () => {
         savedCart = localStorage.getItem(userId);
     }
 
+    console.log(savedCart)
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -128,7 +130,7 @@ const SingleItem = () => {
                 </div>
             )}
             <div className='single-item-reviews'>
-                <h2>Customer reviews</h2>
+
                 <Reviews />
             </div>
         </div>

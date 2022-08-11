@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunkCreateOrder } from "../../store/orders";
-import { thunkGetAllOrders } from "../../store/orders";
+// import { thunkGetAllOrders } from "../../store/orders";
+import { thunkGetCartProducts } from "../../store/cart";
 import Modal from 'react-modal';
 import './checkout.css';
 
@@ -56,12 +57,12 @@ const Checkout = () => {
 
     const handleOrder = async () => {
         dispatch(thunkCreateOrder(user.id, total, delivery, cart));
-        //clear cart
         localStorage.removeItem(user.id);
+        //clear cart
         //redirect to '/orders'
         history.push('/orders');
+        dispatch(thunkGetCartProducts(savedCart))
         return alert('Order placed!');
-        //clear cart
     }
 
     function openDeliveryModal() {

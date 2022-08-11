@@ -69,11 +69,11 @@ const NavBar = () => {
         {userId && (
           <>
             <li>
-              <p> <i class="fa-solid fa-location-dot" /> Deliver to {user.username}</p>
+              <p> <i className="fa-solid fa-location-dot" /> Deliver to {user.username}</p>
               <p>{user.town_name}</p>
             </li>
             <li>
-              <p>Hello, {user.username} <i class="fa-solid fa-caret-down" /></p>
+              <p>Hello, {user.username} <i className="fa-solid fa-caret-down" /></p>
               <LogoutButton />
             </li>
             <li>
