@@ -118,6 +118,7 @@ const SignUpForm = () => {
             placeholder='Nook Island'
             onChange={(e) => setTownName(e.target.value)}
             value={town_name}
+            required
           ></input>
         </div>
         <div>
@@ -128,6 +129,7 @@ const SignUpForm = () => {
             placeholder='1234'
             onChange={(e) => setPayment(e.target.value)}
             value={payment_method}
+            required
           ></input>
         </div>
         <div>
@@ -152,6 +154,7 @@ const SignUpForm = () => {
       </div> */}
         <div>
           <button type='submit'>Sign Up</button>
+          <p>or</p>
           <button onClick={demoLogin}>Demo User login</button>
         </div>
       </form>
