@@ -7,7 +7,7 @@ import { login } from '../../store/session';
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState('');
-  const [icon, setIcon] = useState('');
+  const [icon, setIcon] = useState('https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png');
   const [email, setEmail] = useState('');
   const [street_address, setStreetAddress] = useState('');
   const [town_name, setTownName] = useState('');

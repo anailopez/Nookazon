@@ -29,14 +29,12 @@ const CartIcon = () => {
         }
     }, [savedCart]);
 
-
-
-    console.log("**STATE CART", stateCart);
-    console.log("***CART", cart);
+    // console.log("**STATE CART", stateCart);
+    // console.log("***CART", cart);
 
     if (cart) {
         cart.forEach(item => {
-            quantity += item.quantity
+            quantity += parseInt(item.quantity)
         });
     }
 
@@ -58,7 +56,7 @@ const CartIcon = () => {
             {savedCart === null && (
                 <span id='cart'>
                     < img className='cart-icon' src={`${cart_icon}`} />
-                    <p>{0}</p>
+                    <p id='p-empty-cart'>{0}</p>
                 </span>
             )}
         </>

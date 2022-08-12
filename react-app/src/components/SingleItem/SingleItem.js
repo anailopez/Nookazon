@@ -22,8 +22,6 @@ const SingleItem = () => {
         savedCart = localStorage.getItem(userId);
     }
 
-    // console.log(savedCart)
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,6 +38,19 @@ const SingleItem = () => {
             setCart(savedCart)
         }
     }, [savedCart]);
+
+    let cartItem;
+    // console.log("*CART", cart)
+    // console.log("*ITEM", parseInt(itemId))
+
+    if (cart) {
+        const itemFound = cart.filter(item => item.item.id === parseInt(itemId));
+        if (itemFound) {
+            cartItem = itemFound
+        }
+    }
+
+    // console.log("*CART ITEM", cartItem[0].quantity)
 
     //the goal is to have something like this:
     // userId : {{'item1': {item}, 'quantity': quantity}, {'item2'....}}
@@ -93,7 +104,7 @@ const SingleItem = () => {
                                 </p>
                                 <p id='in-stock'>In Stock</p>
                                 <label htmlFor='quantity'>Qty: </label>
-                                <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                <select id='quantity' onChange={(e) => addItemToCart(item, e.target.value)} value={cartItem.length > 0 ? cartItem[0].quantity : quantity}>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>

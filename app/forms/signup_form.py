@@ -21,10 +21,10 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
-def icon_validate(form, field):
-    icon = field.data
-    if not icon.length > 0:
-        icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
+# def icon_validate(form, field):
+#     icon = field.data
+#     if not icon.length > 0:
+#         icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
 
 
 def validate_password(form, field):
@@ -57,7 +57,7 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists])
     icon = StringField('icon', [Optional(), URL(
-        message='Please enter a valid URL'), icon_validate])
+        message='Please enter a valid URL')])
     email = StringField('email', validators=[
                         DataRequired(), user_exists, validate_email])
     street_address = StringField('address', validators=[DataRequired(), Length(

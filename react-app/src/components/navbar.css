@@ -57,6 +57,14 @@ a {
     left: 22px;
 }
 
+#p-empty-cart {
+    color: #F08804;
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    left: 22px;
+}
+
 #cart-icon-link {
     padding-right: 20px;
 }

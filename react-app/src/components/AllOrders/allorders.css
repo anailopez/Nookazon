@@ -4,9 +4,13 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    padding-bottom: 400px;
+    padding-bottom: 270px;
     padding-top: 30px;
 }
+
+/* body{
+    background-color: white;
+} */
 
 .all-orders>h1 {
     color: black;

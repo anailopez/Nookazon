@@ -11,13 +11,13 @@
     margin-right: 200px;
 }
 
-/* .review-card {
-    padding-bottom: 20px;
+.review-card {
+    /* padding-bottom: 20px; */
     padding-top: 20px;
-    position: relative;
+    /* position: relative;
     right: 300px;
-    margin-right: 20px;
-} */
+    margin-right: 20px; */
+}
 
 #reviews-content {
     display: flex;
