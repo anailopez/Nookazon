@@ -23,9 +23,8 @@ def username_exists(form, field):
 
 def icon_validate(form, field):
     icon = field.data
-    if icon == '':
+    if not icon.length > 0:
         icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
-    return icon
 
 
 def validate_password(form, field):
@@ -68,4 +67,6 @@ class SignUpForm(FlaskForm):
     payment_method = StringField('payment method', validators=[DataRequired(), Length(
         min=1, max=4, message='Please include only the last 4 digits of your payment method'), validate_payment])
     password = StringField('password', validators=[
-                           DataRequired(), validate_password])
+                           DataRequired(), validate_password, EqualTo('confirm_password', message='Password and Confirm Password must match')])
+    confirm_password = StringField('confirm_password', validators=[
+                                   DataRequired(), validate_password])

@@ -13,14 +13,14 @@ const SignUpForm = () => {
   const [town_name, setTownName] = useState('');
   const [payment_method, setPayment] = useState('');
   const [password, setPassword] = useState('');
-  // const [repeatPassword, setRepeatPassword] = useState('');
+  const [confirm_password, setConfirmPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password) {
-      const data = await dispatch(signUp(username, icon, email, street_address, town_name, payment_method, password));
+      const data = await dispatch(signUp(username, icon, email, street_address, town_name, payment_method, password, confirm_password));
       if (data) {
         setErrors(data)
       }
@@ -48,18 +48,18 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  // const updateRepeatPassword = (e) => {
-  //   setRepeatPassword(e.target.value);
-  // };
+  const updateConfirmPassword = (e) => {
+    setConfirmPassword(e.target.value);
+  };
 
   const demoLogin = (e) => {
     e.preventDefault();
     return dispatch(login('maple@nookmail.com', 'password'))
-  }
+  };
 
   if (user) {
     return <Redirect to='/' />;
-  }
+  };
 
   return (
     <div>
@@ -142,16 +142,16 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
-        {/* <div>
-        <label>Confirm Password</label>
-        <input
-          type='password'
-          name='repeat_password'
-          onChange={updateRepeatPassword}
-          value={repeatPassword}
-          required={true}
-        ></input>
-      </div> */}
+        <div>
+          <label>Confirm Password</label>
+          <input
+            type='password'
+            name='confirm_password'
+            onChange={updateConfirmPassword}
+            value={confirm_password}
+            required
+          ></input>
+        </div>
         <div>
           <button type='submit'>Sign Up</button>
           <p>or</p>
