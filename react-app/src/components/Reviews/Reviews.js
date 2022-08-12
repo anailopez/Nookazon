@@ -11,14 +11,25 @@ const Reviews = () => {
     const { itemId } = useParams();
     const reviews = useSelector(state => Object.values(state.reviews));
     const sessionUser = useSelector(state => state.session.user);
+    const item = useSelector(state => state.allItems[itemId]);
+    console.log("**ITEM", item)
+
     const [showEditForm, setShowEditForm] = useState(false);
+    // let [userReviews, setUserReviews] = useState([]);
+
     Modal.setAppElement('body');
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(thunkGetReviews(itemId))
+        dispatch(thunkGetReviews(itemId));
     }, [dispatch, itemId]);
+
+
+    const userReviews = reviews.filter(review => review.user_id === sessionUser.id);
+    const ifItem = userReviews.filter(review => review.item_id === item.id);
+    console.log(ifItem)
+
 
     function openEditModal() {
         setShowEditForm(true)
@@ -39,6 +50,7 @@ const Reviews = () => {
         },
     };
 
+
     return (
         <div className='all-reviews'>
             <div className='write-review'>
@@ -46,14 +58,21 @@ const Reviews = () => {
                 {sessionUser && (
                     <>
                         <h4>Review this product</h4>
-                        <p>Share your thoughts with other customers</p>
-                        <Link to={`/create-review/${itemId}`}>
-                            <button id='write-review-btn'>Write a customer review</button>
-                        </Link>
+                        {!ifItem.length > 0 && (
+                            <>
+                                <p>Share your thoughts with other customers</p>
+                                <Link to={`/create-review/${itemId}`}>
+                                    <button id='write-review-btn'>Write a customer review</button>
+                                </Link>
+                            </>
+                        )}
+                        {ifItem && ifItem.length > 0 && (
+                            <p>You've posted a review!</p>
+                        )}
                     </>
                 )}
             </div>
-            <div>
+            <div id='reviews-content'>
                 {reviews && itemId && reviews.map(review => (
                     <div className='review-card' key={review.id}>
                         {review.item_id === parseInt(itemId) && (

@@ -1,8 +1,8 @@
 .single-item-page {
     background-color: white;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    padding-bottom: 100%;
+    padding-bottom: 200px;
     width: 100%;
     /* padding-right: 40px; */
 }

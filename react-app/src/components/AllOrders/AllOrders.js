@@ -16,7 +16,7 @@ const AllOrders = () => {
         savedCart = localStorage.getItem(user.id);
     }
 
-    console.log(savedCart)
+    // console.log(savedCart)
 
     useEffect(() => {
         dispatch(thunkGetAllOrders(user.id))

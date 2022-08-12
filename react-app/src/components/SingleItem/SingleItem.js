@@ -22,7 +22,7 @@ const SingleItem = () => {
         savedCart = localStorage.getItem(userId);
     }
 
-    console.log(savedCart)
+    // console.log(savedCart)
 
     const dispatch = useDispatch();
 
@@ -88,7 +88,7 @@ const SingleItem = () => {
                                 <h2>{item.price} bells</h2>
                                 <p>FREE 2 day delivery</p>
                                 <p id='deliver-to'>
-                                    <i class="fa-solid fa-location-dot" />
+                                    <i className="fa-solid fa-location-dot" />
                                     Deliver to {user.username} - {user.town_name}
                                 </p>
                                 <p id='in-stock'>In Stock</p>
