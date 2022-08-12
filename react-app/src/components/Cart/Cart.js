@@ -57,6 +57,7 @@ const Cart = () => {
 
         setCart(cartCopy);
         localStorage.setItem(userId, JSON.stringify(cartCopy));
+        dispatch(thunkGetCartProducts(savedCart));
     }
 
 

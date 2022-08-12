@@ -7,10 +7,9 @@ import cart_icon from '../../images/cart.png';
 const CartIcon = () => {
     const userId = useSelector((state) => state.session?.user?.id);
     const stateCart = useSelector((state) => state.cart)
-    // console.log("from cart icon", stateCart)
+
     let [cart, setCart] = useState([]);
-    // const [quantity, setQuantity] = useState(0);
-    // let quantity = 0;
+    let quantity = 0;
     let savedCart = null;
 
     const dispatch = useDispatch();
@@ -20,27 +19,40 @@ const CartIcon = () => {
     }
 
     useEffect(() => {
+        dispatch(thunkGetCartProducts(savedCart))
+    }, [dispatch])
+
+    useEffect(() => {
         savedCart = JSON.parse(savedCart);
-        // console.log("use effect triggered", savedCart);
         if (savedCart !== null) {
             setCart(savedCart)
-            // console.log(savedCart)
-            // savedCart.forEach(item => {
-            //     quantity += item.quantity
-            // })
         }
     }, [savedCart]);
 
-    useEffect(() => {
-        dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+
+
+    console.log("**STATE CART", stateCart);
+    console.log("***CART", cart);
+
+    if (cart) {
+        cart.forEach(item => {
+            quantity += item.quantity
+        });
+    }
+
+    // console.log("****quantity", quantity)
 
     return (
         <>
             {cart && savedCart !== null && (
                 <span id='cart'>
                     < img className='cart-icon' src={`${cart_icon}`} />
-                    <p>{cart.length}</p>
+                    {quantity > 9 && (
+                        <p id='p-10'>{quantity}</p>
+                    )}
+                    {quantity < 10 && (
+                        <p id='p-under-10'>{quantity}</p>
+                    )}
                 </span>
             )}
             {savedCart === null && (

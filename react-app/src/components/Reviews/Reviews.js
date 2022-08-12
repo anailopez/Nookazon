@@ -12,7 +12,7 @@ const Reviews = () => {
     const reviews = useSelector(state => Object.values(state.reviews));
     const sessionUser = useSelector(state => state.session.user);
     const item = useSelector(state => state.allItems[itemId]);
-    console.log("**ITEM", item)
+    // console.log("**ITEM", item)
 
     const [showEditForm, setShowEditForm] = useState(false);
     // let [userReviews, setUserReviews] = useState([]);
@@ -28,7 +28,7 @@ const Reviews = () => {
 
     const userReviews = reviews.filter(review => review.user_id === sessionUser.id);
     const ifItem = userReviews.filter(review => review.item_id === item.id);
-    console.log(ifItem)
+    // console.log(ifItem)
 
 
     function openEditModal() {
