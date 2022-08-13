@@ -58,7 +58,7 @@ const Cart = () => {
         setCart(cartCopy);
         localStorage.setItem(userId, JSON.stringify(cartCopy));
         dispatch(thunkGetCartProducts(savedCart));
-        console.log("***CART", cartCopy)
+        // console.log("***CART", cartCopy)
     }
 
 
@@ -86,7 +86,7 @@ const Cart = () => {
                                         <h3>{cartItem.item.price} bells</h3>
                                         <div id='inner-col'>
                                             <div>
-                                                <label for='cart-quantity'>Qty:</label>
+                                                <label htmlFor='cart-quantity'>Qty:</label>
                                                 <select id='cart-quantity' onChange={(e) => { updateQuantity(cartItem.item, e.target.value) }} value={cartItem.quantity}>
                                                     <option value={1}>1</option>
                                                     <option value={2}>2</option>

@@ -10,7 +10,7 @@ class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     total = db.Column(db.Integer, nullable=False)
-    delivery_info = db.Column(db.String(300), nullable=True)
+    delivery_info = db.Column(db.String(200), nullable=False)
     order_date = db.Column(db.String(50), nullable=False)
     delivery_date = db.Column(db.String(50), nullable=False)
 

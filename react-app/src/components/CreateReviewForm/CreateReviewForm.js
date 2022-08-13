@@ -18,6 +18,7 @@ const CreateReviewForm = () => {
     const [body, setBody] = useState('');
     const [rating, setRating] = useState(1);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [backendErrors, setBackendErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
@@ -32,6 +33,12 @@ const CreateReviewForm = () => {
         }
         if (!body.length) {
             errors.push('Please provide a written review')
+        }
+        if (title.length > 200) {
+            errors.push("Headline cannot exceed 200 characters")
+        }
+        if (body.length > 500) {
+            errors.push("Written review cannot exceed 500 characters")
         }
 
         setValidationErrors(errors)
@@ -54,14 +61,15 @@ const CreateReviewForm = () => {
             rating: rating
         }
 
-        const review = await dispatch(thunkCreateReview(itemId, newReview))
+        const data = await dispatch(thunkCreateReview(itemId, newReview))
 
-        if (review) {
-            reset()
-            history.push(`/items/${itemId}`)
-            return alert('Review submitted!')
+        if (data) {
+            setBackendErrors(data)
         }
 
+        reset()
+        history.push(`/items/${itemId}`)
+        return alert('Review submitted!')
     }
 
     const reset = () => {
@@ -69,6 +77,7 @@ const CreateReviewForm = () => {
         setBody('');
         setRating(1);
         setValidationErrors([]);
+        setBackendErrors([]);
         setHasSubmitted(false);
     }
 
@@ -76,11 +85,16 @@ const CreateReviewForm = () => {
     return (
         <div className="create-review">
             <div className="create-review-content">
-                <ul>
-                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                        <li key={error}>{error}</li>
+                <div>
+                    {backendErrors.map((error, ind) => (
+                        <div key={ind}>{error}</div>
                     ))}
-                </ul>
+                    <ul>
+                        {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                            <li key={error}>{error}</li>
+                        ))}
+                    </ul>
+                </div>
                 <h1>Create review</h1>
                 {item && (
                     <div id='review-item-info'>

@@ -11,11 +11,10 @@ const OrderDetails = () => {
     const user = useSelector(state => state.session.user)
     const order = useSelector(state => state.orders[orderId])
     const [showEditForm, setShowEditForm] = useState(false);
-    const [deliveryInfo, setDeliveryInfo] = useState(order?.delivery_info);
+    const [delivery_info, setDeliveryInfo] = useState('');
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
     Modal.setAppElement('body');
-
-    //python datetime for dates?
-    // console.log(order);
 
     const dispatch = useDispatch();
 
@@ -32,6 +31,49 @@ const OrderDetails = () => {
         setShowEditForm(false)
     }
 
+    useEffect(() => {
+        if (order) {
+            setDeliveryInfo(order.delivery_info);
+        }
+    }, [order]);
+
+    useEffect(() => {
+        const errors = [];
+
+        if (!delivery_info.length) {
+            errors.push('Please provide delivery instructions')
+        }
+        if (delivery_info.length > 200) {
+            errors.push('Delivery Instructions cannot exceed 200 characters')
+        }
+
+        setValidationErrors(errors);
+    }, [delivery_info]);
+
+    const reset = () => {
+        setValidationErrors([]);
+        setHasSubmitted(false);
+        setDeliveryInfo('');
+        closeEditModal();
+    }
+
+    const handleEdit = async (e) => {
+        e.preventDefault();
+
+        setHasSubmitted(true);
+
+        if (validationErrors.length > 0) {
+            return alert("Cannot update delivery instructions")
+        }
+
+        const editedOrder = await dispatch(thunkEditOrder(order.id, delivery_info))
+
+        if (editedOrder) {
+            reset();
+            setDeliveryInfo(editedOrder.delivery_info);
+        }
+    }
+
     const customStyles = {
         content: {
             top: '50%',
@@ -43,7 +85,7 @@ const OrderDetails = () => {
         },
     };
 
-    console.log(deliveryInfo)
+    // console.log(deliveryInfo)
 
     return (
         <div className="order-details">
@@ -57,14 +99,17 @@ const OrderDetails = () => {
                         </div>
                         <div>
                             <Modal isOpen={showEditForm} style={customStyles}>
+                                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                    <li key={error}>{error}</li>
+                                ))}
                                 <form id='form-styling'>
                                     <p>Where should we leave your packages at this address?</p>
                                     <textarea
                                         onChange={(e) => setDeliveryInfo(e.target.value)}
-                                        value={deliveryInfo}
-                                    >{deliveryInfo}</textarea>
+                                        value={delivery_info}
+                                    >{delivery_info}</textarea>
                                 </form>
-                                <button id='modal-btn' onClick={() => { dispatch(thunkEditOrder(order.id, deliveryInfo)); closeEditModal() }}>Update instructions</button>
+                                <button id='modal-btn' onClick={(e) => handleEdit(e)}>Update instructions</button>
                                 <button id='modal-btn' onClick={closeEditModal}>Cancel</button>
                             </Modal>
                             <button id='edit-delivery-btn' onClick={openEditModal}>Edit delivery instructions</button>
