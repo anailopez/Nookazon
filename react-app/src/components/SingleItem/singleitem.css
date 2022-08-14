@@ -91,7 +91,12 @@
     color: #007600;
 }
 
-.single-item-reviews{
+.single-item-reviews {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+#quantity {
+    border-radius: 8px;
+    background-color: #EAEDED;
 }
