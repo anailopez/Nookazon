@@ -27,7 +27,7 @@ const Reviews = () => {
 
 
     const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
-    const ifItem = userReviews.filter(review => review.item_id === item.id);
+    const ifItem = userReviews.filter(review => review.item_id === item?.id);
     // console.log(ifItem)
 
 
@@ -47,6 +47,8 @@ const Reviews = () => {
             bottom: 'auto',
             marginRight: '-50%',
             transform: 'translate(-50%, -50%)',
+            paddingRight: '40px',
+            paddingLeft: '40px'
         },
     };
 

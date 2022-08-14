@@ -97,3 +97,9 @@
 #review-card-rating p {
     padding-right: 15px;
 }
+
+#review-card-rating h4 {
+    max-width: 400px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}

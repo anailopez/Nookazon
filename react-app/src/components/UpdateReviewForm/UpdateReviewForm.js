@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateReview } from "../../store/reviews";
+import './update-review.css';
 
 const UpdateReviewForm = ({ review, closeEditModal }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -76,7 +77,7 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
     }
 
     return (
-        <div>
+        <div className="edit-review-form">
             <div>
                 {backendErrors.map((error, ind) => (
                     <div key={ind}>{error}</div>
@@ -88,8 +89,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                 </ul>
             </div>
             <form id='form-styling' onSubmit={handleSubmit}>
+                <label htmlFor="rating">Overall rating (1-5)</label>
                 <div>
-                    <label htmlFor="rating">Overall rating (1-5)</label>
                     <input
                         type='number'
                         id='rating'
@@ -100,8 +101,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                         value={rating}
                     />
                 </div>
+                <label htmlFor="title">Edit headline</label>
                 <div>
-                    <label htmlFor="title">Edit headline</label>
                     <input
                         type='text'
                         id='title'
@@ -110,8 +111,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                         value={title}
                     />
                 </div>
-                <div>
                     <label htmlFor="body">Edit written review</label>
+                <div>
                     <textarea
                         id='body'
                         name='body'
