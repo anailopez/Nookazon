@@ -181,5 +181,10 @@
 
 .details-review-btn {
     margin-top: 40px;
-    ;
+}
+
+#delivery-sec {
+    width: 400px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
 }

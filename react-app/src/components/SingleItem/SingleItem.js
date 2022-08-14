@@ -22,8 +22,6 @@ const SingleItem = () => {
         savedCart = localStorage.getItem(userId);
     }
 
-    console.log(savedCart)
-
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -40,6 +38,19 @@ const SingleItem = () => {
             setCart(savedCart)
         }
     }, [savedCart]);
+
+    let cartItem;
+    // console.log("*CART", cart)
+    // console.log("*ITEM", parseInt(itemId))
+
+    if (cart) {
+        const itemFound = cart.filter(item => item.item.id === parseInt(itemId));
+        if (itemFound) {
+            cartItem = itemFound
+        }
+    }
+
+    // console.log("*CART ITEM", cartItem[0].quantity)
 
     //the goal is to have something like this:
     // userId : {{'item1': {item}, 'quantity': quantity}, {'item2'....}}
@@ -63,10 +74,10 @@ const SingleItem = () => {
         dispatch(thunkGetCartProducts(cartCopy))
     }
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        addItemToCart(item, quantity);
-    }
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
+    //     addItemToCart(item, quantity);
+    // }
 
 
     return (
@@ -84,16 +95,17 @@ const SingleItem = () => {
                     </div>
                     <div className='single-form'>
                         {user && (
-                            <form onSubmit={handleSubmit}>
+                            <form >
                                 <h2>{item.price} bells</h2>
                                 <p>FREE 2 day delivery</p>
                                 <p id='deliver-to'>
-                                    <i class="fa-solid fa-location-dot" />
+                                    <i className="fa-solid fa-location-dot" />
                                     Deliver to {user.username} - {user.town_name}
                                 </p>
                                 <p id='in-stock'>In Stock</p>
                                 <label htmlFor='quantity'>Qty: </label>
-                                <select id='quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                <select id='quantity' onChange={(e) => addItemToCart(item, e.target.value)} value={cartItem.length > 0 ? cartItem[0].quantity : ''}>
+                                    <option value={''} disabled defaultChecked>Select quantity</option>
                                     <option value={1}>1</option>
                                     <option value={2}>2</option>
                                     <option value={3}>3</option>
@@ -106,7 +118,7 @@ const SingleItem = () => {
                                     <option value={10}>10</option>
                                 </select>
                                 <div>
-                                    <button id='add-to-cart-btn'>Add To Cart</button>
+                                    {/* <button id='add-to-cart-btn'>Add To Cart</button> */}
                                 </div>
                             </form>
                         )}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateReview } from "../../store/reviews";
+import './update-review.css';
 
 const UpdateReviewForm = ({ review, closeEditModal }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -14,6 +15,7 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
     const [body, setBody] = useState(review.body);
     const [rating, setRating] = useState(review.rating);
     const [validationErrors, setValidationErrors] = useState([]);
+    const [backendErrors, setBackendErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
 
@@ -25,6 +27,12 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
         }
         if (!body.length) {
             errors.push('Please provide a written review')
+        }
+        if (title.length > 200) {
+            errors.push("Headline cannot exceed 200 characters")
+        }
+        if (body.length > 500) {
+            errors.push("Written review cannot exceed 500 characters")
         }
 
         setValidationErrors(errors)
@@ -48,14 +56,15 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
             rating: rating
         }
 
-        const updated = await dispatch(thunkUpdateReview(updatedReview))
+        const data = await dispatch(thunkUpdateReview(updatedReview))
 
-        if (updated) {
-            reset()
-            closeEditModal()
-            return alert('Review updated!')
+        if (data) {
+            setBackendErrors(data)
         }
 
+        reset()
+        closeEditModal()
+        return alert('Review updated!')
     }
 
     const reset = () => {
@@ -63,19 +72,25 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
         setBody('');
         setRating(1);
         setValidationErrors([]);
+        setBackendErrors([]);
         setHasSubmitted(false);
     }
 
     return (
-        <div>
-            <ul>
-                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                    <li key={error}>{error}</li>
+        <div className="edit-review-form">
+            <div>
+                {backendErrors.map((error, ind) => (
+                    <div id='error-msgs' key={ind}>{error}</div>
                 ))}
-            </ul>
+                <ul>
+                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                        <li id='error-msgs' key={error}>{error}</li>
+                    ))}
+                </ul>
+            </div>
             <form id='form-styling' onSubmit={handleSubmit}>
+                <label htmlFor="rating">Overall rating (1-5)</label>
                 <div>
-                    <label htmlFor="rating">Overall rating (1-5)</label>
                     <input
                         type='number'
                         id='rating'
@@ -86,8 +101,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                         value={rating}
                     />
                 </div>
+                <label htmlFor="title">Edit headline</label>
                 <div>
-                    <label htmlFor="title">Edit headline</label>
                     <input
                         type='text'
                         id='title'
@@ -96,8 +111,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
                         value={title}
                     />
                 </div>
-                <div>
                     <label htmlFor="body">Edit written review</label>
+                <div>
                     <textarea
                         id='body'
                         name='body'

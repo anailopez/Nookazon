@@ -57,6 +57,8 @@ const Cart = () => {
 
         setCart(cartCopy);
         localStorage.setItem(userId, JSON.stringify(cartCopy));
+        dispatch(thunkGetCartProducts(savedCart));
+        // console.log("***CART", cartCopy)
     }
 
 
@@ -73,6 +75,7 @@ const Cart = () => {
                             <div className='cart-item' key={cartItem.item.id}>
                                 <div style={{ 'display': 'none' }}>
                                     {total += (cartItem.item.price * cartItem.quantity)}
+                                    {/* {setQuantity(cartItem.quantity)} */}
                                 </div>
                                 <div id='cart-item-single'>
                                     <div id='inner-single'>
@@ -82,10 +85,9 @@ const Cart = () => {
                                         <h2>{cartItem.item.title}</h2>
                                         <h3>{cartItem.item.price} bells</h3>
                                         <div id='inner-col'>
-                                            {/* <p>Qty: {cartItem.quantity}</p> */}
-                                            <p>Qty: {cartItem.quantity}</p>
                                             <div>
-                                                <select id='cart-quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                                <label htmlFor='cart-quantity'>Qty:</label>
+                                                <select id='cart-quantity' onChange={(e) => { updateQuantity(cartItem.item, e.target.value) }} value={cartItem.quantity}>
                                                     <option value={1}>1</option>
                                                     <option value={2}>2</option>
                                                     <option value={3}>3</option>
@@ -97,7 +99,7 @@ const Cart = () => {
                                                     <option value={9}>9</option>
                                                     <option value={10}>10</option>
                                                 </select>
-                                                <button id='update-btn' onClick={() => updateQuantity(cartItem.item, quantity)}>Update quantity</button>
+                                                {/* <button id='update-btn' onClick={() => updateQuantity(cartItem.item, quantity)}>Update quantity</button> */}
                                             </div>
                                             <form onSubmit={handleDelete}>
                                                 <button id='cart-item-delete-btn' onClick={() => setItemId(cartItem.item.id)}>Delete</button>
@@ -119,7 +121,7 @@ const Cart = () => {
                     </Link>
                 )}
             </div>
-        </div>
+        </div >
     )
 }
 

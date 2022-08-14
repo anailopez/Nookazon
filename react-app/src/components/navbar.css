@@ -32,20 +32,37 @@ a {
 
 #cart {
     max-height: 40px;
-    position: relative;
-    top: 25px;
+    position: absolute;
+    right: 30px;
+    top: 20px;
 }
 
 .cart-icon {
     max-height: 40px;
 }
 
-#cart p {
+#p-10 {
     color: #F08804;
     text-decoration: none;
-    position: relative;
-    left: 21px;
-    bottom: 57px;
+    position: absolute;
+    bottom: 5px;
+    left: 16px;
+}
+
+#p-under-10 {
+    color: #F08804;
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    left: 22px;
+}
+
+#p-empty-cart {
+    color: #F08804;
+    text-decoration: none;
+    position: absolute;
+    bottom: 5px;
+    left: 22px;
 }
 
 #cart-icon-link {

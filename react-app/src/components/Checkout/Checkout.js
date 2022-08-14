@@ -14,9 +14,11 @@ const Checkout = () => {
 
     const dispatch = useDispatch();
 
-    const [delivery, setDelivery] = useState('');
+    const [delivery_info, setDeliveryInfo] = useState('');
     const [quantity, setQuantity] = useState(1);
     const [showDelivery, setShowDelivery] = useState(false);
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     let [cart, setCart] = useState([]);
     let savedCart = null;
@@ -39,7 +41,6 @@ const Checkout = () => {
         }
     }, [savedCart]);
 
-    // console.log("*checkout cart", cart);
 
     const updateQuantity = (item, quantity) => {
         let cartCopy = [...cart];
@@ -53,16 +54,48 @@ const Checkout = () => {
 
         setCart(cartCopy);
         localStorage.setItem(user.id, JSON.stringify(cartCopy));
+        dispatch(thunkGetCartProducts(savedCart));
     }
 
-    const handleOrder = async () => {
-        dispatch(thunkCreateOrder(user.id, total, delivery, cart));
-        localStorage.removeItem(user.id);
-        //clear cart
-        //redirect to '/orders'
-        history.push('/orders');
-        dispatch(thunkGetCartProducts(savedCart))
-        return alert('Order placed!');
+    useEffect(() => {
+        const errors = [];
+
+        if (!delivery_info.length) {
+            errors.push('Please provide delivery instructions')
+        }
+        if (delivery_info.length > 200) {
+            errors.push('Delivery Instructions cannot exceed 200 characters')
+        }
+
+        setValidationErrors(errors);
+    }, [delivery_info]);
+
+    const reset = () => {
+        setDeliveryInfo('');
+        setQuantity(1);
+        setShowDelivery(false);
+        setValidationErrors([]);
+        setHasSubmitted(false);
+    }
+
+    const handleOrder = async (e) => {
+        e.preventDefault();
+
+        setHasSubmitted(true);
+
+        if (validationErrors.length > 0) {
+            return alert("Cannot submit order")
+        }
+
+        const order = await dispatch(thunkCreateOrder(user.id, total, delivery_info, cart));
+
+        if (order) {
+            localStorage.removeItem(user.id);
+            reset();
+            history.push('/orders');
+            dispatch(thunkGetCartProducts(savedCart));
+            return alert('Order placed!');
+        }
     }
 
     function openDeliveryModal() {
@@ -97,21 +130,33 @@ const Checkout = () => {
                             <p>{user.street_address}</p>
                             <p>{user.town_name}</p>
                         </div>
-                        <button id='open-deliv' onClick={openDeliveryModal}>Add delivery instructions</button>
+                        <div>
+                            <ul>
+                                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                    <li id='error-msgs' key={error}>{error}</li>
+                                ))}
+                            </ul>
+                            <button id='open-deliv' onClick={openDeliveryModal}>Add delivery instructions</button>
+                        </div>
                         <Modal isOpen={showDelivery} style={styling}>
                             <form id='form-styling'>
                                 <p>Delivery instructions</p>
+                                <ul>
+                                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                        <li id='error-msgs' key={error}>{error}</li>
+                                    ))}
+                                </ul>
                                 <textarea
                                     placeholder="Where should we leave your packages?"
                                     rows={'8'}
                                     cols={'35'}
-                                    onChange={(e) => setDelivery(e.target.value)}
-                                    value={delivery}
+                                    onChange={(e) => setDeliveryInfo(e.target.value)}
+                                    value={delivery_info}
+                                    required
                                 />
                             </form>
-                            <button id='modal-btn' onClick={closeDeliveryModal}>Cancel</button>
+                            <button id='modal-btn' onClick={closeDeliveryModal}>Save</button>
                         </Modal>
-                        {/* <button>Add delivery instructions</button> */}
                     </div>
                     <div id='payment'>
                         <h2>2 Payment method</h2>
@@ -130,7 +175,7 @@ const Checkout = () => {
                                     <h3>{cartItem.item.title}</h3>
                                     <h4>{cartItem.item.price} bells</h4>
                                     <p>Qty: {cartItem.quantity}</p>
-                                    <select id='cart-quantity' onChange={(e) => setQuantity(parseInt(e.target.value))} value={quantity}>
+                                    <select id='cart-quantity' onChange={(e) => { updateQuantity(cartItem.item, e.target.value) }} value={cartItem.quantity}>
                                         <option value={1}>1</option>
                                         <option value={2}>2</option>
                                         <option value={3}>3</option>

@@ -17,13 +17,15 @@ body {
     overflow-x: hidden;
 }
 
-#form-styling {
+/* #form-styling {
     margin: 10px auto;
     max-width: 400px;
     padding: 20px 12px 10px 20px;
     display: flex;
     flex-direction: column;
-}
+    align-items: center;
+    justify-content: center;
+} */
 
 #form-styling input[type=text],
 #form-styling input[type=number],
@@ -31,18 +33,11 @@ body {
 #form-styling input[type=password],
 textarea,
 select {
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #BEBEBE;
-    padding: 7px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    outline: none;
+    font-family: "Amazon Ember", Arial, sans-serif;
 }
 
-#form-styling button {
-    background-image: linear-gradient(#f7f8fa, #e7e9ec);
+/* #form-styling button {
+    background-color: #F1C966;
     border-color: #adb1b8 #a2a6ac #8d9096;
     border-style: solid;
     border-width: 1px;
@@ -68,34 +63,38 @@ select {
     white-space: nowrap;
     margin-top: 15px;
     margin-right: 10px
-}
+} */
 
 
-#form-styling button:hover {
-    border-color: #a2a6ac #979aa1 #82858a;
-}
+/* #form-styling button:hover {
+    background-color: #F2CC6D;
+} */
 
 
 #modal-btn {
     background-color: #FFFFFF;
-    border: 0;
+    border: 1px solid rgb(209, 213, 219);
     border-radius: .5rem;
     box-sizing: border-box;
     color: #111827;
+    font-family: "Inter var", ui-sans-serif, system-ui, -apple-system, system-ui, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: .875rem;
+    font-weight: 600;
     line-height: 1.25rem;
-    padding: .75rem 1rem;
+    margin-bottom: 3px;
+    margin-top: 5px;
+    padding: 5px 5px;
+    width: 100%;
     text-align: center;
     text-decoration: none #D1D5DB solid;
-    text-decoration-thickness: auto;
-    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     cursor: pointer;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    margin-right: 10px;
 }
 
 #modal-btn:hover {
     background-color: rgb(249, 250, 251);
+}
+
+#error-msgs {
+    color: red;
 }

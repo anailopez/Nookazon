@@ -54,7 +54,7 @@ def create_order():
     db.session.add(new_order)
     db.session.commit()
     items = data[3]
-    print("**ITEMS", items[0])
+    # print("**ITEMS", items[0])
 
     for item in items:
         item = OrderItem(

@@ -1,8 +1,8 @@
 .single-item-page {
     background-color: white;
-    display: inline-flex;
+    display: flex;
     flex-direction: column;
-    padding-bottom: 100%;
+    padding-bottom: 200px;
     width: 100%;
     /* padding-right: 40px; */
 }
@@ -89,4 +89,14 @@
 
 #in-stock {
     color: #007600;
+}
+
+.single-item-reviews {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#quantity {
+    border-radius: 8px;
+    background-color: #EAEDED;
 }

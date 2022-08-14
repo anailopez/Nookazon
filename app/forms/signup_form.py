@@ -21,13 +21,6 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
-def icon_validate(form, field):
-    icon = field.data
-    if icon == '':
-        icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
-    return icon
-
-
 def validate_password(form, field):
     password = field.data
     if(not re.fullmatch('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$', password)):
@@ -58,7 +51,7 @@ class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists])
     icon = StringField('icon', [Optional(), URL(
-        message='Please enter a valid URL'), icon_validate])
+        message='Please enter a valid URL')])
     email = StringField('email', validators=[
                         DataRequired(), user_exists, validate_email])
     street_address = StringField('address', validators=[DataRequired(), Length(
@@ -68,4 +61,6 @@ class SignUpForm(FlaskForm):
     payment_method = StringField('payment method', validators=[DataRequired(), Length(
         min=1, max=4, message='Please include only the last 4 digits of your payment method'), validate_payment])
     password = StringField('password', validators=[
-                           DataRequired(), validate_password])
+                           DataRequired(), validate_password, EqualTo('confirm_password', message='Password and Confirm Password must match')])
+    confirm_password = StringField('confirm_password', validators=[
+                                   DataRequired()])

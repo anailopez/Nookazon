@@ -32,9 +32,9 @@ def seed_items():
     fleece_pjs = Item(
         title="Fleece PJ's", price=1800, description="Get ready for bedtime with our brand-new Fleece PJ's! Made from ultra-soft material, these pj's would be great for any slumber party!", image='https://dodo.ac/np/images/0/07/Fleece_Pj%27s_%28Pink%29_NH_Icon.png'
     )
-    # flower_print_dress = Item(
-    #     title='Flower-print Dress', price=
-    # )
+    flower_print_dress = Item(
+        title='Flower-print Dress', price=1200, description='Since first making its debut in 2001, Flower-print Dress has long been a Nook Inc. bestseller. Get the iconic Flower-print dress today!', image='https://dodo.ac/np/images/9/9a/Flower-Print_Dress_%28Pink%29_NH_Icon.png'
+    )
 
     db.session.add(froggy_chair)
     db.session.add(aloha_shirt)
@@ -46,6 +46,8 @@ def seed_items():
     db.session.add(tweed_pants)
     db.session.add(checkered_jumper_dress)
     db.session.add(fleece_pjs)
+    #10
+    db.session.add(flower_print_dress)
 
     db.session.commit()
 
