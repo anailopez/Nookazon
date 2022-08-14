@@ -10,7 +10,7 @@ import './reviews.css'
 const Reviews = () => {
     const { itemId } = useParams();
     const reviews = useSelector(state => Object.values(state.reviews));
-    const sessionUser = useSelector(state => state.session.user);
+    const sessionUser = useSelector(state => state.session?.user);
     const item = useSelector(state => state.allItems[itemId]);
     // console.log("**ITEM", item)
 
@@ -26,7 +26,7 @@ const Reviews = () => {
     }, [dispatch, itemId]);
 
 
-    const userReviews = reviews.filter(review => review.user_id === sessionUser.id);
+    const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
     const ifItem = userReviews.filter(review => review.item_id === item.id);
     // console.log(ifItem)
 
@@ -70,6 +70,9 @@ const Reviews = () => {
                             <p>You've posted a review!</p>
                         )}
                     </>
+                )}
+                {!sessionUser && (
+                    <p>Log in or sign up to leave a review</p>
                 )}
             </div>
             <div id='reviews-content'>

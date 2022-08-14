@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import './login.css';
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
@@ -36,16 +37,16 @@ const LoginForm = () => {
   }
 
   return (
-    <div>
-      <form id='form-styling' onSubmit={onLogin}>
+    <div className='login-form-page'>
+      <form id='form-styling' className='login-form' onSubmit={onLogin}>
         <h1>Log In</h1>
         <div>
           {errors.map((error, ind) => (
             <div key={ind}>{error}</div>
           ))}
         </div>
+        <label htmlFor='email'>Email</label>
         <div>
-          <label htmlFor='email'>Email</label>
           <input
             name='email'
             type='text'
@@ -55,8 +56,8 @@ const LoginForm = () => {
             required
           />
         </div>
+        <label htmlFor='password'>Password</label>
         <div>
-          <label htmlFor='password'>Password</label>
           <input
             name='password'
             type='password'
@@ -65,13 +66,19 @@ const LoginForm = () => {
             onChange={updatePassword}
             required
           />
-          <div>
-            <button type='submit'>Login</button>
-            <p>or</p>
-            <button onClick={demoLogin}>Demo User login</button>
-          </div>
+        </div>
+        <div>
+          <button type='submit'>Login</button>
         </div>
       </form>
+      <div id='new-demo'>
+        <p id='new-p'>New to Nookazon?</p>
+        <Link to='/sign-up'>
+          <button>Create your Nookazon account</button>
+        </Link>
+        <p id='or-p'>or</p>
+        <button onClick={demoLogin}>Demo User login</button>
+      </div>
     </div>
   );
 };
