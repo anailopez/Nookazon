@@ -100,7 +100,7 @@ const OrderDetails = () => {
                         <div>
                             <Modal isOpen={showEditForm} style={customStyles}>
                                 {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                                    <li key={error}>{error}</li>
+                                    <li id='error-msgs' key={error}>{error}</li>
                                 ))}
                                 <form id='form-styling'>
                                     <p>Where should we leave your packages at this address?</p>
@@ -126,7 +126,7 @@ const OrderDetails = () => {
                             <h3>Payment Method</h3>
                             <p><i class="fa-solid fa-credit-card" /> ending in {user.payment_method}</p>
                         </div>
-                        <div>
+                        <div id='delivery-sec'>
                             <h3>Delivery Instructions</h3>
                             <p>{order.delivery_info}</p>
                         </div>

@@ -93,8 +93,8 @@ const Reviews = () => {
                                 <p>{review.body}</p>
                                 {sessionUser && sessionUser.id === review.user_id && (
                                     <>
-                                        <button id='delete-review-btn' onClick={() => dispatch(thunkDeleteReview(review.id))}>Delete Review</button>
-                                        <button id='edit-review-btn' onClick={openEditModal}>Edit Review</button>
+                                        <button id='delete-review-btn' onClick={() => dispatch(thunkDeleteReview(review.id))}>Delete</button>
+                                        <button id='edit-review-btn' onClick={openEditModal}>Edit</button>
                                         <Modal isOpen={showEditForm} style={styling}>
                                             <UpdateReviewForm review={review} closeEditModal={closeEditModal} />
                                             <button id='modal-btn' onClick={closeEditModal}>Cancel</button>

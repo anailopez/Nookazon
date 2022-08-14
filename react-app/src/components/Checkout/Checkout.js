@@ -130,20 +130,22 @@ const Checkout = () => {
                             <p>{user.street_address}</p>
                             <p>{user.town_name}</p>
                         </div>
-                        <ul>
-                            {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                                <li key={error}>{error}</li>
-                            ))}
-                        </ul>
-                        <button id='open-deliv' onClick={openDeliveryModal}>Add delivery instructions</button>
+                        <div>
+                            <ul>
+                                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                    <li id='error-msgs' key={error}>{error}</li>
+                                ))}
+                            </ul>
+                            <button id='open-deliv' onClick={openDeliveryModal}>Add delivery instructions</button>
+                        </div>
                         <Modal isOpen={showDelivery} style={styling}>
                             <form id='form-styling'>
                                 <p>Delivery instructions</p>
                                 <ul>
-                            {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                                <li key={error}>{error}</li>
-                            ))}
-                        </ul>
+                                    {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                        <li id='error-msgs' key={error}>{error}</li>
+                                    ))}
+                                </ul>
                                 <textarea
                                     placeholder="Where should we leave your packages?"
                                     rows={'8'}

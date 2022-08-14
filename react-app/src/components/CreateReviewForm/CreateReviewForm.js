@@ -87,11 +87,11 @@ const CreateReviewForm = () => {
             <div className="create-review-content">
                 <div>
                     {backendErrors.map((error, ind) => (
-                        <div key={ind}>{error}</div>
+                        <div id='error-msgs' key={ind}>{error}</div>
                     ))}
                     <ul>
                         {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
-                            <li key={error}>{error}</li>
+                            <li id='error-msgs' key={error}>{error}</li>
                         ))}
                     </ul>
                 </div>

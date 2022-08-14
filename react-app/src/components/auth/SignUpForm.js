@@ -69,7 +69,7 @@ const SignUpForm = () => {
         <div>
           <ul>
             {errors.map((error, ind) => (
-              <li key={ind}>{error}</li>
+              <li id='error-msgs' key={ind}>{error}</li>
             ))}
           </ul>
         </div>

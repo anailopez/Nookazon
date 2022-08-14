@@ -94,3 +94,7 @@ select {
 #modal-btn:hover {
     background-color: rgb(249, 250, 251);
 }
+
+#error-msgs {
+    color: red;
+}
