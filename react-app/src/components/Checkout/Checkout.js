@@ -147,7 +147,7 @@ const Checkout = () => {
                                     ))}
                                 </ul>
                                 <textarea
-                                    placeholder="Where should we leave your packages?"
+                                    placeholder="Where should we leave your package?"
                                     rows={'8'}
                                     cols={'35'}
                                     onChange={(e) => setDeliveryInfo(e.target.value)}

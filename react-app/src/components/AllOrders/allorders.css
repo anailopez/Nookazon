@@ -4,7 +4,7 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    padding-bottom: 270px;
+    padding-bottom: 410px;
     padding-top: 30px;
 }
 
@@ -152,6 +152,19 @@
 }
 
 #order-delete-btn:hover {
+    cursor: pointer;
+    color: #C7511F;
+}
+
+#order-link-index {
+    margin-top: 20px;
+    border: none;
+    background-color: white;
+    color: #007185;
+    padding-top: 10px;
+}
+
+#order-link-index:hover {
     cursor: pointer;
     color: #C7511F;
 }

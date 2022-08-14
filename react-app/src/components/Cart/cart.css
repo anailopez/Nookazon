@@ -126,3 +126,24 @@
     cursor: pointer;
     border-bottom: 1px solid #007185;
 }
+
+#cart-link-index {
+    border: none;
+    background-color: white;
+    color: #007185;
+}
+
+#cart-link-index:hover {
+    cursor: pointer;
+    color: #C7511F;
+}
+
+#shopping-img-container {
+    display: flex;
+}
+
+#shopping-img {
+    max-width: 100%;
+    padding-bottom: 40px;
+    padding-top: 20px;
+}
