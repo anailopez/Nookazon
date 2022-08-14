@@ -76,7 +76,7 @@ const LoginForm = () => {
         <Link to='/sign-up'>
           <button>Create your Nookazon account</button>
         </Link>
-        <p id='or-p'>or</p>
+        <p id='or-p'>Or shop as a guest</p>
         <button onClick={demoLogin}>Demo User login</button>
       </div>
     </div>

@@ -1,13 +1,13 @@
-.login-form-page {
+.signup-form-page {
     background-color: white;
-    padding-bottom: 610px;
+    padding-bottom: 400px;
     padding-top: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.login-form {
+.signup-form {
     border: 1px solid #DDDDDD;
     border-radius: 5px;
     padding-left: 40px;
@@ -17,19 +17,19 @@
     margin-top: 40px;
 }
 
-.login-form h1 {
+.signup-form h1 {
     font-size: 28px;
     font-weight: 400;
     color: #111111;
 }
 
-.login-form label {
+.signup-form label {
     font-size: 13px;
     font-weight: 700;
     color: #111111;
 }
 
-.login-form input {
+.signup-form input {
     margin-bottom: 10px;
     box-sizing: border-box;
     border: 1px solid #BEBEBE;
@@ -39,9 +39,9 @@
     width: 100%;
 }
 
-.login-form-page button {
+.signup-form-page button {
     width: 100%;
-    background-color: #F1C966;
+    background-color: #F2CC6D;
     border-color: #adb1b8 #a2a6ac #8d9096;
     border-style: solid;
     border-width: 1px;
@@ -61,27 +61,25 @@
     line-height: 19px;
 }
 
-.login-form-page button:hover {
+.signup-form-page button:hover {
     background-color: #F1C454;
 }
 
-#new-demo {
+#login-demo {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     border-top: 1px solid #DDDDDD;
 }
 
-#new-demo p {
-    font-size: 12px;
+#login-demo p {
+    font-size: 13px;
     font-weight: 400;
     color: #111111;
 }
 
-#new-p {
-    margin-left: 50px;
-}
-
-#or-p {
-    margin-left: 55px;
+#p-or {
+    font-size: 12px;
+    font-weight: 400;
+    color: #111111;
 }

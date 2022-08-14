@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
+import './signup.css';
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -62,16 +63,18 @@ const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <form id='form-styling' onSubmit={onSignUp}>
+    <div className='signup-form-page'>
+      <form id='form-styling' className='signup-form' onSubmit={onSignUp}>
         <h1>Sign Up</h1>
         <div>
-          {errors.map((error, ind) => (
-            <div key={ind}>{error}</div>
-          ))}
+          <ul>
+            {errors.map((error, ind) => (
+              <li key={ind}>{error}</li>
+            ))}
+          </ul>
         </div>
+        <label>Username</label>
         <div>
-          <label>Username</label>
           <input
             type='text'
             name='username'
@@ -80,17 +83,17 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Icon URL (optional)</label>
         <div>
-          <label>Icon URL (optional)</label>
           <input
             type='text'
             name='icon'
             onChange={updateIcon}
-            value={icon}
+          // value={icon}
           ></input>
         </div>
+        <label>Email</label>
         <div>
-          <label>Email</label>
           <input
             type='email'
             name='email'
@@ -99,8 +102,8 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Street Address</label>
         <div>
-          <label>Street Address</label>
           <input
             type='text'
             name='street_address'
@@ -110,8 +113,8 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Town/Island Name</label>
         <div>
-          <label>Town/Island Name</label>
           <input
             type='text'
             name='town_name'
@@ -121,8 +124,8 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Last 4 Digits of Payment Method</label>
         <div>
-          <label>Last 4 Digits of Payment Method</label>
           <input
             type='text'
             name='payment_method'
@@ -132,8 +135,8 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Password</label>
         <div>
-          <label>Password</label>
           <input
             type='password'
             name='password'
@@ -142,8 +145,8 @@ const SignUpForm = () => {
             required
           ></input>
         </div>
+        <label>Confirm Password</label>
         <div>
-          <label>Confirm Password</label>
           <input
             type='password'
             name='confirm_password'
@@ -154,10 +157,14 @@ const SignUpForm = () => {
         </div>
         <div>
           <button type='submit'>Sign Up</button>
-          <p>or</p>
+          <p id='p-or'>Or shop as a guest</p>
           <button onClick={demoLogin}>Demo User login</button>
         </div>
       </form>
+      <div id='login-demo'>
+        <p id='already-p'>Already have an account?</p>
+        <button>Log In</button>
+      </div>
     </div>
   );
 };

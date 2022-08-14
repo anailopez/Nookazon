@@ -21,12 +21,6 @@ def username_exists(form, field):
         raise ValidationError('Username is already in use.')
 
 
-# def icon_validate(form, field):
-#     icon = field.data
-#     if not icon.length > 0:
-#         icon == 'https://i.pinimg.com/originals/b7/2e/f2/b72ef278f70bd20a7345ad297a380274.png'
-
-
 def validate_password(form, field):
     password = field.data
     if(not re.fullmatch('^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,}$', password)):
@@ -69,4 +63,4 @@ class SignUpForm(FlaskForm):
     password = StringField('password', validators=[
                            DataRequired(), validate_password, EqualTo('confirm_password', message='Password and Confirm Password must match')])
     confirm_password = StringField('confirm_password', validators=[
-                                   DataRequired(), validate_password])
+                                   DataRequired()])
