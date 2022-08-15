@@ -23,6 +23,7 @@ const Checkout = () => {
     let [cart, setCart] = useState([]);
     let savedCart = null;
     let total = 0;
+    let totalQuantity = 0;
 
     const date = new Date();
     const days = 2;
@@ -41,6 +42,9 @@ const Checkout = () => {
         }
     }, [savedCart]);
 
+    useEffect(() => {
+        dispatch(thunkGetCartProducts(savedCart))
+    }, [dispatch])
 
     const updateQuantity = (item, quantity) => {
         let cartCopy = [...cart];
@@ -117,12 +121,22 @@ const Checkout = () => {
         },
     };
 
+    if (cart) {
+        cart.forEach(item => {
+            totalQuantity += parseInt(item.quantity)
+        });
+    }
 
     return (
         <div className="all-checkout">
             <div className="all-checkout-content">
                 <div id='left'>
-                    <h1>Checkout ({cart.length} item(s))</h1>
+                    {totalQuantity && totalQuantity >= 2 && (
+                        <h1>Checkout ({totalQuantity} items)</h1>
+                    )}
+                    {totalQuantity && totalQuantity === 1 && (
+                        <h1>Checkout ({totalQuantity} item)</h1>
+                    )}
                     <div id="address">
                         <div id='address-info'>
                             <h2>1 Shipping address</h2>
@@ -219,7 +233,12 @@ const Checkout = () => {
                         <form onSubmit={handleOrder}>
                             <button>Place your order</button>
                             <h2>Order Summary</h2>
-                            <p>Item(s) ({cart.length}): {total} bells</p>
+                            {totalQuantity && totalQuantity >= 2 && (
+                                <p>Items ({totalQuantity}): {total} bells</p>
+                            )}
+                            {totalQuantity && totalQuantity === 1 && (
+                                <p>Item ({totalQuantity}): {total} bells</p>
+                            )}
                             <p>Shipping and handling: 0 bells</p>
                             <p>Total before tax: {total} bells</p>
                             <p>Estimated tax to be collected: 200 bells</p>

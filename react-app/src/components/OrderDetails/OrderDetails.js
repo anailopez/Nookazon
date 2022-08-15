@@ -16,6 +16,7 @@ const OrderDetails = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
     Modal.setAppElement('body');
 
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -138,7 +139,12 @@ const OrderDetails = () => {
 
                     <div className="shipments">
                         <div className="shipments-header">
-                            <h2>{order.items.length} Shipment(s)</h2>
+                            {order && order.items.length >= 2 && (
+                                <h2>{order.items.length} Shipments</h2>
+                            )}
+                            {order && order.items.length === 1 && (
+                                <h2>{order.items.length} Shipment</h2>
+                            )}
                         </div>
                         {order && order.items.map(orderItem => (
                             <div key={orderItem.id} className='orderDetails-item'>

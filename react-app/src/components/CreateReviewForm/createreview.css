@@ -1,8 +1,9 @@
 .create-review {
     background-color: white;
-    padding-bottom: 100%;
+    padding-bottom: 90px;
     padding-left: 20px;
     padding-top: 20px;
+    margin-left: -8px;
     display: flex;
     flex-direction: column;
     /* justify-content: center; */

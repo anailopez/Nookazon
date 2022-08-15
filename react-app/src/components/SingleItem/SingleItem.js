@@ -50,9 +50,8 @@ const SingleItem = () => {
         }
     }
 
-    // console.log("*CART ITEM", cartItem[0].quantity)
 
-    //the goal is to have something like this:
+    //the goal is to have:
     // userId : {{'item1': {item}, 'quantity': quantity}, {'item2'....}}
 
     const addItemToCart = (item, quantity) => {
@@ -73,11 +72,6 @@ const SingleItem = () => {
         localStorage.setItem(userId, JSON.stringify(cartCopy));
         dispatch(thunkGetCartProducts(cartCopy))
     }
-
-    // const handleSubmit = (e) => {
-    //     e.preventDefault();
-    //     addItemToCart(item, quantity);
-    // }
 
 
     return (
