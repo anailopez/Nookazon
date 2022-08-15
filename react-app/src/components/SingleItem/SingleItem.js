@@ -97,6 +97,7 @@ const SingleItem = () => {
                                     Deliver to {user.username} - {user.town_name}
                                 </p>
                                 <p id='in-stock'>In Stock</p>
+                                <p>Add to cart  <i className="fa-solid fa-cart-arrow-down" /></p>
                                 <label htmlFor='quantity'>Qty: </label>
                                 <select id='quantity' onChange={(e) => addItemToCart(item, e.target.value)} value={cartItem.length > 0 ? cartItem[0].quantity : ''}>
                                     <option value={''} disabled defaultChecked>Select quantity</option>
