@@ -64,6 +64,7 @@ const OrderDetails = () => {
         setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
+            setDeliveryInfo(order.delivery_info);
             return alert("Cannot update delivery instructions")
         }
 

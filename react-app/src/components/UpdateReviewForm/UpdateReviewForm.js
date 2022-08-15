@@ -44,6 +44,8 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
         setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
+            setTitle(review.title)
+            setBody(review.body)
             return alert("Cannot submit review")
         }
 
