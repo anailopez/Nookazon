@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import { login } from '../../store/session';
 import './signup.css';
@@ -163,7 +163,9 @@ const SignUpForm = () => {
       </form>
       <div id='login-demo'>
         <p id='already-p'>Already have an account?</p>
-        <button>Log In</button>
+        <Link to='/login'>
+          <button>Log In</button>
+        </Link>
       </div>
     </div>
   );

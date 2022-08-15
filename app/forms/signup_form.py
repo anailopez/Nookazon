@@ -54,6 +54,12 @@ def validate_username(form, field):
             'Username can only consist of letters and numbers')
 
 
+def validate_town_name(form, field):
+    town_name = field.data
+    if(not re.fullmatch('[A-Z, a-z]+', town_name)):
+        raise ValidationError('Town Name can only consist of letters')
+
+
 class SignUpForm(FlaskForm):
     username = StringField(
         'username', validators=[DataRequired(message="Please provide a username"), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists, validate_username])
@@ -64,7 +70,7 @@ class SignUpForm(FlaskForm):
     street_address = StringField('address', validators=[DataRequired(), Length(
         min=1, max=50, message="Street Address must not exceed 50 characters"), validate_address])
     town_name = StringField('town name', validators=[DataRequired(), Length(
-        min=1, max=50, message='Town Name cannot exceed 50 characters')])
+        min=1, max=50, message='Town Name cannot exceed 50 characters'), validate_town_name])
     payment_method = StringField('payment method', validators=[DataRequired(), Length(
         min=1, max=4, message='Please include only the last 4 digits of your payment method'), validate_payment])
     password = StringField('password', validators=[

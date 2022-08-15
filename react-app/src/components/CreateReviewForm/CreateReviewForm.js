@@ -30,20 +30,17 @@ const CreateReviewForm = () => {
 
         if (title && body) {
 
-            const newTitle = title.replace(/\s+/g, '');
-            const newBody = body.replace(/\s+/g, '');
-
-            if (!newTitle.length) {
+            if (!title.replace(/\s+/g, '').length) {
                 errors.push('Please provide a headline for this review')
             }
-            if (!newBody.length) {
+            if (!body.replace(/\s+/g, '').length) {
                 errors.push('Please provide a written review')
             }
 
-            if (newTitle.length > 200) {
+            if (title.replace(/\s+/g, '').length > 200) {
                 errors.push("Headline cannot exceed 200 characters")
             }
-            if (newBody.length > 500) {
+            if (body.replace(/\s+/g, '').length > 500) {
                 errors.push("Written review cannot exceed 500 characters")
             }
 
@@ -73,11 +70,12 @@ const CreateReviewForm = () => {
 
         if (data) {
             setBackendErrors(data)
+        } else {
+            reset()
+            history.push(`/items/${itemId}`)
+            return alert('Review submitted!')
         }
 
-        reset()
-        history.push(`/items/${itemId}`)
-        return alert('Review submitted!')
     }
 
     const reset = () => {
