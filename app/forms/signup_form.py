@@ -56,7 +56,7 @@ def validate_username(form, field):
 
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists, validate_username])
+        'username', validators=[DataRequired(message="Please provide a username"), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists, validate_username])
     icon = StringField('icon', [Optional(), URL(
         message='Please enter a valid URL')])
     email = StringField('email', validators=[
