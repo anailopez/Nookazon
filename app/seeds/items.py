@@ -35,6 +35,18 @@ def seed_items():
     flower_print_dress = Item(
         title='Flower-print Dress', price=1200, description='Since first making its debut in 2001, Flower-print Dress has long been a Nook Inc. bestseller. Get the iconic Flower-print dress today!', image='https://dodo.ac/np/images/9/9a/Flower-Print_Dress_%28Pink%29_NH_Icon.png'
     )
+    colorful_fishing_rod = Item(
+        title='Colorful Fishing Rod', price=2500, description='Fishing has been one of the favorite pastimes for many villagers, so why not do it in style? With its cute, duck-shaped lure, Colorful Fishing Rod is sure to become your favorite fishing tool!', image='https://playerverse.com/wp-content/uploads/2021/09/ToolFishingrodDuck_Remake_6_0.png'
+    )
+    golden_shovel = Item(
+        title='Golden Shovel', price=10000, description='Dig for buried treasure with the best shovel bells can buy! Our Golden Shovel is made from 24K Gold and is virtually unbreakable!', image='https://img.gamewith.net/img/9af8ea1e51ca2470e22b80b7892c943b.jpeg'
+    )
+    golden_watering_can = Item(
+        title='Golden Watering Can', price=10000, description='Flowers make our towns beautiful, so why not water them with a watering can made from 24K gold? Our watering can is sure to impress your neighbors and keep your flowers looking gorgeous year-round!', image='https://img.gamewith.net/img/47091011f65d39cf09a7c3f2fc92d166.jpg'
+    )
+    ballet_slippers = Item(
+        title='Ballet Slippers', price=2200, description="Get ready for your next dance recital with our Ballet Slippers! Durable and fashionable, these Ballet Slippers are sure to be any ballerina's new favorite shoe!", image='https://playerverse.com/wp-content/uploads/2021/09/ShoesLowcutBallet4.png'
+    )
 
     db.session.add(froggy_chair)
     db.session.add(aloha_shirt)
@@ -46,8 +58,12 @@ def seed_items():
     db.session.add(tweed_pants)
     db.session.add(checkered_jumper_dress)
     db.session.add(fleece_pjs)
-    #10
+    # 10
     db.session.add(flower_print_dress)
+    db.session.add(colorful_fishing_rod)
+    db.session.add(golden_shovel)
+    db.session.add(golden_watering_can)
+    db.session.add(ballet_slippers)
 
     db.session.commit()
 
