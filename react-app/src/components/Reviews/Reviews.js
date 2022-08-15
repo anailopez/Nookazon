@@ -105,6 +105,9 @@ const Reviews = () => {
                         )}
                     </div>
                 ))}
+                {!reviews.length > 0 && (
+                    <p>No reviews yet - be the first to review this item!</p>
+                )}
             </div>
         </div>
     )
