@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { thunkGetAllItems } from '../../store/items';
 import { thunkGetCartProducts } from '../../store/cart';
 import Footer from '../Footer/Footer';
+import banner from '../../images/banner.png';
 import './allitems.css'
 
 const AllItems = () => {
@@ -25,6 +26,7 @@ const AllItems = () => {
 
     return (
         <div className='all-items-body'>
+            <img id='banner' src={banner}></img>
             <div className='all-items'>
                 {items && items.map(item => (
                     <div className='item-card' key={item.id}>
