@@ -10,10 +10,11 @@ const Cart = () => {
 
     let [cart, setCart] = useState([]);
     const [itemId, setItemId] = useState(null);
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
 
     let savedCart = null;
     let total = 0;
+    let quantity = 0;
 
     const dispatch = useDispatch();
 
@@ -28,6 +29,9 @@ const Cart = () => {
         }
     }, [savedCart]);
 
+    useEffect(() => {
+        dispatch(thunkGetCartProducts(savedCart))
+    }, [dispatch])
 
     const removeItem = (itemId) => {
         //create a copy of cart so state isn't overwritten!
@@ -61,6 +65,11 @@ const Cart = () => {
         // console.log("***CART", cartCopy)
     }
 
+    if (cart) {
+        cart.forEach(item => {
+            quantity += parseInt(item.quantity)
+        });
+    }
 
     return (
         <div className='cart'>
@@ -117,12 +126,22 @@ const Cart = () => {
                                 </div>
                             </div>
                         ))}
-                        <p>Subtotal ({cart.total}items): {total} bells</p>
+                        {quantity && quantity >= 2 && (
+                            <p>Subtotal ({quantity} items): {total} bells</p>
+                        )}
+                        {quantity && quantity === 1 && (
+                            <p>Subtotal ({quantity} item): {total} bells</p>
+                        )}
                     </>
                 )}
             </div>
             <div id='proceed-checkout'>
-                <h2>Subtotal ({cart.length} item(s)): {total} bells</h2>
+                {quantity && quantity >= 2 && (
+                    <h2>Subtotal ({quantity} items): {total} bells</h2>
+                )}
+                {quantity && quantity === 1 && (
+                    <h2>Subtotal ({quantity} item): {total} bells</h2>
+                )}
                 {cart && cart.length > 0 && (
                     <Link to={`/checkout`}>
                         <button id='checkout-btn'>Proceed to checkout</button>
