@@ -66,7 +66,15 @@ const Cart = () => {
         <div className='cart'>
             <div id='shopping-cart'>
                 {cart && !cart.length > 0 && (
-                    <p>Your Nookazon Cart is empty.</p>
+                    <div>
+                        <p>Your Nookazon Cart is empty.</p>
+                        <Link to='/'>
+                            <button id='cart-link-index'>Add some items to your cart to see them here!</button>
+                        </Link>
+                        <div id='shopping-img-container'>
+                            <img id='shopping-img' src='https://i.pinimg.com/736x/6c/0a/43/6c0a430048fb3997caaebcfa8530edcb.jpg' />
+                        </div>
+                    </div>
                 )}
                 {cart && cart.length > 0 && (
                     <>

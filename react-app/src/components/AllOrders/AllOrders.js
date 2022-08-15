@@ -89,7 +89,13 @@ const AllOrders = () => {
             ))
             }
             {orders && !orders.length > 0 && (
-                <p>You currently have no orders</p>
+                <>
+                    <p>You currently have no orders</p>
+                    <img src='https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/10/01/7665a011/acnh_hacked_items.jpg' />
+                    <Link to='/'>
+                        <button id='order-link-index'>Add some items to your cart and purchase them to see your orders here!</button>
+                    </Link>
+                </>
             )
             }
         </div>
