@@ -47,9 +47,16 @@ def validate_address(form, field):
         raise ValidationError('Please enter a valid street address')
 
 
+def validate_username(form, field):
+    username = field.data
+    if(not re.fullmatch('[A-Z, a-z]+[0-9]*', username)):
+        raise ValidationError(
+            'Username can only consist of letters and numbers')
+
+
 class SignUpForm(FlaskForm):
     username = StringField(
-        'username', validators=[DataRequired(), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists])
+        'username', validators=[DataRequired(), Length(min=1, max=50, message='Username must not exceed 50 characters'), username_exists, validate_username])
     icon = StringField('icon', [Optional(), URL(
         message='Please enter a valid URL')])
     email = StringField('email', validators=[

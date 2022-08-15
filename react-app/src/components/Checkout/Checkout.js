@@ -60,10 +60,10 @@ const Checkout = () => {
     useEffect(() => {
         const errors = [];
 
-        if (!delivery_info.length) {
+        if (!delivery_info.replace(/\s+/g, '').length) {
             errors.push('Please provide delivery instructions')
         }
-        if (delivery_info.length > 200) {
+        if (delivery_info.replace(/\s+/g, '').length > 200) {
             errors.push('Delivery Instructions cannot exceed 200 characters')
         }
 

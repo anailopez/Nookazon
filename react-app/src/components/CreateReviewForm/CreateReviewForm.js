@@ -28,20 +28,28 @@ const CreateReviewForm = () => {
     useEffect(() => {
         const errors = [];
 
-        if (!title.length) {
-            errors.push('Please provide a headline for this review')
-        }
-        if (!body.length) {
-            errors.push('Please provide a written review')
-        }
-        if (title.length > 200) {
-            errors.push("Headline cannot exceed 200 characters")
-        }
-        if (body.length > 500) {
-            errors.push("Written review cannot exceed 500 characters")
+        if (title && body) {
+
+            const newTitle = title.replace(/\s+/g, '');
+            const newBody = body.replace(/\s+/g, '');
+
+            if (!newTitle.length) {
+                errors.push('Please provide a headline for this review')
+            }
+            if (!newBody.length) {
+                errors.push('Please provide a written review')
+            }
+
+            if (newTitle.length > 200) {
+                errors.push("Headline cannot exceed 200 characters")
+            }
+            if (newBody.length > 500) {
+                errors.push("Written review cannot exceed 500 characters")
+            }
+
+            setValidationErrors(errors)
         }
 
-        setValidationErrors(errors)
     }, [title, body]);
 
     const handleSubmit = async (e) => {
