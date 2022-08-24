@@ -40,8 +40,6 @@ const SingleItem = () => {
     }, [savedCart]);
 
     let cartItem;
-    // console.log("*CART", cart)
-    // console.log("*ITEM", parseInt(itemId))
 
     if (cart) {
         const itemFound = cart.filter(item => item.item.id === parseInt(itemId));
@@ -51,11 +49,8 @@ const SingleItem = () => {
     }
 
 
-    //the goal is to have:
-    // userId : {{'item1': {item}, 'quantity': quantity}, {'item2'....}}
 
     const addItemToCart = (item, quantity) => {
-        //create a copy of cart so state isn't overwritten!
         let cartCopy = [...cart];
 
         let existingItem = cartCopy.find(cartItem => cartItem.item.id === item.id)

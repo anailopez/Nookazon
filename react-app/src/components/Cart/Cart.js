@@ -34,7 +34,6 @@ const Cart = () => {
     }, [dispatch])
 
     const removeItem = (itemId) => {
-        //create a copy of cart so state isn't overwritten!
         let cartCopy = [...cart];
 
         cartCopy = cartCopy.filter(cartItem => cartItem.item.id !== itemId);

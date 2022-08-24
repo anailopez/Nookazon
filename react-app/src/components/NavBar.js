@@ -7,6 +7,7 @@ import Badge from '@material-ui/core/Badge';
 import './navbar.css';
 import nookazonIcon from '../images/nookazon-logo.png';
 import CartIcon from './CartIcon/carticon';
+import SearchBar from './Searchbar/searchbar';
 
 const NavBar = () => {
   const userId = useSelector((state) => state.session?.user?.id);
@@ -71,6 +72,9 @@ const NavBar = () => {
             <li>
               <p>Deliver to {user.username}</p>
               <p><i className="fa-solid fa-location-dot" /> {user.town_name}</p>
+            </li>
+            <li>
+              <SearchBar />
             </li>
             <li>
               <div className='dropdown'>
