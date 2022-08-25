@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { thunkGetAllItems } from "../../store/items";
+import './searchbar.css';
 
 const SearchBar = () => {
     const [searchInput, setSearchInput] = useState('');
@@ -38,15 +39,15 @@ const SearchBar = () => {
     return (
         <div className="searchbar">
             <div className="search-input">
-                <input type='text' value={searchInput} onChange={handleSearch} />
-                <button><i className="fa-solid fa-magnifying-glass" /></button>
+                <input type='text' value={searchInput} onChange={handleSearch} id='search-input-area' />
+                <button id='search-btn'><i className="fa-solid fa-magnifying-glass" /></button>
             </div>
             {searchInput && searchResult.length > 0 && (
                 <div className="search-result">
                     {searchResult.slice(0, 5).map(item => {
                         return (
-                            <Link to={`/items/${item.id}`} onClick={clearSearch}>
-                                <p>{item.title}</p>
+                            <Link to={`/items/${item.id}`} onClick={clearSearch} id='result-link'>
+                                <p id='result-p'>{item.title}</p>
                             </Link>
                         )
                     })}

@@ -12,7 +12,7 @@ const Footer = () => {
             </div>
             <div id='bottom'>
                 <a id='about-links' href="https://github.com/anailopez"><i class="fa-brands fa-github" /></a>
-                <a id='about-links' href='https://www.linkedin.com/in/anai-lopez-326289241/'><i class="fa-brands fa-linkedin" /></a>
+                <a id='about-links' href='https://www.linkedin.com/in/anaiamylopez/'><i class="fa-brands fa-linkedin" /></a>
             </div>
         </div>
     )
