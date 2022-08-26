@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { thunkUpdateReview } from "../../store/reviews";
 import './update-review.css';
+import Rating from '@mui/material/Rating';
 
 const UpdateReviewForm = ({ review, closeEditModal }) => {
     const sessionUser = useSelector(state => state.session.user);
@@ -93,14 +94,10 @@ const UpdateReviewForm = ({ review, closeEditModal }) => {
             <form id='form-styling' onSubmit={handleSubmit}>
                 <label htmlFor="rating">Overall rating (1-5)</label>
                 <div>
-                    <input
-                        type='number'
-                        id='rating'
-                        name='rating'
-                        min='1'
-                        max='5'
-                        onChange={(e) => setRating(e.target.value)}
+                    <Rating
+                        name="rating"
                         value={rating}
+                        onChange={(e) => setRating(parseInt(e.target.value))}
                     />
                 </div>
                 <label htmlFor="title">Edit headline</label>

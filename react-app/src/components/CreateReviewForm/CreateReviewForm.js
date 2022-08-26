@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom";
 import { thunkCreateReview } from "../../store/reviews";
 import { thunkGetOneItem } from "../../store/items";
 import './createreview.css';
+import Rating from '@mui/material/Rating';
 
 const CreateReviewForm = () => {
     const sessionUser = useSelector(state => state.session.user);
@@ -20,6 +21,7 @@ const CreateReviewForm = () => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [backendErrors, setBackendErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
+    console.log(rating);
 
     useEffect(() => {
         dispatch(thunkGetOneItem(itemId))
@@ -110,15 +112,11 @@ const CreateReviewForm = () => {
                 )}
                 <form onSubmit={handleSubmit}>
                     <div id='review-rating'>
-                        <label htmlFor="rating">Overall rating (1-5)</label>
-                        <input
-                            type='number'
-                            id='rating'
-                            name='rating'
-                            min='1'
-                            max='5'
-                            onChange={(e) => setRating(e.target.value)}
+                        <label htmlFor="rating">Overall rating</label>
+                        <Rating
+                            name="rating"
                             value={rating}
+                            onChange={(e) => setRating(parseInt(e.target.value))}
                         />
                     </div>
                     <div id='review-title'>

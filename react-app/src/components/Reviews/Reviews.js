@@ -6,13 +6,14 @@ import { thunkDeleteReview } from '../../store/reviews';
 import Modal from 'react-modal';
 import UpdateReviewForm from '../UpdateReviewForm/UpdateReviewForm';
 import './reviews.css'
+import Rating from '@mui/material/Rating';
 
 const Reviews = () => {
     const { itemId } = useParams();
     const reviews = useSelector(state => Object.values(state.reviews));
     const sessionUser = useSelector(state => state.session?.user);
     const item = useSelector(state => state.allItems[itemId]);
-    // console.log("**ITEM", item)
+    console.log("**REVIEWS", reviews)
 
     const [showEditForm, setShowEditForm] = useState(false);
     // let [userReviews, setUserReviews] = useState([]);
@@ -29,7 +30,22 @@ const Reviews = () => {
     const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
     const ifItem = userReviews.filter(review => review.item_id === item?.id);
     // console.log(ifItem)
+    let averageRating = 0;
+    let totalReviews = 0;
+    let sumRatings = 0;
 
+    const getAverageRating = () => {
+        if (reviews) {
+            reviews.forEach(review => {
+                if (review.item_id === item?.id) {
+                    totalReviews++;
+                    sumRatings += review.rating;
+                }
+            });
+            averageRating = sumRatings / totalReviews;
+            return averageRating;
+        }
+    }
 
     function openEditModal() {
         setShowEditForm(true)
@@ -57,6 +73,8 @@ const Reviews = () => {
         <div className='all-reviews'>
             <div className='write-review'>
                 <h2>Customer reviews</h2>
+                <Rating value={getAverageRating()} readOnly />
+                <p>{`${getAverageRating()} out of 5`}</p>
                 {sessionUser && (
                     <>
                         <h4>Review this product</h4>
@@ -87,7 +105,7 @@ const Reviews = () => {
                                     <p>{review.user.username}</p>
                                 </div>
                                 <div id='review-card-rating'>
-                                    <p>Rating: {review.rating}</p>
+                                    <Rating value={review.rating} readOnly />
                                     <h4>{review.title}</h4>
                                 </div>
                                 <p>{review.body}</p>
