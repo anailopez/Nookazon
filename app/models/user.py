@@ -20,8 +20,7 @@ class User(db.Model, UserMixin):
         "Review", back_populates="user", cascade="all, delete-orphan")
     orders = db.relationship(
         "Order", back_populates="user", cascade="all, delete-orphan")
-    # items = db.relationship(
-    #     "Item", secondary=cart_items, back_populates="users", cascade="all, delete")
+    lists = db.relationship("List", back_populates="user")
 
     @property
     def password(self):

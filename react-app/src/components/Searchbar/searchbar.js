@@ -11,7 +11,7 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const items = useSelector(state => Object.values(state.allItems));
-    console.log(searchResult.length);
+    // console.log(searchResult.length);
 
     useEffect(() => {
         dispatch(thunkGetAllItems())
@@ -40,7 +40,7 @@ const SearchBar = () => {
         <div className="searchbar">
             <div className="search-input">
                 <input type='text' value={searchInput} onChange={handleSearch} id='search-input-area' />
-                <button id='search-btn'><i className="fa-solid fa-magnifying-glass" /></button>
+                <button id='search-btn' disabled><i className="fa-solid fa-magnifying-glass" /></button>
             </div>
             {searchInput && searchResult.length > 0 && (
                 <div className="search-result">
