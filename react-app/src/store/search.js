@@ -1,4 +1,5 @@
 const GET_SEARCH_RESULTS = 'search/getResults'
+const CLEAR_RESULTS = 'search/clearResults'
 
 
 const actionGetSearchResults = (results) => {
@@ -8,6 +9,12 @@ const actionGetSearchResults = (results) => {
     }
 }
 
+const actionClearResults = (results) => {
+    return {
+        type: CLEAR_RESULTS,
+        results
+    }
+}
 
 export const thunkGetSearchResults = (id) => async (dispatch) => {
     const response = await fetch(`/api/search/${id}`)
@@ -21,6 +28,10 @@ export const thunkGetSearchResults = (id) => async (dispatch) => {
     }
 }
 
+export const thunkClearResults = (id) => async (dispatch) => {
+    dispatch(actionClearResults(id))
+}
+
 
 const initalState = {}
 
@@ -32,6 +43,11 @@ const searchReducer = (state = initalState, action) => {
                 newState[item.id] = item
             })
             return newState;
+
+        case CLEAR_RESULTS:
+            let clearState = { ...state }
+            delete clearState[action.results]
+            return clearState;
 
         default:
             return state;

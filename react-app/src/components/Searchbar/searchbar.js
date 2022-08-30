@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { thunkGetAllItems } from "../../store/items";
 import { thunkGetSearchResults } from "../../store/search";
+import { thunkClearResults } from "../../store/search";
 import './searchbar.css';
 
 const SearchBar = () => {
@@ -11,13 +12,15 @@ const SearchBar = () => {
     const [thunkSearchResult, setThunkSearchResult] = useState([]);
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const items = useSelector(state => Object.values(state.allItems));
     // console.log(searchResult.length);
 
     useEffect(() => {
-        dispatch(thunkGetAllItems())
-    }, [dispatch]);
+        dispatch(thunkGetAllItems());
+        // dispatch(thunkGetSearchResults(thunkSearchResult))
+    }, [dispatch, thunkSearchResult]);
 
 
     const handleSearch = (e) => {
@@ -39,13 +42,15 @@ const SearchBar = () => {
     }
 
     const handleBackendSearch = async (input) => {
+        await dispatch(thunkClearResults(input));
         const results = await dispatch(thunkGetSearchResults(input))
-        console.log(results)
+        console.log("***", results)
 
-        // if (results) {
-        //     setThunkSearchResult(results);
-        //     console.log(thunkSearchResult)
-        // }
+        if (results) {
+            // setThunkSearchResult(results)
+            history.push(`/search-results/${input}`)
+            clearSearch()
+        }
     }
 
     return (

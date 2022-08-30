@@ -65,7 +65,7 @@ const Reviews = () => {
         }
     };
 
-    console.log("**RESULT", getAverageRating())
+    // console.log("**RESULT", getAverageRating())
 
     return (
         <div className='all-reviews'>
