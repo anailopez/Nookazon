@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
-import Badge from '@material-ui/core/Badge';
 import './navbar.css';
 import nookazonIcon from '../images/nookazon-logo.png';
 import CartIcon from './CartIcon/carticon';
