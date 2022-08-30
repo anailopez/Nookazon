@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { thunkGetAllItems } from "../../store/items";
+import { thunkGetSearchResults } from "../../store/search";
 import './searchbar.css';
 
 const SearchBar = () => {
     const [searchInput, setSearchInput] = useState('');
     const [searchResult, setSearchResult] = useState([]);
+    const [thunkSearchResult, setThunkSearchResult] = useState([]);
 
     const dispatch = useDispatch();
 
@@ -36,11 +38,21 @@ const SearchBar = () => {
         setSearchResult([])
     }
 
+    const handleBackendSearch = async (input) => {
+        const results = await dispatch(thunkGetSearchResults(input))
+        console.log(results)
+
+        // if (results) {
+        //     setThunkSearchResult(results);
+        //     console.log(thunkSearchResult)
+        // }
+    }
+
     return (
         <div className="searchbar">
             <div className="search-input">
                 <input type='text' value={searchInput} onChange={handleSearch} id='search-input-area' />
-                <button id='search-btn' disabled><i className="fa-solid fa-magnifying-glass" /></button>
+                <button id='search-btn' onClick={() => handleBackendSearch(searchInput)}><i className="fa-solid fa-magnifying-glass" /></button>
             </div>
             {searchInput && searchResult.length > 0 && (
                 <div className="search-result">
