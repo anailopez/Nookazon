@@ -1,0 +1,16 @@
+.all-lists {
+    background-color: white;
+}
+
+#list-click {
+    list-style: none;
+}
+
+#list-click:hover {
+    cursor: pointer;
+    color: #C7511F;
+}
+
+/* #list-p:active {
+    background-color: blue;
+} */
