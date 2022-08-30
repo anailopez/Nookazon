@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './navbar.css';
 import nookazonIcon from '../images/nookazon-logo.png';
@@ -80,6 +80,10 @@ const NavBar = () => {
                 <p>Hello, {user.username} <i className="fa-solid fa-caret-down" /></p>
                 <div className='dropdown-content'>
                   <LogoutButton />
+                  <br />
+                  <Link to='/lists'>
+                    <p>Your Lists</p>
+                  </Link>
                 </div>
               </div>
             </li>

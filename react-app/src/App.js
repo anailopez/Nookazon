@@ -15,6 +15,7 @@ import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import AllOrders from './components/AllOrders/AllOrders';
 import OrderDetails from './components/OrderDetails/OrderDetails';
+import AllLists from './components/AllLists/AllLists';
 import './index.css';
 
 
@@ -70,6 +71,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path='/checkout'>
             <Checkout />
+          </ProtectedRoute>
+          <ProtectedRoute path='/lists'>
+            <AllLists />
           </ProtectedRoute>
           <Route>
             <AllItems />

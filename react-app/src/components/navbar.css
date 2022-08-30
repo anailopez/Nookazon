@@ -89,6 +89,7 @@ a {
     padding: 10px;
 }
 
+
 .dropdown:hover .dropdown-content {
     display: block;
 }
@@ -99,6 +100,15 @@ a {
 }
 
 #logout-btn:hover {
+    color: #F08804;
+    cursor: pointer;
+}
+
+.dropdown-content p {
+    color: black;
+}
+
+.dropdown-content p:hover {
     color: #F08804;
     cursor: pointer;
 }

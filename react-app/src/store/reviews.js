@@ -4,28 +4,28 @@ const DELETE_REVIEW = 'review/deleteReview'
 const UPDATE_REVIEW = 'review/updateReview'
 
 //regular action creators
-export const actionGetReviews = (reviews) => {
+const actionGetReviews = (reviews) => {
     return {
         type: GET_REVIEWS,
         reviews
     }
 }
 
-export const actionCreateReview = (review) => {
+const actionCreateReview = (review) => {
     return {
         type: CREATE_REVIEW,
         review
     }
 }
 
-export const actionDeleteReview = (reviewId) => {
+const actionDeleteReview = (reviewId) => {
     return {
         type: DELETE_REVIEW,
         reviewId
     }
 }
 
-export const actionUpdateReview = (review) => {
+const actionUpdateReview = (review) => {
     return {
         type: UPDATE_REVIEW,
         review

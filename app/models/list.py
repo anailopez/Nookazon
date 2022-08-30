@@ -21,6 +21,6 @@ class List(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'user': self.user,
+            'user': self.user.to_dict(),
             'items': self.get_items()
         }
