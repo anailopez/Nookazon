@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, List
+from app.models import db, List, list_items
 from app.forms import ListForm
 
 list_routes = Blueprint('lists', __name__)
@@ -43,8 +43,32 @@ def get_lists(id):
 
 @list_routes.route('/<int:id>/delete', methods=['DELETE'])
 def delete_list(id):
-    print("***ID", id)
     list = List.query.get(id)
     db.session.delete(list)
     db.session.commit()
+    return list.to_dict()
+
+
+@list_routes.route('/<int:id>/add', methods=['PUT'])
+def add_item_to_list(id):
+    data = request.json
+    print('***DATA', data)
+    list = List.query.get(id)
+
+    db.session.execute(list_items.insert().values(
+        list_id=id, item_id=data))
+    db.session.commit()
+
+    return list.to_dict()
+
+
+@list_routes.route('/<int:id>/remove', methods=['PUT'])
+def remove_item_from_list(id):
+    data = request.json
+    list = List.query.get(id)
+
+    db.session.execute(list_items.delete().where(
+        list_items.c.item_id == data).where(list_items.c.list_id == id))
+    db.session.commit()
+
     return list.to_dict()

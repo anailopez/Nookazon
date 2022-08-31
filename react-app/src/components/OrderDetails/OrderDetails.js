@@ -126,7 +126,7 @@ const OrderDetails = () => {
                         </div>
                         <div>
                             <h3>Payment Method</h3>
-                            <p><i class="fa-solid fa-credit-card" /> ending in {user.payment_method}</p>
+                            <p><i className="fa-solid fa-credit-card" /> ending in {user.payment_method}</p>
                         </div>
                         <div id='delivery-sec'>
                             <h3>Delivery Instructions</h3>

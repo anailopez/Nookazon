@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { thunkGetOneItem } from '../../store/items';
 import { thunkGetReviews } from '../../store/reviews';
-import { thunkGetCartProducts } from '../../store/cart'
+import { thunkGetCartProducts } from '../../store/cart';
+import { thunkGetLists } from '../../store/lists';
+import { thunkAddItemToList } from '../../store/lists';
 import Reviews from '../Reviews/Reviews';
 import './singleitem.css'
 
@@ -11,11 +13,11 @@ const SingleItem = () => {
     const { itemId } = useParams();
     const item = useSelector(state => state.allItems[itemId]);
     const userId = useSelector(state => state.session?.user?.id);
-    const user = useSelector(state => state.session?.user)
+    const user = useSelector(state => state.session?.user);
+    const lists = useSelector(state => Object.values(state.lists))
 
     //shopping cart
     let [cart, setCart] = useState([]);
-    // const [quantity, setQuantity] = useState(1);
     let savedCart = null;
 
     if (userId) {
@@ -23,14 +25,16 @@ const SingleItem = () => {
     }
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         if (itemId) {
             dispatch(thunkGetOneItem(itemId))
             dispatch(thunkGetReviews(itemId))
             dispatch(thunkGetCartProducts(savedCart))
+            dispatch(thunkGetLists(userId))
         }
-    }, [dispatch, itemId, savedCart])
+    }, [dispatch, itemId, savedCart, userId])
 
     useEffect(() => {
         savedCart = JSON.parse(savedCart);
@@ -68,6 +72,10 @@ const SingleItem = () => {
         dispatch(thunkGetCartProducts(cartCopy))
     }
 
+    const handleAddToList = async (listId) => {
+        dispatch(thunkAddItemToList(listId, itemId));
+        history.push('/lists')
+    }
 
     return (
         <div className='single-item-page'>
@@ -84,33 +92,43 @@ const SingleItem = () => {
                     </div>
                     <div className='single-form'>
                         {user && (
-                            <form >
-                                <h2>{item.price} bells</h2>
-                                <p>FREE 2 day delivery</p>
-                                <p id='deliver-to'>
-                                    <i className="fa-solid fa-location-dot" />
-                                    Deliver to {user.username} - {user.town_name}
-                                </p>
-                                <p id='in-stock'>In Stock</p>
-                                <p>Add to cart  <i className="fa-solid fa-cart-arrow-down" /></p>
-                                <label htmlFor='quantity'>Qty: </label>
-                                <select id='quantity' onChange={(e) => addItemToCart(item, e.target.value)} value={cartItem.length > 0 ? cartItem[0].quantity : ''}>
-                                    <option value={''} disabled defaultChecked>Select quantity</option>
-                                    <option value={1}>1</option>
-                                    <option value={2}>2</option>
-                                    <option value={3}>3</option>
-                                    <option value={4}>4</option>
-                                    <option value={5}>5</option>
-                                    <option value={6}>6</option>
-                                    <option value={7}>7</option>
-                                    <option value={8}>8</option>
-                                    <option value={9}>9</option>
-                                    <option value={10}>10</option>
-                                </select>
+                            <>
+                                <form >
+                                    <h2>{item.price} bells</h2>
+                                    <p>FREE 2 day delivery</p>
+                                    <p id='deliver-to'>
+                                        <i className="fa-solid fa-location-dot" />
+                                        Deliver to {user.username} - {user.town_name}
+                                    </p>
+                                    <p id='in-stock'>In Stock</p>
+                                    <p>Add to cart  <i className="fa-solid fa-cart-arrow-down" /></p>
+                                    <label htmlFor='quantity'>Qty: </label>
+                                    <select id='quantity' onChange={(e) => addItemToCart(item, e.target.value)} value={cartItem.length > 0 ? cartItem[0].quantity : ''}>
+                                        <option value={''} disabled defaultChecked>Select quantity</option>
+                                        <option value={1}>1</option>
+                                        <option value={2}>2</option>
+                                        <option value={3}>3</option>
+                                        <option value={4}>4</option>
+                                        <option value={5}>5</option>
+                                        <option value={6}>6</option>
+                                        <option value={7}>7</option>
+                                        <option value={8}>8</option>
+                                        <option value={9}>9</option>
+                                        <option value={10}>10</option>
+                                    </select>
+                                    <div>
+                                        {/* <button id='add-to-cart-btn'>Add To Cart</button> */}
+                                    </div>
+                                </form>
                                 <div>
-                                    {/* <button id='add-to-cart-btn'>Add To Cart</button> */}
+                                    <select id='add-to-list' onChange={(e) => handleAddToList(e.target.value)}>
+                                        <option value={''} disabled defaultChecked>Add to list</option>
+                                        {lists && lists.map(list => (
+                                            <option value={list.id}>{list.name}</option>
+                                        ))}
+                                    </select>
                                 </div>
-                            </form>
+                            </>
                         )}
                         {!user && (
                             <p>Log in or sign up to add this to your cart</p>

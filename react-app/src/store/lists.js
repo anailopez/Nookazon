@@ -1,7 +1,8 @@
 const CREATE_LIST = 'list/createList'
 const GET_LISTS = 'list/getLists'
 const DELETE_LIST = 'list/deleteList'
-
+const ADD_ITEM_TO_LIST = 'list/addItem'
+const REMOVE_ITEM_FROM_LIST = 'list/deleteItem'
 
 //regular action creators
 const actionCreateList = (list) => {
@@ -25,6 +26,19 @@ const actionDeleteList = (listId) => {
     }
 }
 
+const actionAddItem = (list) => {
+    return {
+        type: ADD_ITEM_TO_LIST,
+        list
+    }
+}
+
+const actionRemoveItem = (list) => {
+    return {
+        type: REMOVE_ITEM_FROM_LIST,
+        list
+    }
+}
 
 //thunk action creators
 export const thunkCreateList = (list) => async (dispatch) => {
@@ -74,6 +88,37 @@ export const thunkDeleteList = (id) => async (dispatch) => {
     }
 }
 
+export const thunkAddItemToList = (listId, itemId) => async (dispatch) => {
+    const response = await fetch(`/api/lists/${listId}/add`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(itemId)
+    });
+
+    if (response.ok) {
+        const list = await response.json()
+        dispatch(actionAddItem(list))
+        return list
+    } else {
+        return await response.json()
+    }
+}
+
+export const thunkRemoveItemFromList = (listId, itemId) => async (dispatch) => {
+    const response = await fetch(`/api/lists/${listId}/remove`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(itemId)
+    });
+
+    if (response.ok) {
+        const list = await response.json()
+        dispatch(actionRemoveItem(list))
+        return list
+    } else {
+        return await response.json()
+    }
+}
 
 const initialState = {}
 
@@ -95,6 +140,16 @@ const listsReducer = (state = initialState, action) => {
             let deleteState = { ...state }
             delete deleteState[action.listId]
             return deleteState;
+
+        case ADD_ITEM_TO_LIST:
+            let addItemState = { ...state }
+            addItemState[action.list.id] = action.list
+            return addItemState;
+
+        case REMOVE_ITEM_FROM_LIST:
+            let removeItemState = { ...state }
+            removeItemState[action.list.id] = action.list
+            return removeItemState
 
         default:
             return state;
