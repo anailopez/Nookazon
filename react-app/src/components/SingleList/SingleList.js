@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetLists } from "../../store/lists";
 import { thunkDeleteList } from "../../store/lists";
+import { thunkRemoveItemFromList } from "../../store/lists";
 
 const SingleList = ({ selectedList }) => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -37,7 +38,7 @@ const SingleList = ({ selectedList }) => {
                                 <p>*date item added here*</p>
                                 <button>Add to cart</button>
                                 <button>Move</button>
-                                <button>Delete</button>
+                                <button onClick={() => dispatch(thunkRemoveItemFromList(list.id, item.id))}>Delete</button>
                             </div>
                         ))}
                     </div>
