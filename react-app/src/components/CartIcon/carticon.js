@@ -6,7 +6,6 @@ import cart_icon from '../../images/cart.png';
 
 const CartIcon = () => {
     const userId = useSelector((state) => state.session?.user?.id);
-    const stateCart = useSelector((state) => state.cart)
 
     let [cart, setCart] = useState([]);
     let quantity = 0;
@@ -20,7 +19,7 @@ const CartIcon = () => {
 
     useEffect(() => {
         dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+    }, [dispatch, savedCart])
 
     useEffect(() => {
         savedCart = JSON.parse(savedCart);
@@ -44,7 +43,7 @@ const CartIcon = () => {
         <>
             {cart && savedCart !== null && (
                 <span id='cart'>
-                    < img className='cart-icon' src={`${cart_icon}`} />
+                    < img className='cart-icon' src={`${cart_icon}`} alt='cart icon' />
                     {quantity > 9 && (
                         <p id='p-10'>{quantity}</p>
                     )}
@@ -55,7 +54,7 @@ const CartIcon = () => {
             )}
             {savedCart === null && (
                 <span id='cart'>
-                    < img className='cart-icon' src={`${cart_icon}`} />
+                    < img className='cart-icon' src={`${cart_icon}`} alt='cart icon empty' />
                     <p id='p-empty-cart'>{0}</p>
                 </span>
             )}

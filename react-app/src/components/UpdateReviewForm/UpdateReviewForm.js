@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import { thunkUpdateReview } from "../../store/reviews";
 import './update-review.css';
 import Rating from '@mui/material/Rating';
 
 const UpdateReviewForm = ({ review, closeEditModal }) => {
     const sessionUser = useSelector(state => state.session.user);
-    const history = useHistory();
 
     const dispatch = useDispatch();
 

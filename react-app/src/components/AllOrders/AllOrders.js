@@ -8,19 +8,19 @@ import './allorders.css'
 const AllOrders = () => {
     const user = useSelector(state => state.session.user);
     const orders = useSelector(state => Object.values(state.orders));
-    let savedCart = []
+    // let savedCart = []
 
     const dispatch = useDispatch();
 
-    if (user) {
-        savedCart = localStorage.getItem(user.id);
-    }
+    // if (user) {
+    //     savedCart = localStorage.getItem(user.id);
+    // }
 
     // console.log(savedCart)
 
     useEffect(() => {
         dispatch(thunkGetAllOrders(user.id))
-    }, [dispatch])
+    }, [dispatch, user.id])
 
 
     const handleDelete = async (orderId) => {
@@ -65,7 +65,7 @@ const AllOrders = () => {
                                     <div className="order-item" key={orderItem.id}>
                                         <div id='order-item-deets'>
                                             <Link to={`/items/${orderItem.item.id}`}>
-                                                <img src={orderItem.item.image} />
+                                                <img src={orderItem.item.image} alt='order item' />
                                             </Link>
                                             <Link to={`/items/${orderItem.item.id}`}>
                                                 <p id='p-item-link'>{orderItem.item.title}</p>
@@ -91,7 +91,7 @@ const AllOrders = () => {
             {orders && !orders.length > 0 && (
                 <>
                     <p>You currently have no orders</p>
-                    <img src='https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/10/01/7665a011/acnh_hacked_items.jpg' />
+                    <img src='https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/10/01/7665a011/acnh_hacked_items.jpg' alt='no orders' />
                     <Link to='/'>
                         <button id='order-link-index'>Add some items to your cart and purchase them to see your orders here!</button>
                     </Link>

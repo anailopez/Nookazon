@@ -9,7 +9,7 @@ import './searchbar.css';
 const SearchBar = () => {
     const [searchInput, setSearchInput] = useState('');
     const [searchResult, setSearchResult] = useState([]);
-    const [thunkSearchResult, setThunkSearchResult] = useState([]);
+    // const [thunkSearchResult, setThunkSearchResult] = useState([]);
 
     const dispatch = useDispatch();
     const history = useHistory();
@@ -20,7 +20,7 @@ const SearchBar = () => {
     useEffect(() => {
         dispatch(thunkGetAllItems());
         // dispatch(thunkGetSearchResults(thunkSearchResult))
-    }, [dispatch, thunkSearchResult]);
+    }, [dispatch]);
 
 
     const handleSearch = (e) => {

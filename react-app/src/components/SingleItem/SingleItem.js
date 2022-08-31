@@ -15,7 +15,7 @@ const SingleItem = () => {
 
     //shopping cart
     let [cart, setCart] = useState([]);
-    const [quantity, setQuantity] = useState(1);
+    // const [quantity, setQuantity] = useState(1);
     let savedCart = null;
 
     if (userId) {
@@ -30,7 +30,7 @@ const SingleItem = () => {
             dispatch(thunkGetReviews(itemId))
             dispatch(thunkGetCartProducts(savedCart))
         }
-    }, [dispatch, itemId])
+    }, [dispatch, itemId, savedCart])
 
     useEffect(() => {
         savedCart = JSON.parse(savedCart);

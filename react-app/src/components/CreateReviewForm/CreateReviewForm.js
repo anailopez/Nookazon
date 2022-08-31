@@ -25,7 +25,7 @@ const CreateReviewForm = () => {
 
     useEffect(() => {
         dispatch(thunkGetOneItem(itemId))
-    }, [dispatch])
+    }, [dispatch, itemId])
 
     useEffect(() => {
         const errors = [];
@@ -106,7 +106,7 @@ const CreateReviewForm = () => {
                 <h1>Create review</h1>
                 {item && (
                     <div id='review-item-info'>
-                        <img src={item.image} />
+                        <img src={item.image} alt='review item' />
                         <p>{item.title}</p>
                     </div>
                 )}
@@ -145,7 +145,7 @@ const CreateReviewForm = () => {
                     <div id='review-user'>
                         <p id='review-first-p'>This is how you'll appear to other customers</p>
                         <div id='review-user-info'>
-                            <img src={sessionUser.icon} />
+                            <img src={sessionUser.icon} alt='user icon' />
                             <p>{sessionUser.username}</p>
                         </div>
                     </div>

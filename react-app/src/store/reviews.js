@@ -90,7 +90,7 @@ export const thunkUpdateReview = (review) => async (dispatch) => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(actionCreateReview(data));
+        dispatch(actionUpdateReview(data));
         return null;
     } else if (response.status < 500) {
         const data = await response.json();

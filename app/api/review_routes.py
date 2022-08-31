@@ -25,7 +25,7 @@ def get_reviews(id):
 
 
 @review_routes.route('/<int:id>/create', methods=['POST'])
-def create_review():
+def create_review(id):
     form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 

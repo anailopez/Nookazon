@@ -20,13 +20,13 @@ const AllItems = () => {
     useEffect(() => {
         dispatch(thunkGetAllItems())
         dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+    }, [dispatch, savedCart])
 
     const items = useSelector(state => Object.values(state.allItems));
 
     return (
         <div className='all-items-body'>
-            <img id='banner' src={banner}></img>
+            <img id='banner' src={banner} alt='banner'></img>
             <div className='all-items'>
                 {items && items.map(item => (
                     <div className='item-card' key={item.id}>
