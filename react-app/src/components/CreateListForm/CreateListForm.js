@@ -33,8 +33,8 @@ const CreateListForm = ({ closeListModal }) => {
         setName('');
         setBackendErrors([]);
         setValidationErrors([]);
-        closeListModal();
         setHasSubmitted(false);
+        closeListModal();
     }
 
     const handleSubmit = async (e) => {

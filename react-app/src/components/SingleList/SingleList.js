@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { thunkGetLists } from "../../store/lists";
+import { thunkDeleteList } from "../../store/lists";
 
 const SingleList = ({ selectedList }) => {
     const userId = useSelector(state => state.session?.user?.id);
@@ -14,12 +15,18 @@ const SingleList = ({ selectedList }) => {
         dispatch(thunkGetLists(userId))
     }, [dispatch, userId]);
 
+    const handleDelete = async (id) => {
+        dispatch(thunkDeleteList(id))
+        dispatch(thunkGetLists(userId))
+    }
+
     return (
         <div className="single-list">
             {list && (
                 <>
                     <h2>{list.name}</h2>
                     <img src={list.user.icon} alt='user icon'></img>
+                    <button onClick={() => dispatch(thunkDeleteList(list.id))}>Delete list</button>
                     <div>
                         {list.items.map(item => (
                             <div key={item.id}>

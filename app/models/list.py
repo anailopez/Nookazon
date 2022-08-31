@@ -9,9 +9,9 @@ class List(db.Model):
     name = db.Column(db.String(300), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
 
-    user = db.relationship('User', back_populates='lists')
+    user = db.relationship('User', back_populates='lists', lazy='subquery')
     items = db.relationship('Item', secondary=list_items, back_populates='lists',
-                            passive_deletes=True)
+                            passive_deletes=True, lazy='subquery')
 
     def get_items(self):
         data = [item.to_dict() for item in self.items]

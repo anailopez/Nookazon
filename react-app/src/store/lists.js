@@ -1,5 +1,7 @@
 const CREATE_LIST = 'list/createList'
 const GET_LISTS = 'list/getLists'
+const DELETE_LIST = 'list/deleteList'
+
 
 //regular action creators
 const actionCreateList = (list) => {
@@ -13,6 +15,13 @@ const actionGetLists = (lists) => {
     return {
         type: GET_LISTS,
         lists
+    }
+}
+
+const actionDeleteList = (listId) => {
+    return {
+        type: DELETE_LIST,
+        listId
     }
 }
 
@@ -51,6 +60,19 @@ export const thunkGetLists = (id) => async (dispatch) => {
     }
 }
 
+export const thunkDeleteList = (id) => async (dispatch) => {
+    const response = await fetch(`/api/lists/${id}/delete`, {
+        method: 'DELETE'
+    });
+
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(actionDeleteList(id))
+        return data
+    } else {
+        return await response.json()
+    }
+}
 
 
 const initialState = {}
@@ -68,6 +90,11 @@ const listsReducer = (state = initialState, action) => {
                 getState[list.id] = list
             })
             return getState;
+
+        case DELETE_LIST:
+            let deleteState = { ...state }
+            delete deleteState[action.listId]
+            return deleteState;
 
         default:
             return state;

@@ -38,5 +38,13 @@ def create_list():
 def get_lists(id):
     lists = db.session.query(List).filter(List.user_id == id).all()
     data = [list.to_dict() for list in lists]
-    print('**THE DATA', data)
     return {'lists': data}
+
+
+@list_routes.route('/<int:id>/delete', methods=['DELETE'])
+def delete_list(id):
+    print("***ID", id)
+    list = List.query.get(id)
+    db.session.delete(list)
+    db.session.commit()
+    return list.to_dict()
