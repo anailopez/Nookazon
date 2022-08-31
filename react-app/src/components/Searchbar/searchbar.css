@@ -20,10 +20,10 @@
     border: none;
 }
 
-#search-btn:hover {
+/* #search-btn:hover {
     background-color: #F3A847;
     cursor: pointer;
-}
+} */
 
 .search-result {
     border: 1px solid #DADADA;

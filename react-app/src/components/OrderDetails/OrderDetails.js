@@ -51,6 +51,8 @@ const OrderDetails = () => {
         setValidationErrors(errors);
     }, [delivery_info]);
 
+    console.log(validationErrors)
+
     const reset = () => {
         setValidationErrors([]);
         setHasSubmitted(false);
@@ -101,7 +103,7 @@ const OrderDetails = () => {
                         </div>
                         <div>
                             <Modal isOpen={showEditForm} style={customStyles}>
-                                {hasSubmitted && validationErrors.length > 0 && validationErrors.map(error => (
+                                {validationErrors.length > 0 && validationErrors.map(error => (
                                     <li id='error-msgs' key={error}>{error}</li>
                                 ))}
                                 <form id='form-styling'>
