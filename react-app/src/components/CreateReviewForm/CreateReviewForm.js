@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, Redirect, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { thunkCreateReview, thunkGetReviews } from "../../store/reviews";
 import { thunkGetOneItem } from "../../store/items";
@@ -23,8 +23,8 @@ const CreateReviewForm = () => {
     const [hasSubmitted, setHasSubmitted] = useState(false);
 
     const reviews = useSelector(state => Object.values(state.reviews));
-    const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
-    const ifItem = userReviews.filter(review => review.item_id === item?.id);
+    const reviewExists = reviews.find(review => review.user_id === sessionUser?.id);
+    console.log(reviewExists)
 
     useEffect(() => {
         dispatch(thunkGetOneItem(itemId));
@@ -64,7 +64,7 @@ const CreateReviewForm = () => {
             return alert("Cannot submit review")
         }
 
-        if (ifItem) {
+        if (reviewExists) {
             return alert("You've already left a review for this item! Visit item page to edit or delete existing review")
         }
 
@@ -117,7 +117,9 @@ const CreateReviewForm = () => {
                         <Link to={`/items/${item.id}`}>
                             <img src={item.image} />
                         </Link>
-                        <p>{item.title}</p>
+                        <Link to={`/items/${item.id}`}>
+                            <p id='p-item-link'>{item.title}</p>
+                        </Link>
                     </div>
                 )}
                 <form onSubmit={handleSubmit}>
