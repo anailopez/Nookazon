@@ -34,7 +34,6 @@ const AllOrders = () => {
             <h1>Your Orders</h1>
             {orders && orders.length > 0 && orders.map(order => (
                 <div className="order-item-card" key={order.id}>
-                    {/* {console.log('***order', Date(order.order_date))} */}
                     <div id='order-placed'>
                         <div id='placed-left'>
                             <div id='first'>
@@ -70,7 +69,6 @@ const AllOrders = () => {
                                             <Link to={`/items/${orderItem.item.id}`}>
                                                 <p id='p-item-link'>{orderItem.item.title}</p>
                                             </Link>
-                                            {/* <p>Qty: {orderItem.quantity}</p> */}
                                         </div>
                                         <div>
                                             <Link to={`/create-review/${orderItem.item.id}`}>

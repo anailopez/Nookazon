@@ -13,10 +13,8 @@ const Reviews = () => {
     const reviews = useSelector(state => Object.values(state.reviews));
     const sessionUser = useSelector(state => state.session?.user);
     const item = useSelector(state => state.allItems[itemId]);
-    // console.log("**REVIEWS", reviews)
 
     const [showEditForm, setShowEditForm] = useState(false);
-    // let [userReviews, setUserReviews] = useState([]);
 
     Modal.setAppElement('body');
 
@@ -26,10 +24,8 @@ const Reviews = () => {
         dispatch(thunkGetReviews(itemId));
     }, [dispatch, itemId]);
 
-
     const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
     const ifItem = userReviews.filter(review => review.item_id === item?.id);
-    // console.log(ifItem)
 
     function openEditModal() {
         setShowEditForm(true)

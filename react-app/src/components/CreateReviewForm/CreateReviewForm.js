@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { thunkCreateReview } from "../../store/reviews";
+import { thunkCreateReview, thunkGetReviews } from "../../store/reviews";
 import { thunkGetOneItem } from "../../store/items";
 import './createreview.css';
 import Rating from '@mui/material/Rating';
@@ -21,11 +21,15 @@ const CreateReviewForm = () => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [backendErrors, setBackendErrors] = useState([]);
     const [hasSubmitted, setHasSubmitted] = useState(false);
-    console.log(rating);
+
+    const reviews = useSelector(state => Object.values(state.reviews));
+    const userReviews = reviews.filter(review => review.user_id === sessionUser?.id);
+    const ifItem = userReviews.filter(review => review.item_id === item?.id);
 
     useEffect(() => {
-        dispatch(thunkGetOneItem(itemId))
-    }, [dispatch])
+        dispatch(thunkGetOneItem(itemId));
+        dispatch(thunkGetReviews(itemId));
+    }, [dispatch, itemId]);
 
     useEffect(() => {
         const errors = [];
@@ -58,6 +62,10 @@ const CreateReviewForm = () => {
 
         if (validationErrors.length > 0) {
             return alert("Cannot submit review")
+        }
+
+        if (ifItem) {
+            return alert("You've already left a review for this item! Visit item page to edit or delete existing review")
         }
 
         const newReview = {
@@ -106,7 +114,9 @@ const CreateReviewForm = () => {
                 <h1>Create review</h1>
                 {item && (
                     <div id='review-item-info'>
-                        <img src={item.image} />
+                        <Link to={`/items/${item.id}`}>
+                            <img src={item.image} />
+                        </Link>
                         <p>{item.title}</p>
                     </div>
                 )}
