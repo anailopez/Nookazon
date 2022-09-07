@@ -134,19 +134,21 @@ const Cart = () => {
                     </>
                 )}
             </div>
-            <div id='proceed-checkout'>
-                {quantity && quantity >= 2 && (
-                    <h2>Subtotal ({quantity} items): {total} bells</h2>
-                )}
-                {quantity && quantity === 1 && (
-                    <h2>Subtotal ({quantity} item): {total} bells</h2>
-                )}
-                {cart && cart.length > 0 && (
-                    <Link to={`/checkout`}>
-                        <button id='checkout-btn'>Proceed to checkout</button>
-                    </Link>
-                )}
-            </div>
+            {quantity !== 0 && (
+                <div id='proceed-checkout'>
+                    {quantity >= 2 && (
+                        <h2>Subtotal ({quantity} items): {total} bells</h2>
+                    )}
+                    {quantity === 1 && (
+                        <h2>Subtotal ({quantity} item): {total} bells</h2>
+                    )}
+                    {cart && cart.length > 0 && (
+                        <Link to={`/checkout`}>
+                            <button id='checkout-btn'>Proceed to checkout</button>
+                        </Link>
+                    )}
+                </div>
+            )}
         </div >
     )
 }
