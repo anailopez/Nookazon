@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { thunkGetAllItems } from '../../store/items';
 import { thunkGetCartProducts } from '../../store/cart';
+import { thunkGetAllOrders } from '../../store/orders';
 import Footer from '../Footer/Footer';
 import banner from '../../images/banner.png';
 import './allitems.css'
@@ -20,7 +21,10 @@ const AllItems = () => {
     useEffect(() => {
         dispatch(thunkGetAllItems())
         dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+        if (userId) {
+            dispatch(thunkGetAllOrders(userId));
+        }
+    }, [dispatch, userId])
 
     const items = useSelector(state => Object.values(state.allItems));
 

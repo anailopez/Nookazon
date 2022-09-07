@@ -20,7 +20,7 @@ const AllOrders = () => {
 
     useEffect(() => {
         dispatch(thunkGetAllOrders(user.id))
-    }, [dispatch])
+    }, [dispatch, user])
 
 
     const handleDelete = async (orderId) => {
