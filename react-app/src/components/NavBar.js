@@ -73,7 +73,9 @@ const NavBar = () => {
               <p><i className="fa-solid fa-location-dot" /> {user.town_name}</p>
             </li>
             <li>
-              <SearchBar />
+              <div id='searchbar'>
+                <SearchBar />
+              </div>
             </li>
             <li>
               <div className='dropdown'>

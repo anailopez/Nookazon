@@ -1,16 +1,24 @@
 /* TODO Add site wide styles */
+
+#root,
+#root>div {
+    width: 100vw;
+    height: 100vh;
+}
+
 html,
 button,
 input {
     font-family: "Amazon Ember", Arial, sans-serif;
 }
 
-html,
-body {
-    width: 100%;
-    height: 100%;
+/* html,
+body,
+body>div {
+    margin: 0;
     padding: 0;
-}
+    height: 100vh;
+} */
 
 body {
     background-color: #EAEDED;
