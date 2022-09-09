@@ -159,6 +159,8 @@
         flex-flow: row wrap;
         justify-content: center;
         padding-top: 40px;
+        margin-right: 20px;
+        margin-left: 20px;
         /* background-color: #EAEDED; */
     }
 
