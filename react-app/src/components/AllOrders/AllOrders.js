@@ -8,24 +8,17 @@ import './allorders.css'
 const AllOrders = () => {
     const user = useSelector(state => state.session.user);
     const orders = useSelector(state => Object.values(state.orders));
-    let savedCart = []
 
     const dispatch = useDispatch();
-
-    if (user) {
-        savedCart = localStorage.getItem(user.id);
-    }
 
     useEffect(() => {
         dispatch(thunkGetAllOrders(user.id))
     }, [dispatch, user])
 
-
     const handleDelete = async (orderId) => {
         await dispatch(thunkDeleteOrder(orderId));
         await dispatch(thunkGetAllOrders(user.id))
     }
-
 
     return (
         <div className="all-orders">
@@ -62,7 +55,7 @@ const AllOrders = () => {
                                     <div className="order-item" key={orderItem.id}>
                                         <div id='order-item-deets'>
                                             <Link to={`/items/${orderItem.item.id}`}>
-                                                <img src={orderItem.item.image} />
+                                                <img alt='order item' src={orderItem.item.image} />
                                             </Link>
                                             <Link to={`/items/${orderItem.item.id}`}>
                                                 <p id='p-item-link'>{orderItem.item.title}</p>
@@ -87,7 +80,7 @@ const AllOrders = () => {
             {orders && !orders.length > 0 && (
                 <>
                     <p>You currently have no orders</p>
-                    <img src='https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/10/01/7665a011/acnh_hacked_items.jpg' />
+                    <img alt='empty shopping cart' src='https://s3.amazonaws.com/prod-media.gameinformer.com/styles/thumbnail/s3/2020/10/01/7665a011/acnh_hacked_items.jpg' />
                     <Link to='/'>
                         <button id='order-link-index'>Add some items to your cart and purchase them to see your orders here!</button>
                     </Link>

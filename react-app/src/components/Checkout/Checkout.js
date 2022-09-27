@@ -43,7 +43,7 @@ const Checkout = () => {
 
     useEffect(() => {
         dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+    }, [dispatch, savedCart])
 
     const updateQuantity = (item, quantity) => {
         let cartCopy = [...cart];
@@ -183,7 +183,7 @@ const Checkout = () => {
                                     {total += (cartItem.item.price * cartItem.quantity)}
                                 </div>
                                 <div>
-                                    <img src={cartItem.item.image} />
+                                    <img src={cartItem.item.image} alt='cart item' />
                                     <h3>{cartItem.item.title}</h3>
                                     <h4>{cartItem.item.price} bells</h4>
                                     <p>Qty: {cartItem.quantity}</p>

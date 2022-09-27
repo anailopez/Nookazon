@@ -30,7 +30,7 @@ const Cart = () => {
 
     useEffect(() => {
         dispatch(thunkGetCartProducts(savedCart))
-    }, [dispatch])
+    }, [dispatch, savedCart])
 
     const removeItem = (itemId) => {
         let cartCopy = [...cart];
@@ -77,7 +77,7 @@ const Cart = () => {
                             <button id='cart-link-index'>Add some items to your cart to see them here!</button>
                         </Link>
                         <div id='shopping-img-container'>
-                            <img id='shopping-img' src='https://i.pinimg.com/736x/6c/0a/43/6c0a430048fb3997caaebcfa8530edcb.jpg' />
+                            <img id='shopping-img' alt='shopping cart' src='https://i.pinimg.com/736x/6c/0a/43/6c0a430048fb3997caaebcfa8530edcb.jpg' />
                         </div>
                     </div>
                 )}
@@ -92,7 +92,7 @@ const Cart = () => {
                                 <div id='cart-item-single'>
                                     <div id='inner-single'>
                                         <Link to={`/items/${cartItem.item.id}`}>
-                                            <img src={cartItem.item.image} />
+                                            <img alt='cart item' src={cartItem.item.image} />
                                         </Link>
                                         <h2>{cartItem.item.title}</h2>
                                         <h3>{cartItem.item.price} bells</h3>

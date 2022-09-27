@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { thunkCreateReview, thunkGetReviews } from "../../store/reviews";
 import { thunkGetOneItem } from "../../store/items";
@@ -114,7 +114,7 @@ const CreateReviewForm = () => {
                 {item && (
                     <div id='review-item-info'>
                         <Link to={`/items/${item.id}`}>
-                            <img src={item.image} />
+                            <img src={item.image} alt='item' />
                         </Link>
                         <Link to={`/items/${item.id}`}>
                             <p id='p-item-link'>{item.title}</p>
@@ -156,7 +156,7 @@ const CreateReviewForm = () => {
                     <div id='review-user'>
                         <p id='review-first-p'>This is how you'll appear to other customers</p>
                         <div id='review-user-info'>
-                            <img src={sessionUser.icon} />
+                            <img src={sessionUser.icon} alt='user icon' />
                             <p>{sessionUser.username}</p>
                         </div>
                     </div>

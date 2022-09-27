@@ -1,6 +1,6 @@
 
-import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from './auth/LogoutButton';
 import './navbar.css';
@@ -11,39 +11,13 @@ import SearchBar from './Searchbar/searchbar';
 const NavBar = () => {
   const userId = useSelector((state) => state.session?.user?.id);
   const user = useSelector((state) => state.session?.user);
-  const dispatch = useDispatch();
-
-  let [cart, setCart] = useState([]);
-  let quantity = 0;
-  let savedCart = null;
-
-  if (userId) {
-    savedCart = localStorage.getItem(userId);
-  }
-
-  useEffect(() => {
-    savedCart = JSON.parse(savedCart);
-    if (savedCart !== null) {
-      setCart(savedCart)
-    }
-  }, [savedCart]);
-
-
-  const inlineStyles = {
-    spacer: {
-      flex: 1
-    },
-    badgeFix: {
-      display: 'inline-flex'
-    }
-  };
 
   return (
     <nav>
       <ul className='navbar'>
         <li>
           <NavLink to='/' exact={true} activeClassName='active'>
-            <img className='navbar-icon' src={`${nookazonIcon}`} />
+            <img className='navbar-icon' alt='navbar icon' src={`${nookazonIcon}`} />
           </NavLink>
         </li>
         {!userId && (

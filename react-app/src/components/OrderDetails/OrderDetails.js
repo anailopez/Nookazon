@@ -13,7 +13,6 @@ const OrderDetails = () => {
     const [showEditForm, setShowEditForm] = useState(false);
     const [delivery_info, setDeliveryInfo] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
-    const [hasSubmitted, setHasSubmitted] = useState(false);
     Modal.setAppElement('body');
 
 
@@ -53,15 +52,12 @@ const OrderDetails = () => {
 
     const reset = () => {
         setValidationErrors([]);
-        setHasSubmitted(false);
         setDeliveryInfo('');
         closeEditModal();
     }
 
     const handleEdit = async (e) => {
         e.preventDefault();
-
-        setHasSubmitted(true);
 
         if (validationErrors.length > 0) {
             setDeliveryInfo(order.delivery_info);
