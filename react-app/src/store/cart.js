@@ -16,7 +16,6 @@ export const actionDeleteCartProducts = (products) => {
 }
 
 export const thunkGetCartProducts = (cart) => async (dispatch) => {
-    // console.log("from thunk", cart)
     dispatch(actionGetCartProducts(cart))
 }
 

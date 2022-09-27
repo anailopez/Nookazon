@@ -13,7 +13,7 @@ const SingleItem = () => {
     const userId = useSelector(state => state.session?.user?.id);
     const user = useSelector(state => state.session?.user)
 
-    //shopping cart
+    //initialize shopping cart
     let [cart, setCart] = useState([]);
     const [quantity, setQuantity] = useState(1);
     let savedCart = null;
@@ -108,7 +108,6 @@ const SingleItem = () => {
                                     <option value={10}>10</option>
                                 </select>
                                 <div>
-                                    {/* <button id='add-to-cart-btn'>Add To Cart</button> */}
                                 </div>
                             </form>
                         )}

@@ -1,6 +1,5 @@
 from datetime import datetime
 from .db import db
-# from .order_items import order_items
 from .order_items import OrderItem
 
 

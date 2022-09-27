@@ -10,7 +10,6 @@ const Cart = () => {
 
     let [cart, setCart] = useState([]);
     const [itemId, setItemId] = useState(null);
-    // const [quantity, setQuantity] = useState(1);
 
     let savedCart = null;
     let total = 0;
@@ -55,13 +54,11 @@ const Cart = () => {
 
         if (existingItem) {
             existingItem.quantity = quantity
-            // alert('Item quantity updated!')
         }
 
         setCart(cartCopy);
         localStorage.setItem(userId, JSON.stringify(cartCopy));
         dispatch(thunkGetCartProducts(savedCart));
-        // console.log("***CART", cartCopy)
     }
 
     if (cart) {
@@ -91,7 +88,6 @@ const Cart = () => {
                             <div className='cart-item' key={cartItem.item.id}>
                                 <div style={{ 'display': 'none' }}>
                                     {total += (cartItem.item.price * cartItem.quantity)}
-                                    {/* {setQuantity(cartItem.quantity)} */}
                                 </div>
                                 <div id='cart-item-single'>
                                     <div id='inner-single'>
@@ -115,7 +111,6 @@ const Cart = () => {
                                                     <option value={9}>9</option>
                                                     <option value={10}>10</option>
                                                 </select>
-                                                {/* <button id='update-btn' onClick={() => updateQuantity(cartItem.item, quantity)}>Update quantity</button> */}
                                             </div>
                                             <form onSubmit={handleDelete}>
                                                 <button id='cart-item-delete-btn' onClick={() => setItemId(cartItem.item.id)}>Delete</button>

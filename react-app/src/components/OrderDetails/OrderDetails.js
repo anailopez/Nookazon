@@ -51,8 +51,6 @@ const OrderDetails = () => {
         setValidationErrors(errors);
     }, [delivery_info]);
 
-    console.log(validationErrors)
-
     const reset = () => {
         setValidationErrors([]);
         setHasSubmitted(false);
@@ -89,7 +87,6 @@ const OrderDetails = () => {
         },
     };
 
-    // console.log(deliveryInfo)
 
     return (
         <div className="order-details">
@@ -151,7 +148,6 @@ const OrderDetails = () => {
                         </div>
                         {order && order.items.map(orderItem => (
                             <div key={orderItem.id} className='orderDetails-item'>
-                                {/* <p id='date'>{order.delivery_date}</p> */}
                                 <div className="image-buyagain">
                                     <Link to={`/items/${orderItem.item.id}`}>
                                         <img src={orderItem.item.image} alt="orderItem img" />

@@ -1,7 +1,4 @@
 .all-checkout {
-    /* display: flex;
-    flex-direction: row;
-    justify-content: space-evenly; */
     background-color: white;
     padding-bottom: 50px;
     margin-left: -8px;
@@ -35,8 +32,6 @@
 
 #left {
     margin-top: 20px;
-    /* display: flex;s */
-    /* flex-direction: column; */
 }
 
 #right {
@@ -98,7 +93,6 @@
     border-style: none;
     box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
     box-sizing: border-box;
-    /* color: #fff; */
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -115,7 +109,6 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-left: 30px;
-    /* width: 80%; */
 }
 
 #bottom-btn:hover {
@@ -136,7 +129,6 @@
     border-style: none;
     box-shadow: rgba(255, 255, 255, 0.26) 0 1px 2px inset;
     box-sizing: border-box;
-    /* color: #fff; */
     cursor: pointer;
     display: flex;
     flex-direction: row;
@@ -153,7 +145,6 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-left: 30px;
-    /* width: 80%; */
 }
 
 .right-order h2 {
@@ -177,10 +168,6 @@
     flex-direction: row;
 }
 
-/* #address-info {
-    display: flex;
-    flex-direction: column;
-} */
 
 #address-info h2 {
     font-weight: 700;

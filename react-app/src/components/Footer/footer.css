@@ -1,18 +1,14 @@
 @media screen and (max-width:1000px) {
     .footer {
-        /* margin-top: 150px; */
-        /* position: fixed; */
         position: relative;
         margin-bottom: 0;
         margin-top: 180px;
         left: 0;
         bottom: 0;
-        /* width: 1940px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        /* z-index: 2; */
         color: white;
         width: 102%;
     }
@@ -40,19 +36,15 @@
 
 @media screen and (min-width:1001px) {
     .footer {
-        /* margin-top: 150px; */
-        /* position: fixed; */
         position: relative;
         margin-bottom: 0;
         margin-top: 180px;
         left: 0;
         bottom: 0;
-        /* width: 1940px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        /* z-index: 2; */
         color: white;
         width: 101%;
     }
@@ -81,19 +73,15 @@
 @media screen and (min-width:1401px) {
 
     .footer {
-        /* margin-top: 150px; */
-        /* position: fixed; */
         position: relative;
         margin-bottom: 0;
         margin-top: 180px;
         left: 0;
         bottom: 0;
-        /* width: 1940px; */
         display: flex;
         flex-direction: column;
         justify-content: center;
         text-align: center;
-        /* z-index: 2; */
         color: white;
         width: 102%;
     }

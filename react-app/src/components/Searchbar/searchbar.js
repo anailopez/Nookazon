@@ -11,7 +11,6 @@ const SearchBar = () => {
     const dispatch = useDispatch();
 
     const items = useSelector(state => Object.values(state.allItems));
-    // console.log(searchResult.length);
 
     useEffect(() => {
         dispatch(thunkGetAllItems())

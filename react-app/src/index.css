@@ -1,4 +1,4 @@
-/* TODO Add site wide styles */
+/* Add site wide styles */
 
 #root,
 #root>div {
@@ -12,28 +12,12 @@ input {
     font-family: "Amazon Ember", Arial, sans-serif;
 }
 
-/* html,
-body,
-body>div {
-    margin: 0;
-    padding: 0;
-    height: 100vh;
-} */
 
 body {
     background-color: #EAEDED;
     overflow-x: hidden;
 }
 
-/* #form-styling {
-    margin: 10px auto;
-    max-width: 400px;
-    padding: 20px 12px 10px 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-} */
 
 #form-styling input[type=text],
 #form-styling input[type=number],
@@ -43,40 +27,6 @@ textarea,
 select {
     font-family: "Amazon Ember", Arial, sans-serif;
 }
-
-/* #form-styling button {
-    background-color: #F1C966;
-    border-color: #adb1b8 #a2a6ac #8d9096;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 3px;
-    box-shadow: rgba(255, 255, 255, .6) 0 1px 0 inset;
-    box-sizing: border-box;
-    color: #0f1111;
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Amazon Ember", Arial, sans-serif;
-    font-size: 14px;
-    height: 29px;
-    font-size: 13px;
-    outline: 0;
-    overflow: hidden;
-    padding: 0 11px;
-    text-align: center;
-    text-decoration: none;
-    text-overflow: ellipsis;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    white-space: nowrap;
-    margin-top: 15px;
-    margin-right: 10px
-} */
-
-
-/* #form-styling button:hover {
-    background-color: #F2CC6D;
-} */
 
 
 #modal-btn {

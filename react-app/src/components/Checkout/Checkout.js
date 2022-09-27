@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { thunkCreateOrder } from "../../store/orders";
-// import { thunkGetAllOrders } from "../../store/orders";
 import { thunkGetCartProducts } from "../../store/cart";
 import Modal from 'react-modal';
 import './checkout.css';
@@ -53,7 +52,6 @@ const Checkout = () => {
 
         if (existingItem) {
             existingItem.quantity = quantity
-            // alert('Item quantity updated!')
         }
 
         setCart(cartCopy);
@@ -211,10 +209,6 @@ const Checkout = () => {
                                             <label id='prime-radio' htmlFor="Prime">{formattedDate}</label>
                                             <p>FREE Prime Delivery</p>
                                         </div>
-                                        {/* <div>
-                                            <input type='radio' name='delivery' value='Nookazon Day' />
-                                            <label htmlFor="Nookazon">FREE Nookazon Day Delivery</label>
-                                        </div> */}
                                     </form>
                                 </div>
                             </div>

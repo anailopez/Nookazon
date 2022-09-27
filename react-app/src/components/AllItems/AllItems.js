@@ -48,9 +48,7 @@ const AllItems = () => {
                     </div>
                 ))}
             </div>
-            {/* <div> */}
             <Footer />
-            {/* </div> */}
         </div>
     )
 }

@@ -1,7 +1,6 @@
 from app.models import db, User
 
 
-# Adds a demo user, you can add other users here if you want
 def seed_users():
     Maple = User(
         username='Maple', icon='https://64.media.tumblr.com/34d598e1356bb69efc407c8eebc13ac4/facdf29a973759c9-02/s400x600/e7a4b09955f49b04b35651a798df8fbd08e2687e.png', email='maple@nookmail.com', street_address='123 Island Way', town_name='Nook Island', payment_method='1234', password='password')

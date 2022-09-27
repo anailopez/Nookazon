@@ -29,8 +29,6 @@ const CartIcon = () => {
         }
     }, [savedCart]);
 
-    // console.log("**STATE CART", stateCart);
-    // console.log("***CART", cart);
 
     if (cart) {
         cart.forEach(item => {
@@ -38,7 +36,6 @@ const CartIcon = () => {
         });
     }
 
-    // console.log("****quantity", quantity)
 
     return (
         <>

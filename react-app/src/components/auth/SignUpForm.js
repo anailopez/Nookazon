@@ -89,7 +89,6 @@ const SignUpForm = () => {
             type='text'
             name='icon'
             onChange={updateIcon}
-          // value={icon}
           ></input>
         </div>
         <label>Email</label>

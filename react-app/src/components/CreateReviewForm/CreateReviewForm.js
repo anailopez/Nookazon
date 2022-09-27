@@ -24,7 +24,6 @@ const CreateReviewForm = () => {
 
     const reviews = useSelector(state => Object.values(state.reviews));
     const reviewExists = reviews.find(review => review.user_id === sessionUser?.id);
-    console.log(reviewExists)
 
     useEffect(() => {
         dispatch(thunkGetOneItem(itemId));

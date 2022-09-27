@@ -48,9 +48,6 @@
     font-size: 13px;
     line-height: 29px;
     padding: 0 10px 0 11px;
-    /* position: relative; */
-    /* left: 200px; */
-    /* text-align: center; */
     text-decoration: none;
     user-select: none;
     -webkit-user-select: none;
@@ -98,7 +95,6 @@
 }
 
 .shipments-header {
-    /* border-bottom: 1px solid #D5D9D9; */
     background-color: #F0F2F2;
     border-radius: 10px;
     padding-left: 10px;
@@ -135,14 +131,10 @@
 #buy-again-btn {
     background-color: #FFE54C;
     appearance: button;
-    /* background-color: #1652F0;
-  border: 1px solid #1652F0; */
     border: none;
     border-radius: 8px;
     box-sizing: border-box;
-    /* color: #FFFFFF; */
     cursor: pointer;
-    /* font-family: Graphik,-apple-system,system-ui,"Segoe UI",Roboto,Oxygen,Ubuntu,Cantarell,"Fira Sans","Droid Sans","Helvetica Neue",sans-serif; */
     font-size: 14px;
     line-height: 1.15;
     overflow: visible;

@@ -15,7 +15,7 @@ class User(db.Model, UserMixin):
     payment_method = db.Column(db.String(4), nullable=False)
     hashed_password = db.Column(db.String(255), nullable=False)
 
-    # relationships :)
+    # relationships
     reviews = db.relationship(
         "Review", back_populates="user", cascade="all, delete-orphan")
     orders = db.relationship(
@@ -41,10 +41,6 @@ class User(db.Model, UserMixin):
         data = [order.to_dict() for order in self.orders]
         return data
 
-    # def get_items(self):
-    #     data = [item.to_dict() for item in self.items]
-    #     return data
-
     def to_dict(self):
         return {
             'id': self.id,
@@ -54,7 +50,4 @@ class User(db.Model, UserMixin):
             'street_address': self.street_address,
             'town_name': self.town_name,
             'payment_method': self.payment_method
-            # 'reviews': self.get_reviews(),
-            # 'orders': self.get_orders(),
-            # 'items': self.get_items()
         }

@@ -14,7 +14,6 @@ const NavBar = () => {
   const dispatch = useDispatch();
 
   let [cart, setCart] = useState([]);
-  // const [quantity, setQuantity] = useState(0);
   let quantity = 0;
   let savedCart = null;
 
